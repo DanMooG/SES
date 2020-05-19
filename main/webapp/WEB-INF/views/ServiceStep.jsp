@@ -88,19 +88,20 @@ footer {
 								style="font: 30px solid; width: 500px; height: 500px;"></a>
 						</div>
 						<div class="col-md-3" align=left>
-							<a class="btn btn-default" data-target="#modal"
-								data-toggle="modal"
-								style="font: 30px solid; width: 200px; height: 50px;">단계1</a> <a
-								class="btn btn-default" data-target="#modal" data-toggle="modal"
-								style="font: 30px solid; width: 200px; height: 50px;">단계2</a> <a
-								class="btn btn-default" data-target="#modal" data-toggle="modal"
-								style="font: 30px solid; width: 200px; height: 50px;">단계3</a>
+							<p><a href="#"><img src="${pageContext.request.contextPath}/resources/images/step1_s.png" height=50px"></a></p>
+							<br />
+							<p><a href="#"><img src="${pageContext.request.contextPath}/resources/images/step2.png" height=50px"></a></p>
+							<br />
+							<p><a href="#"><img src="${pageContext.request.contextPath}/resources/images/step3.png" height=50px"></a></p>
+							<br />
+							<p><a href="#"><img src="${pageContext.request.contextPath}/resources/images/step4.png" height=50px"></a></p>
+							<br />
 						</div>
 					</div>
 					<br />
-					<br /> <a class="btn btn-default" data-target="#modal"
-						data-toggle="modal"
-						style="font: 30px solid; width: 200px; height: 50px;">다음</a> <br />
+					<br /> 
+					<p><a href="#"><img src="${pageContext.request.contextPath}/resources/images/next.png" width="100px"></a></p>
+					<br />
 					<br />
 				</center>
 			</div>

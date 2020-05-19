@@ -79,8 +79,13 @@ footer {
 			<div class="panel-body">
 				<!-- Contents -->
 				<center>
-					<a class="btn btn-default" data-target="#modal" data-toggle="modal"
-						style="font: 30px solid; width: 900px; height: 800px;"></a>
+					<br /><br /><br />
+					<img src="${pageContext.request.contextPath}/resources/images/info1.png" width="70%">
+					<br /> <br />
+					<img src="${pageContext.request.contextPath}/resources/images/info2.png" width="70%">
+					<br /> <br />
+					<img src="${pageContext.request.contextPath}/resources/images/info3.png" width="70%">
+					<br /><br /><br />
 				</center>
 			</div>
 		</div>

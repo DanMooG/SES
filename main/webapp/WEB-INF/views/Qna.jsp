@@ -78,30 +78,50 @@ footer {
 			</div>
 			<div class="panel-body">
 				<!-- Contents -->
-				<br />
-				<br />
+				<br /> <br /> <br />
+				<div class="row" style="float: right;">
+					<div class="col-md-8">
+						<p><a href="#"><img src="${pageContext.request.contextPath}/resources/images/write.png" width="70px"></a></p>
+					</div>
+					<div class="col-md-2"></div>
+					<div class="col-md-2"></div>
+				</div>
+				<br /> <br />
 				<center>
-					<div class="row" align="center" style="width: 700px;">
-						<div class="col-md-9" align="right">
-							<a class="btn btn-default" data-target="#modal"
-								data-toggle="modal"
-								style="font: 30px solid; width: 500px; height: 500px;"></a>
+					<table class="table table-hover" style="width: 90%;">
+						<thead align="center">
+							<tr>
+								<td width="10%" style="background-color: #337ab7; color: White;">번호</td>
+								<td width="40%" style="background-color: #337ab7; color: White;">제목</td>
+								<td width="35%" style="background-color: #337ab7; color: White;">작성날짜</td>
+								<td width="15%" style="background-color: #337ab7; color: White;">작성자</td>
+							</tr>
+						</thead>
+						<tbody align="center">
+							<tr>
+								<td>1</td>
+								<td>호롤롤로</td>
+								<td>2020-05-18</td>
+								<td>박수현</td>
+							</tr>
+						</tbody>
+					</table>
+					<br /> <br /> <br />
+					<div class="row">
+						<div class="col-md-4 align-self-center" align="right">
+							<select id="combobox1" class="combobox">
+								<option value="SI">사이트명</option>
+								<option value="KI">계정 종류별</option>
+							</select>
 						</div>
-						<div class="col-md-3" align=left>
-							<a class="btn btn-default" data-target="#modal"
-								data-toggle="modal"
-								style="font: 30px solid; width: 200px; height: 50px;">단계1</a> <a
-								class="btn btn-default" data-target="#modal" data-toggle="modal"
-								style="font: 30px solid; width: 200px; height: 50px;">단계2</a> <a
-								class="btn btn-default" data-target="#modal" data-toggle="modal"
-								style="font: 30px solid; width: 200px; height: 50px;">단계3</a>
+						<div class="col-md-4 align-self-center">
+							<input type="text" style="width: 100%;">
+						</div>
+						<div class="col-md-4 align-self-center" align="left">
+							<p><a href="#"><img src="${pageContext.request.contextPath}/resources/images/search.png" width="50px"></a></p>
 						</div>
 					</div>
-					<br />
-					<br /> <a class="btn btn-default" data-target="#modal"
-						data-toggle="modal"
-						style="font: 30px solid; width: 200px; height: 50px;">다음</a> <br />
-					<br />
+					<br /> <br /> <br />
 				</center>
 			</div>
 		</div>

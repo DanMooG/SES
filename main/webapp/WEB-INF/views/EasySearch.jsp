@@ -80,12 +80,30 @@ footer {
 				<!-- Contents -->
 				<div class="top-menu container">
 					<ul class="nav nav-tabs">
-						<li class="active"><a href="#tab1" class="demoTab"
-							data-toggle="tab">페이스북</a></li>
-						<li><a href="#tab2" class="optionsTab" data-toggle="tab">카카오톡</a>
+						<li class="active">
+							<a href="#tab1" class="demoTab" data-toggle="tab" style="background-color: #4267b2; color: White">
+								<img src="${pageContext.request.contextPath}/resources/images/facebook.png" width="30px">
+								페이스북
+							</a>
 						</li>
-						<li><a href="#tab3" data-toggle="tab">네이버</a></li>
-						<li><a href="#tab4" data-toggle="tab">구글</a></li>
+						<li>
+							<a href="#tab2" class="demoTab" data-toggle="tab" style="background-color: #f9e000; color: #3b1c1c">
+								<img src="${pageContext.request.contextPath}/resources/images/kakaotalk.png" width="30px">
+								카카오톡
+							</a>
+						</li>
+						<li>
+							<a href="#tab3" data-toggle="tab" style="background-color: #1dc800; color: White">
+								<img src="${pageContext.request.contextPath}/resources/images/naver.png" width="30px">
+								네이버
+							</a>
+						</li>
+						<li>
+							<a href="#tab4" data-toggle="tab" style="background-color: #dc4e41; color: White">
+								<img src="${pageContext.request.contextPath}/resources/images/google_red.png" width="30px">
+								구글
+							</a>
+						</li>
 					</ul>
 				</div>
 				<center>
@@ -107,6 +125,22 @@ footer {
 							</tr>
 						</tbody>
 					</table>
+					<br /> <br /> <br />
+					<div class="row">
+						<div class="col-md-4 align-self-center" align="right">
+							<select id="combobox1" class="combobox">
+								<option value="SI">사이트명</option>
+								<option value="KI">계정 종류별</option>
+							</select>
+						</div>
+						<div class="col-md-4 align-self-center">
+							<input type="text" style="width: 100%;">
+						</div>
+						<div class="col-md-4 align-self-center" align="left">
+							<p><a href="#"><img src="${pageContext.request.contextPath}/resources/images/search.png" width="50px"></a></p>
+						</div>
+					</div>
+					<br /> <br /> <br />
 				</center>
 			</div>
 		</div>

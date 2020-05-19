@@ -79,31 +79,32 @@ footer {
 			<div class="panel-body">
 				<!-- Contents -->
 				<center>
+				<br /> <br />
 					<table class="table table-hover" style="width: 90%;">
 						<tbody>
 							<tr>
-								<td align="center" style="width: 20%;">번호</td>
+								<td align="center" style="width: 20%; background-color: #337ab7; color: White;">번호</td>
 								<td></td>
 							</tr>
 							<tr>
-								<td align="center">제목</td>
+								<td align="center" style="background-color: #337ab7; color: White;">제목</td>
 								<td><input type="text" style="width: 40%;"></td>
 							</tr>
 							<tr>
-								<td align="center">작성자</td>
+								<td align="center" style="background-color: #337ab7; color: White;">작성자</td>
 								<td><input type="text" style="width: 40%;"></td>
 							</tr>
 							<tr>
-								<td align="center">비밀번호</td>
+								<td align="center" style="background-color: #337ab7; color: White;">비밀번호</td>
 								<td><input type="text" style="width: 40%;"></td>
 							</tr>
 							<tr>
-								<td colspan="2" height="400px"><textarea style="width: 100%; height:100%;"></textarea></td>
+								<td colspan="2" height="400px" style="background-color: #337ab7;"><textarea style="width: 100%; height:100%; font-size: 20px;"></textarea></td>
 							</tr>
 						</tbody>
 					</table>
 					<br /> <br />
-					<p><a class="btn btn-default" data-target="#modal" data-toggle="modal" style="font:30px solid; width:100px; height:45px;">입력</a></p>
+					<p><a href="#"><img src="${pageContext.request.contextPath}/resources/images/input.png" width="100px"></a></p>
 					<br /> <br /> <br />
 				</center>
 			</div>

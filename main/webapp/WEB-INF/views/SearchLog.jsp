@@ -74,14 +74,18 @@ footer {
 		</div>
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h3>간편 가입 조회</h3>
+				<h3>간편 가입 탈퇴 내역</h3>
 			</div>
 			<div class="panel-body">
 				<!-- Contents -->
 				<br /> <br /> <br />
 				<div class="row" style="float: right;">
 					<div class="col-md-8">
-						<button>글작성</button>
+						<select id="combobox1" class="combobox">
+								<option value="SI">사이트명</option>
+								<option value="KI">계정 종류별</option>
+								<option value="KI">날짜별</option>
+							</select>
 					</div>
 					<div class="col-md-2"></div>
 					<div class="col-md-2"></div>
@@ -91,18 +95,18 @@ footer {
 					<table class="table table-hover" style="width: 90%;">
 						<thead align="center">
 							<tr>
-								<td width="10%">번호</td>
-								<td width="40%">제목</td>
-								<td width="35%">작성날짜</td>
-								<td width="15%">작성자</td>
+								<td width="10%" style="background-color: #337ab7; color: White;">번호</td>
+								<td width="35%" style="background-color: #337ab7; color: White;">계정종류</td>
+								<td width="40%" style="background-color: #337ab7; color: White;">외부 사이트 명</td>
+								<td width="15%" style="background-color: #337ab7; color: White;">탈퇴 날짜</td>
 							</tr>
 						</thead>
-						<tbody>
+						<tbody align="center">
 							<tr>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
+								<td>1</td>
+								<td>네이버</td>
+								<td>레알팜</td>
+								<td>2020-05-19</td>
 							</tr>
 						</tbody>
 					</table>
@@ -118,7 +122,7 @@ footer {
 							<input type="text" style="width: 100%;">
 						</div>
 						<div class="col-md-4 align-self-center" align="left">
-							<button>검색</button>
+							<p><a href="#"><img src="${pageContext.request.contextPath}/resources/images/search.png" width="50px"></a></p>
 						</div>
 					</div>
 					<br /> <br /> <br />
