@@ -85,7 +85,7 @@ footer {
 								<option value="SI">사이트명</option>
 								<option value="KI">계정 종류별</option>
 								<option value="KI">날짜별</option>
-							</select>
+						</select>
 					</div>
 					<div class="col-md-2"></div>
 					<div class="col-md-2"></div>

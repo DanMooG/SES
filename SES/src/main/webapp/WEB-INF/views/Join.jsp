@@ -41,7 +41,7 @@
 		
 		<div class="row">
         	<!-- 본문 들어가는 부분 -->
-	        <form class="form-horizontal" role="form" method="post" action="javascript:alert( 'success!' );">
+	        <form class="form-horizontal" name="join" role="form" method="post" onsubmit="emailCheck();">
             	<div class="form-group">
                 	<label for="provision" class="col-lg-2 control-label">회원가입약관</label>
                		<div class="col-lg-10" id="provision">
@@ -106,8 +106,8 @@
                     <input type="text" class="form-control onlyHangul" id="name" data-rule-required="true" placeholder="한글만 입력 가능합니다." maxlength="15">
                 </div>
             </div>
-            <div class="form-group" id="divEmail">
-                <label for="inputEmail" class="col-lg-2 control-label">생년월일</label>
+            <div class="form-group" id="divBirth">
+                <label for="inputBirth" class="col-lg-2 control-label">생년월일</label>
                 <div class="col-lg-10">
                 	<input type="text" class="form-control onlyHangul" id="datepicker" data-date-format="yyyy-mm-dd" maxlength="15">
                 </div>
@@ -115,13 +115,32 @@
             <div class="form-group" id="divEmail">
                 <label for="inputEmail" class="col-lg-2 control-label">이메일</label>
                 <div class="col-lg-10">
-                    <input type="email" class="form-control" id="email" data-rule-required="true" placeholder="이메일" maxlength="40">
+                	<input type="text" class="form-control onlyHangul" id="email" data-rule-required="true" placeholder="이메일을 입력해주세요" maxlength="50">
                 </div>
             </div>
             <div class="form-group" id="divPhoneNumber">
                 <label for="inputPhoneNumber" class="col-lg-2 control-label">휴대폰 번호</label>
                 <div class="col-lg-10">
-                    <input type="tel" class="form-control onlyNumber" id="phoneNumber" data-rule-required="true" placeholder="-를 제외하고 숫자만 입력하세요." maxlength="11">
+                	<div class="row">
+                		<div class="col-lg-5">
+                			<div class="row">
+                				<div class="col-lg-4">
+                					<select class="form-control" data-toggle="dropdown" name="phoneNumber" style="width:120px;">
+                						<option value="">선택하세요</option>
+                   						<option value="010">010</option>
+                   						<option value="011">011</option>
+                					</select>
+                				</div>
+								<div class="col-lg-4">
+                    				<input type="tel" class="form-control onlyNumber" id="phoneNumber" data-rule-required="true" maxlength="4" style="width:115px;">
+                   				</div>
+								<div class="col-lg-4">
+                    				<input type="tel" class="form-control onlyNumber" id="phoneNumber" data-rule-required="true" maxlength="4" style="width:115px;">
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-7"></div>
+					</div>
                 </div>
             </div>
             <div class="form-group">
@@ -146,6 +165,15 @@
                 	</label>
             	</div>
             </div>
+            <div class="form-group">
+            	<label for="connectSNS" class="col-lg-2 control-label">계정 연동</label>
+            	<p><a href="#"><img src="${pageContext.request.contextPath}/resources/images/FacebookConn.png" width="100px"></a>
+            	<a href="#"><img src="${pageContext.request.contextPath}/resources/images/KakaotalkConn.png" width="100px"></a>
+            	<a href="#"><img src="${pageContext.request.contextPath}/resources/images/NaverConn.png" width="100px"></a>
+            	<a href="#"><img src="${pageContext.request.contextPath}/resources/images/GoogleConn.png" width="100px"></a></p>
+            </div>
+            
+            
             <br />
 			<br />
             <div class="form-group" align="center">
@@ -225,6 +253,20 @@
         	todayHighlight: true,
     	});
     	$('#datepicker').datepicker("setDate", new Date());
+
+    	function emailCheck() {		
+    		alert(document.getElementById("email").value);
+    		var email = document.getElementById("email").value;
+    		var exptext = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
+    		if(exptext.test(email)==false){
+
+    		//이메일 형식이 알파벳+숫자@알파벳+숫자.알파벳+숫자 형식이 아닐 경우
+    		alert("이메일 형식이 올바르지 않습니다.");
+
+    		document.join.email.value="";
+    		return;
+    		}
+    	}
 	</script>
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
 		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
