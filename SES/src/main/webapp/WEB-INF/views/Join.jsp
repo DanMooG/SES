@@ -1,138 +1,157 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html;" charset="UTF-8">
 <meta name="viewport" content="width=device-width" , initial-scale="1">
 <link rel="stylesheet" href="css/bootstrap.css">
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.min.css"
+	rel="stylesheet" />
+<link
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	crossorigin="anonymous">
 <title>SES(Search Easy-Sign-up)</title>
 </head>
 <body>
 	<script type="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src="js/bootstrap.js"></script>
 	
-	<div class="container"><!-- ÁÂ¿ìÃøÀÇ °ø°£ È®º¸ -->
+	<div class="container"><!-- ì¢Œìš°ì¸¡ì˜ ê³µê°„ í™•ë³´ -->
 		<div class="jumbotron text-left">
 			<img src="${pageContext.request.contextPath}/resources/images/mainmark.png" width="250px">
 		</div>
 
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h3>È¸¿ø°¡ÀÔ</h3>
+				<h3>íšŒì›ê°€ìž…</h3>
 			</div>
 		</div>
 		
 		<div class="row">
-        	<!-- º»¹® µé¾î°¡´Â ºÎºÐ -->
+        	<!-- ë³¸ë¬¸ ë“¤ì–´ê°€ëŠ” ë¶€ë¶„ -->
 	        <form class="form-horizontal" role="form" method="post" action="javascript:alert( 'success!' );">
             	<div class="form-group">
-                	<label for="provision" class="col-lg-2 control-label">È¸¿ø°¡ÀÔ¾à°ü</label>
+                	<label for="provision" class="col-lg-2 control-label">íšŒì›ê°€ìž…ì•½ê´€</label>
                		<div class="col-lg-10" id="provision">
-                    	<textarea class="form-control" rows="8" style="resize:none">¾à°üµ¿ÀÇ
-ºí¶óºí¶óºí¶óºí¶óºí¶óºí¶óºí¶óºí¶óºí¶óºí¶óºí¶óºí¶ó
-ºí¶óºí¶óºí¶óºí¶óºí¶óºí¶óºí¶óºí¶óºí¶óºí¶óºí¶óºí¶ó
-ºí¶óºí¶óºí¶óºí¶óºí¶óºí¶óºí¶óºí¶óºí¶óºí¶óºí¶óºí¶ó.................
+                    	<textarea class="form-control" rows="8" style="resize:none">ì•½ê´€ë™ì˜
+ë¸”ë¼ë¸”ë¼ë¸”ë¼ë¸”ë¼ë¸”ë¼ë¸”ë¼ë¸”ë¼ë¸”ë¼ë¸”ë¼ë¸”ë¼ë¸”ë¼ë¸”ë¼
+ë¸”ë¼ë¸”ë¼ë¸”ë¼ë¸”ë¼ë¸”ë¼ë¸”ë¼ë¸”ë¼ë¸”ë¼ë¸”ë¼ë¸”ë¼ë¸”ë¼ë¸”ë¼
+ë¸”ë¼ë¸”ë¼ë¸”ë¼ë¸”ë¼ë¸”ë¼ë¸”ë¼ë¸”ë¼ë¸”ë¼ë¸”ë¼ë¸”ë¼ë¸”ë¼ë¸”ë¼.................
                     	</textarea>
                     <div class="radio">
                     	<label>
-                        	<input type="radio" id="provisionYn" name="provisionYn" value="Y" autofocus="autofocus" checked>µ¿ÀÇÇÕ´Ï´Ù.
+                        	<input type="radio" id="provisionYn" name="provisionYn" value="Y" autofocus="autofocus" checked>ë™ì˜í•©ë‹ˆë‹¤.
                         </label>
                     </div>
                     <div class="radio">
                     	<label>
-                        	<input type="radio" id="provisionYn" name="provisionYn" value="N">µ¿ÀÇÇÏÁö ¾Ê½À´Ï´Ù.
+                        	<input type="radio" id="provisionYn" name="provisionYn" value="N">ë™ì˜í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.
                         </label>
                     </div>
                 </div>
             </div>
             <div class="form-group">
-            	<label for="memberInfo" class="col-lg-2 control-label">°³ÀÎÁ¤º¸Ãë±Þ¹æÄ§</label>
+            	<label for="memberInfo" class="col-lg-2 control-label">ê°œì¸ì •ë³´ì·¨ê¸‰ë°©ì¹¨</label>
                 <div class="col-lg-10" id="memberInfo">
-                	<textarea class="form-control" rows="8" style="resize:none">°³ÀÎÁ¤º¸ÀÇ Ç×¸ñ ¹× ¼öÁý¹æ¹ý
-ºí¶óºí¶óºí¶óºí¶óºí¶óºí¶óºí¶óºí¶óºí¶óºí¶óºí¶óºí¶ó                        
-ºí¶óºí¶óºí¶óºí¶óºí¶óºí¶óºí¶óºí¶óºí¶óºí¶óºí¶óºí¶ó
-ºí¶óºí¶óºí¶óºí¶óºí¶óºí¶óºí¶óºí¶óºí¶óºí¶óºí¶óºí¶ó.................
+                	<textarea class="form-control" rows="8" style="resize:none">ê°œì¸ì •ë³´ì˜ í•­ëª© ë° ìˆ˜ì§‘ë°©ë²•
+ë¸”ë¼ë¸”ë¼ë¸”ë¼ë¸”ë¼ë¸”ë¼ë¸”ë¼ë¸”ë¼ë¸”ë¼ë¸”ë¼ë¸”ë¼ë¸”ë¼ë¸”ë¼                        
+ë¸”ë¼ë¸”ë¼ë¸”ë¼ë¸”ë¼ë¸”ë¼ë¸”ë¼ë¸”ë¼ë¸”ë¼ë¸”ë¼ë¸”ë¼ë¸”ë¼ë¸”ë¼
+ë¸”ë¼ë¸”ë¼ë¸”ë¼ë¸”ë¼ë¸”ë¼ë¸”ë¼ë¸”ë¼ë¸”ë¼ë¸”ë¼ë¸”ë¼ë¸”ë¼ë¸”ë¼.................
                 	</textarea>
                 	<div class="radio">
                     	<label>
-                        	<input type="radio" id="memberInfoYn" name="memberInfoYn" value="Y" checked>µ¿ÀÇÇÕ´Ï´Ù.
+                        	<input type="radio" id="memberInfoYn" name="memberInfoYn" value="Y" checked>ë™ì˜í•©ë‹ˆë‹¤.
                     	</label>
                 	</div>
               		<div class="radio">
                     	<label>
-                        	<input type="radio" id="memberInfoYn" name="memberInfoYn" value="N">µ¿ÀÇÇÏÁö ¾Ê½À´Ï´Ù.
+                        	<input type="radio" id="memberInfoYn" name="memberInfoYn" value="N">ë™ì˜í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.
                     	</label>
                 	</div>
                 </div>
                 </div>
             <div class="form-group" id="divId">
-            	<label for="inputId" class="col-lg-2 control-label">¾ÆÀÌµð</label>
+            	<label for="inputId" class="col-lg-2 control-label">ì•„ì´ë””</label>
             	<div class="col-lg-10">
-                	<input type="text" class="form-control onlyAlphabetAndNumber" id="id" data-rule-required="true" placeholder="30ÀÚÀÌ³»ÀÇ ¾ËÆÄºª, ¾ð´õ½ºÄÚ¾î(_), ¼ýÀÚ¸¸ ÀÔ·Â °¡´ÉÇÕ´Ï´Ù." maxlength="30">
+                	<input type="text" class="form-control onlyAlphabetAndNumber" id="id" data-rule-required="true" placeholder="30ìžì´ë‚´ì˜ ì•ŒíŒŒë²³, ì–¸ë”ìŠ¤ì½”ì–´(_), ìˆ«ìžë§Œ ìž…ë ¥ ê°€ëŠ¥í•©ë‹ˆë‹¤." maxlength="30">
             	</div>
             </div>
             <div class="form-group" id="divPassword">
-            	<label for="inputPassword" class="col-lg-2 control-label">ºñ¹Ð¹øÈ£</label>
+            	<label for="inputPassword" class="col-lg-2 control-label">ë¹„ë°€ë²ˆí˜¸</label>
                 <div class="col-lg-10">
-                	<input type="password" class="form-control" id="password" name="excludeHangul" data-rule-required="true" placeholder="ÆÐ½º¿öµå" maxlength="30">
+                	<input type="password" class="form-control" id="password" name="excludeHangul" data-rule-required="true" placeholder="íŒ¨ìŠ¤ì›Œë“œ" maxlength="30">
             	</div>
         	</div>
         	<div class="form-group" id="divPasswordCheck">
-            	<label for="inputPasswordCheck" class="col-lg-2 control-label">ºñ¹Ð¹øÈ£ È®ÀÎ</label>
+            	<label for="inputPasswordCheck" class="col-lg-2 control-label">ë¹„ë°€ë²ˆí˜¸ í™•ì¸</label>
             	<div class="col-lg-10">
-                	<input type="password" class="form-control" id="passwordCheck" data-rule-required="true" placeholder="ÆÐ½º¿öµå È®ÀÎ" maxlength="30">
+                	<input type="password" class="form-control" id="passwordCheck" data-rule-required="true" placeholder="íŒ¨ìŠ¤ì›Œë“œ í™•ì¸" maxlength="30">
             	</div>
             </div>
             <div class="form-group" id="divName">
-                <label for="inputName" class="col-lg-2 control-label">¼º¸í</label>
+                <label for="inputName" class="col-lg-2 control-label">ì„±ëª…</label>
                 <div class="col-lg-10">
-                    <input type="text" class="form-control onlyHangul" id="name" data-rule-required="true" placeholder="ÇÑ±Û¸¸ ÀÔ·Â °¡´ÉÇÕ´Ï´Ù." maxlength="15">
+                    <input type="text" class="form-control onlyHangul" id="name" data-rule-required="true" placeholder="í•œê¸€ë§Œ ìž…ë ¥ ê°€ëŠ¥í•©ë‹ˆë‹¤." maxlength="15">
                 </div>
             </div>
             <div class="form-group" id="divEmail">
-                <label for="inputEmail" class="col-lg-2 control-label">»ý³â¿ùÀÏ</label>
+                <label for="inputEmail" class="col-lg-2 control-label">ìƒë…„ì›”ì¼</label>
                 <div class="col-lg-10">
-                    <input type="date" class="form-control" id="email" data-rule-required="true" placeholder="»ý³â¿ùÀÏ" maxlength="40">
+                	<input type="text" class="form-control onlyHangul" id="datepicker" data-date-format="yyyy-mm-dd" maxlength="15">
                 </div>
             </div> 
             <div class="form-group" id="divEmail">
-                <label for="inputEmail" class="col-lg-2 control-label">ÀÌ¸ÞÀÏ</label>
+                <label for="inputEmail" class="col-lg-2 control-label">ì´ë©”ì¼</label>
                 <div class="col-lg-10">
-                    <input type="email" class="form-control" id="email" data-rule-required="true" placeholder="ÀÌ¸ÞÀÏ" maxlength="40">
+                    <input type="email" class="form-control" id="email" data-rule-required="true" placeholder="ì´ë©”ì¼" maxlength="40">
                 </div>
             </div>
             <div class="form-group" id="divPhoneNumber">
-                <label for="inputPhoneNumber" class="col-lg-2 control-label">ÈÞ´ëÆù ¹øÈ£</label>
+                <label for="inputPhoneNumber" class="col-lg-2 control-label">íœ´ëŒ€í° ë²ˆí˜¸</label>
                 <div class="col-lg-10">
-                    <input type="tel" class="form-control onlyNumber" id="phoneNumber" data-rule-required="true" placeholder="-¸¦ Á¦¿ÜÇÏ°í ¼ýÀÚ¸¸ ÀÔ·ÂÇÏ¼¼¿ä." maxlength="11">
+                    <input type="tel" class="form-control onlyNumber" id="phoneNumber" data-rule-required="true" placeholder="-ë¥¼ ì œì™¸í•˜ê³  ìˆ«ìžë§Œ ìž…ë ¥í•˜ì„¸ìš”." maxlength="11">
                 </div>
             </div>
             <div class="form-group">
-                <label for="inputEmailReceiveYn" class="col-lg-2 control-label">ÀÌ¸ÞÀÏ ¼ö½Å¿©ºÎ</label>
+                <label for="inputEmailReceiveYn" class="col-lg-2 control-label">ì´ë©”ì¼ ìˆ˜ì‹ ì—¬ë¶€</label>
                 <div class="col-lg-10">
                     <label class="radio-inline">
-                        <input type="radio" id="emailReceiveYn" name="emailReceiveYn" value="Y" checked> µ¿ÀÇÇÕ´Ï´Ù.
+                        <input type="radio" id="emailReceiveYn" name="emailReceiveYn" value="Y" checked> ë™ì˜í•©ë‹ˆë‹¤.
                     </label>
                     <label class="radio-inline">
-                        <input type="radio" id="emailReceiveYn" name="emailReceiveYn" value="N"> µ¿ÀÇÇÏÁö ¾Ê½À´Ï´Ù.
+                        <input type="radio" id="emailReceiveYn" name="emailReceiveYn" value="N"> ë™ì˜í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.
                     </label>
                 </div>
             </div>
             <div class="form-group">
-                <label for="inputPhoneNumber" class="col-lg-2 control-label">SMS ¼ö½Å¿©ºÎ</label>
+                <label for="inputPhoneNumber" class="col-lg-2 control-label">SMS ìˆ˜ì‹ ì—¬ë¶€</label>
                 <div class="col-lg-10">
                     <label class="radio-inline">
-                        <input type="radio" id="smsReceiveYn" name="smsReceiveYn" value="Y" checked> µ¿ÀÇÇÕ´Ï´Ù.
+                        <input type="radio" id="smsReceiveYn" name="smsReceiveYn" value="Y" checked> ë™ì˜í•©ë‹ˆë‹¤.
                     </label>
                 	<label class="radio-inline">
-                    	<input type="radio" id="smsReceiveYn" name="smsReceiveYn" value="N"> µ¿ÀÇÇÏÁö ¾Ê½À´Ï´Ù.
+                    	<input type="radio" id="smsReceiveYn" name="smsReceiveYn" value="N"> ë™ì˜í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.
                 	</label>
             	</div>
             </div>
-            <div class="form-group">
+            <br />
+			<br />
+            <div class="form-group" align="center">
             	<div class="col-lg-offset-2 col-lg-10">
-                	<button type="submit" class="btn btn-primary">Sign in</button>
+                	<button type="submit" class="btn btn-primary">íšŒì›ê°€ìž…</button>
+                	<button type="submit" class="btn btn-primary">ë©”ì¸í™”ë©´</button>
             	</div>
         	</div>
         </form>
@@ -140,7 +159,7 @@
         <br />
 		<br />
 		<br />
-        <!--// º»¹® µé¾î°¡´Â ºÎºÐ -->
+        <!--// ë³¸ë¬¸ ë“¤ì–´ê°€ëŠ” ë¶€ë¶„ -->
         <hr/>
         <!-- Footer -->
 		<footer class="page-footer font-small indigo">
@@ -156,7 +175,7 @@
 					</div>
 					<div class="col-md-2 mx-auto">
 						<!-- Links -->
-						<h5 class="font-weight-bold text-uppercase mt-2 mb-3">°³ÀÎÁ¤º¸Ã³¸®¹æÄ§</h5>
+						<h5 class="font-weight-bold text-uppercase mt-2 mb-3">ê°œì¸ì •ë³´ì²˜ë¦¬ë°©ì¹¨</h5>
 					</div>
 					<div class="col-md-5 mx-auto"></div>
 					<div class="col-md-1 mx-auto">
@@ -190,6 +209,23 @@
 		</footer>
 	</div>
 	
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+		integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+		crossorigin="anonymous"></script>
+	<script type="text/javascript">
+   		$('#datepicker').datepicker({
+       		weekStart: 1,
+        	daysOfWeekHighlighted: "6,0",
+        	autoclose: true,
+        	todayHighlight: true,
+    	});
+    	$('#datepicker').datepicker("setDate", new Date());
+	</script>
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
 		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
 		crossorigin="anonymous"></script>
