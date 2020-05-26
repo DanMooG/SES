@@ -49,9 +49,7 @@
 	<br />
 	<!-- header -->
 	<center>
-		<img
-			src="${pageContext.request.contextPath}/resources/images/mainmark.png"
-			width="30%">
+		<a href="main"><img src="${pageContext.request.contextPath}/resources/images/mainmark.png" width="30%"></a>
 	</center>
 
 	<br />

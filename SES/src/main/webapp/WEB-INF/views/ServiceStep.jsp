@@ -44,9 +44,7 @@ footer {
 		<div class="jumbotron text-left">
 			<div class="row">
 				<div class="col-md-4">
-					<img
-						src="${pageContext.request.contextPath}/resources/images/mainmark.png"
-						width="300px">
+					<a href="main"><img src="${pageContext.request.contextPath}/resources/images/mainmark.png" width="300px"></a>
 				</div>
 				<div class="col-md-8" style="padding-top: 120px;">
 					<!-- navigation -->
