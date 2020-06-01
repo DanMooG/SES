@@ -67,7 +67,7 @@
 			<div class="col-md-2">
 				<div class="row">
 					<div class="col-md-2">
-						<p><a href="Login.jsp" style="font:30px bold; width:200px; height:150px;"><img src="${pageContext.request.contextPath}/resources/images/login.png" width="200px"></a></p>
+						<p><a href="#" style="font:30px bold; width:200px; height:150px;"><img src="${pageContext.request.contextPath}/resources/images/login.png" width="200px"></a></p>
 					</div>
 				</div>
 				<div class="row">
