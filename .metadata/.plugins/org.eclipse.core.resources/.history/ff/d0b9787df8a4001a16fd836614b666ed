@@ -60,7 +60,19 @@ public class PageController {
 	public String GoServiceStep(HttpServletRequest request, Model model) {
 		return "/ServiceStep";
 	}
+
+	// 문의하기
+	@RequestMapping("/qna")
+	public String GoQna(HttpServletRequest request, Model model) {
+		return "/Qna";
+	}
 	
+	// 문의하기
+	@RequestMapping("/qnawrite")
+	public String GoQnaWrite(HttpServletRequest request, Model model) {
+		return "/QnaWrite";
+	}
+
 	// 간편가입 조회
 	@RequestMapping("/easySearch")
 	public String GoEasySearch(HttpServletRequest request, Model model) {
