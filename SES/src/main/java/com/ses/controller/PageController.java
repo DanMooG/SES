@@ -19,21 +19,63 @@ import com.ses.service.SUService;
 @Controller
 @Repository
 public class PageController {
-	
-	//서비스 인터페이스 갖고 와서 여기서 정의
+
+	// 서비스 인터페이스 갖고 와서 여기서 정의
 	@Autowired
 	LService Ser_L;
 	MService Ser_M;
 	QService Ser_Q;
 	SUService Ser_SU;
 	SLService Ser_SL;
-	
+
 	@Inject
 	HttpSession session;
 
 	// 메인화면
 	@RequestMapping("/main")
-	public String MIndex(HttpServletRequest request, Model model) {
+	public String GoMain(HttpServletRequest request, Model model) {
 		return "/MainScreen";
+	}
+
+	// 로그인
+	@RequestMapping("/login")
+	public String GoLogin(HttpServletRequest request, Model model) {
+		return "/Login";
+	}
+
+	// 회원가입
+	@RequestMapping("/join")
+	public String GoJoin(HttpServletRequest request, Model model) {
+		return "/Join";
+	}
+
+	// 서비스/회사 소개
+	@RequestMapping("/serviceInfo")
+	public String GoServiceInfo(HttpServletRequest request, Model model) {
+		return "/ServiceInfo";
+	}
+
+	// 서비스 이용 절차
+	@RequestMapping("/serviceStep")
+	public String GoServiceStep(HttpServletRequest request, Model model) {
+		return "/ServiceStep";
+	}
+
+	// 문의하기
+	@RequestMapping("/qna")
+	public String GoQna(HttpServletRequest request, Model model) {
+		return "/Qna";
+	}
+
+	// 간편가입 조회
+	@RequestMapping("/easySearch")
+	public String GoEasySearch(HttpServletRequest request, Model model) {
+		return "/EasySearch";
+	}
+
+	// 간편가입 탈퇴 내역
+	@RequestMapping("/searchLog")
+	public String GoSearchLog(HttpServletRequest request, Model model) {
+		return "/SearchLog";
 	}
 }

@@ -30,7 +30,7 @@
 	
 	<div class="container"><!-- 좌우측의 공간 확보 -->
 		<div class="jumbotron text-left">
-			<a href="MainScreen.jsp"><img src="${pageContext.request.contextPath}/resources/images/mainmark.png" width="250px"></a>
+			<a href="main"><img src="${pageContext.request.contextPath}/resources/images/mainmark.png" width="250px"></a>
 		</div>
 
 		<div class="panel panel-default">
@@ -179,7 +179,6 @@
             <div class="form-group" align="center">
             	<div class="col-lg-offset-2 col-lg-10">
                 	<button type="submit" class="btn btn-primary">회원가입</button>
-                	<button type="submit" class="btn btn-primary">메인화면</button>
             	</div>
         	</div>
         </form>

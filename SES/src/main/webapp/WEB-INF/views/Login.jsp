@@ -49,7 +49,7 @@
 	<br />
 	<!-- header -->
 	<center>
-		<a href="MainScreen.jsp"><img src="${pageContext.request.contextPath}/resources/images/mainmark.png" width="30%"></a>
+		<a href="main"><img src="${pageContext.request.contextPath}/resources/images/mainmark.png" width="30%"></a>
 	</center>
 
 	<br />
@@ -68,12 +68,9 @@
 			<div class="form-group">
 				<button type="submit" class="btn btn-primary btn-block">로그인</button>
 			</div>
-			<div class="form-group">
-				<button type="submit" class="btn btn-primary btn-block">회원가입</button>
-			</div>
 			<div class="clearfix">
 				<p class="text-center">
-					<a href="#">Forgot Password?</a>
+					<a href="join">회원가입</a> | <a href="#">Forgot Password?</a>
 				</p>
 			</div>
 		</form>

@@ -44,7 +44,7 @@ footer {
 		<div class="jumbotron text-left">
 			<div class="row">
 				<div class="col-md-4">
-					<a href="MainScreen.jsp"><img src="${pageContext.request.contextPath}/resources/images/mainmark.png" width="300px"></a>
+					<a href="main"><img src="${pageContext.request.contextPath}/resources/images/mainmark.png" width="300px"></a>
 				</div>
 				<div class="col-md-8" style="padding-top: 120px;">
 					<!-- navigation -->
@@ -52,9 +52,9 @@ footer {
 						<div class="collapse navbar-collapse"
 							id="bs-example-navbar-collapse-1">
 							<ul class="nav navbar-nav navbar-right">
-								<li><a class="nav-item" href="#">서비스/회사 소개<span
+								<li><a class="nav-item" href="serviceInfo">서비스/회사 소개<span
 										class="sr-only"></span></a></li>
-								<li><a class="nav-item" href="#">서비스 이용절차</a></li>
+								<li><a class="nav-item" href="serviceStep">서비스 이용절차</a></li>
 								<li class="dropdown"><a href="#"
 									class="dropdown-toggle nav-item" data-toggle="dropdown"
 									role="button" aria-haspopup="true" aria-expanded="false">
@@ -62,7 +62,7 @@ footer {
 								</a>
 									<ul class="dropdown-menu">
 										<li class="dropdown-item"><a href="#">자주하는 질문</a></li>
-										<li class="dropdown-item"><a href="#">문의하기</a></li>
+										<li class="dropdown-item"><a href="qna">문의하기</a></li>
 									</ul></li>
 							</ul>
 						</div>
