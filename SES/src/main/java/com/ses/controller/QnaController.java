@@ -1,5 +1,5 @@
 package com.ses.controller;
 
-public class SiteListCon {
+public class QnaController {
 
 }

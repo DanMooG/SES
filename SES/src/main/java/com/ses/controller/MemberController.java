@@ -1,5 +1,5 @@
 package com.ses.controller;
 
-public class MemberCon {
+public class MemberController {
 
 }

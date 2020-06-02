@@ -5,28 +5,20 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 import javax.activation.DataSource;
+import javax.inject.Inject;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 
+import org.apache.ibatis.session.SqlSession;
+import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+@Repository
 public class MemberDAO {
-    Connection con = null;
-    PreparedStatement pst = null;
-    ResultSet rs = null;
-    
-    private DataSource dataSource;
-    
-    public MemberDAO() {
-        try {
-            Context context = new InitialContext();
-            dataSource = (DataSource)context.lookup("java:comp/env/jdbc/Oracle11g");
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
-    }
-    
-    private static MemberDAO instance = new MemberDAO();
-    
-    public static MemberDAO getInstance() {
-        return instance;
-    }
+	@Autowired
+	public SqlSessionTemplate temp;
+	
+	@Inject
+	private SqlSession sqlSession;
 }

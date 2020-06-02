@@ -38,7 +38,7 @@
 
 		<!-- header -->
 		<div class="jumbotron text-center">
-			<a href="MainScreen.jsp"><img src="${pageContext.request.contextPath}/resources/images/mainmark.png" width="20%"></a>
+			<a href="main"><img src="${pageContext.request.contextPath}/resources/images/mainmark.png" width="20%"></a>
 		</div>
 	
 		<!-- navigation -->
