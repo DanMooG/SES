@@ -30,7 +30,7 @@
 	
 	<div class="container"><!-- 좌우측의 공간 확보 -->
 		<div class="jumbotron text-left">
-			<a href="main"><img src="${pageContext.request.contextPath}/resources/images/mainmark.png" width="250px"></a>
+			<a href="MainScreen.jsp"><img src="${pageContext.request.contextPath}/resources/images/mainmark.png" width="250px"></a>
 		</div>
 
 		<div class="panel panel-default">

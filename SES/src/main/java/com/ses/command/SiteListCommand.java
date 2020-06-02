@@ -1,5 +1,12 @@
 package com.ses.command;
 
-public class SiteListCommand {
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
+public class SiteListCommand implements MainCommand{
+
+	@Override
+	public void execute(HttpServletRequest requst, HttpServletResponse response) {
+		
+	}
 }

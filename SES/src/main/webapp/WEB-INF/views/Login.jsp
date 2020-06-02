@@ -49,7 +49,7 @@
 	<br />
 	<!-- header -->
 	<center>
-		<a href="main"><img src="${pageContext.request.contextPath}/resources/images/mainmark.png" width="30%"></a>
+		<a href="MainScreen.jsp"><img src="${pageContext.request.contextPath}/resources/images/mainmark.png" width="30%"></a>
 	</center>
 
 	<br />

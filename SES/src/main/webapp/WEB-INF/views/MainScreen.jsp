@@ -38,21 +38,21 @@
 
 		<!-- header -->
 		<div class="jumbotron text-center">
-			<a href="main"><img src="${pageContext.request.contextPath}/resources/images/mainmark.png" width="20%"></a>
+			<a href="MainScreen.jsp"><img src="${pageContext.request.contextPath}/resources/images/mainmark.png" width="20%"></a>
 		</div>
 	
 		<!-- navigation -->
 		<nav class="nav navbar-default">
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav navbar-center">
-					<li><a class="nav-item" href="#">서비스/회사 소개<span class="sr-only"></span></a></li>
-					<li><a class="nav-item" href="#">서비스 이용절차</a></li>
+					<li><a class="nav-item" href="ServiceInfo.jsp">서비스/회사 소개<span class="sr-only"></span></a></li>
+					<li><a class="nav-item" href="ServiceStep.jsp">서비스 이용절차</a></li>
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle nav-item" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
 						고객센터<span class="caret"></span></a>
 						<ul class="dropdown-menu">
 							<li class="dropdown-item"><a href="#">자주하는 질문</a></li>
-							<li class="dropdown-item"><a href="#">문의하기</a></li>
+							<li class="dropdown-item"><a href="Qna.jsp">문의하기</a></li>
 						</ul>
 					</li>
 				</ul>
@@ -67,7 +67,7 @@
 			<div class="col-md-2">
 				<div class="row">
 					<div class="col-md-2">
-						<p><a href="#" style="font:30px bold; width:200px; height:150px;"><img src="${pageContext.request.contextPath}/resources/images/login.png" width="200px"></a></p>
+						<p><a href="Login.jsp" style="font:30px bold; width:200px; height:150px;"><img src="${pageContext.request.contextPath}/resources/images/login.png" width="200px"></a></p>
 					</div>
 				</div>
 				<div class="row">
@@ -86,10 +86,10 @@
 					<div class="col-md-1">
 					</div>
 					<div class="col-md-5">
-						<p><a href="#" style="font:30px solid; width:400px; height:500px;"><img src="${pageContext.request.contextPath}/resources/images/EasySearch.png"></a></p>
+						<p><a href="EasySearch.jsp" style="font:30px solid; width:400px; height:500px;"><img src="${pageContext.request.contextPath}/resources/images/EasySearch.png"></a></p>
 					</div>
 					<div class="col-md-5">
-						<p><a href="#" style="font:30px solid; width:400px; height:400px;"><img src="${pageContext.request.contextPath}/resources/images/LogSearch.png"></a></p>
+						<p><a href="SearchLog.jsp" style="font:30px solid; width:400px; height:400px;"><img src="${pageContext.request.contextPath}/resources/images/LogSearch.png"></a></p>
 					</div>
 				</div>
 				<div class="row">
@@ -98,7 +98,7 @@
 					<div class="col-md-5">
 						<div class="panel panel-primary" style="width:400px; height:225px;">
 							<div class="panel-heading">
-								<h3 class="panel-title"><span class="glyphicon-pencil"></span>&nbsp;&nbsp;문의하기</h3>
+								<h3 class="panel-title"><span class="glyphicon-pencil"></span>&nbsp;&nbsp;<a href="Qna.jsp">문의하기</a></h3>
 							</div>
 							<div class="panel-body">
 								<div class="media">
@@ -127,7 +127,7 @@
 					<div class="col-md-5">
 						<div class="panel panel-primary" style="width:400px; height:225px;">
 							<div class="panel-heading">
-								<h3 class="panel-title"><span class="glyphicon-pencil"></span>&nbsp;&nbsp;자주하는 질문</h3>
+								<h3 class="panel-title"><span class="glyphicon-pencil"></span>&nbsp;&nbsp;<a href="#">자주하는 질문</a></h3>
 							</div>
 							<div class="panel-body">
 								<div class="media">

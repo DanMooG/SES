@@ -44,7 +44,7 @@ footer {
 		<div class="jumbotron text-left">
 			<div class="row">
 				<div class="col-md-4">
-					<a href="main"><img
+					<a href="MainScreen.jsp"><img
 						src="${pageContext.request.contextPath}/resources/images/mainmark.png" width="300px"></a>
 				</div>
 				<div class="col-md-8" style="padding-top: 120px;">

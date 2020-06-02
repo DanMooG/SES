@@ -1,5 +1,12 @@
 package com.ses.command;
 
-public class SignUpCommand {
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
+public class SignUpCommand implements MainCommand{
+
+	@Override
+	public void execute(HttpServletRequest requst, HttpServletResponse response) {
+		
+	}
 }
