@@ -1,24 +1,29 @@
 package com.ses.dao;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.util.List;
 
-import javax.activation.DataSource;
-import javax.inject.Inject;
-import javax.naming.Context;
-import javax.naming.InitialContext;
+import com.ses.dto.QnaDTO;
+import com.ses.dto.Criteria;
+import com.ses.dto.SearchCriteria;
 
-import org.apache.ibatis.session.SqlSession;
-import org.mybatis.spring.SqlSessionTemplate;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
+public interface QnaDAO {
 
-@Repository
-public class QnaDAO {
-	@Autowired
-	public SqlSessionTemplate temp;
-	
-	@Inject
-	private SqlSession sqlSession;
+	// 문의하기 글 작성
+	public void write(QnaDTO qnaDTO) throws Exception;
+
+	// 문의하기 목록 조회
+	public Qna<QnaDTO> qna(SearchCriteria scri) throws Exception;
+
+	// 문의하기 게시물 총 갯수
+	public int qnaCount(SearchCriteria scri) throws Exception;
+
+	// 게시물 조회
+	public BoardDTO read(int bid) throws Exception;
+
+	// 게시물 수정
+	public void update(BoardDTO boardDTO) throws Exception;
+
+	// 게시물 삭제
+	public void delete(int bid) throws Exception;
+
 }

@@ -98,5 +98,8 @@ private static final Logger logger = LoggerFactory.getLogger(QnaController.class
 		rttr.addAttribute("keyword", scri.getKeyword());
 		
 		return "redirect:/qna";
-	}	
+	}
+	
+	
+	
 }
