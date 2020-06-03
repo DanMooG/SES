@@ -1,0 +1,21 @@
+package com.ses.dao;
+
+import java.util.List;
+
+import javax.inject.Inject;
+
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.stereotype.Repository;
+
+import com.jsy.dto.BoardDTO;
+import com.jsy.dto.Criteria;
+import com.jsy.dto.SearchCriteria;
+
+@Repository
+public class QnaDAOImpl {
+	@Autowired
+	public SqlSessionTemplate temp;
+	
+	@Inject
+	private SqlSession sqlSession;
+}

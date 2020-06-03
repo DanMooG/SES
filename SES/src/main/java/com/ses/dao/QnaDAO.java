@@ -12,18 +12,18 @@ public interface QnaDAO {
 	public void write(QnaDTO qnaDTO) throws Exception;
 
 	// 문의하기 목록 조회
-	public Qna<QnaDTO> qna(SearchCriteria scri) throws Exception;
+	public List<QnaDTO> qna(SearchCriteria scri) throws Exception;
 
 	// 문의하기 게시물 총 갯수
 	public int qnaCount(SearchCriteria scri) throws Exception;
 
-	// 게시물 조회
-	public BoardDTO read(int bid) throws Exception;
+	// 문의하기 조회
+	public QnaDTO read(int bid) throws Exception;
 
-	// 게시물 수정
-	public void update(BoardDTO boardDTO) throws Exception;
+	// 문의하기 게시물 수정
+	public void update(QnaDTO qnaDTO) throws Exception;
 
-	// 게시물 삭제
+	// 문의하기 게시물 삭제
 	public void delete(int bid) throws Exception;
 
 }
