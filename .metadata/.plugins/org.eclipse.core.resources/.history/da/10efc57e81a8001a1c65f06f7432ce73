@@ -18,7 +18,7 @@ public class QnaDAOImpl {
 	@Inject
 	private SqlSession sqlSession;
 	
-	/*
+	
 	   // 문의하기 글 작성
 		@Override
 		public void write(QnaDTO qnaDTO) throws Exception {
@@ -60,6 +60,5 @@ public class QnaDAOImpl {
 
 			sqlSession.delete("qnaMapper.delete", bid);
 		}
-		*/
 	}
 

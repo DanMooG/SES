@@ -64,11 +64,11 @@ public class QnaController {
 	public String read(QnaDTO qnaDTO, @ModelAttribute("scri") SearchCriteria scri, Model model) throws Exception {
 		logger.info("read");
 
-		//model.addAttribute("read", service.read(qnaDTO.getBid()));
+		model.addAttribute("read", service.read(qnaDTO.getBid()));
 		model.addAttribute("scri", scri);
 
-		//List<ReplyDTO> replyList = replyService.readReply(QnaDTO.getBid());
-		//model.addAttribute("replyList", replyList);
+		List<ReplyDTO> replyList = replyService.readReply(QnaDTO.getBid());
+		model.addAttribute("replyList", replyList);
 
 		return "board/readView";
 	}
@@ -78,7 +78,7 @@ public class QnaController {
 	public String updateView(QnaDTO qnaDTO, @ModelAttribute("scri") SearchCriteria scri, Model model) throws Exception {
 		logger.info("qnaupdateView");
 
-		//model.addAttribute("update", service.read(qnaDTO.getBid()));
+		model.addAttribute("update", service.read(qnaDTO.getBid()));
 		model.addAttribute("scri", scri);
 
 		return "board/qnaupdateView";
@@ -106,7 +106,7 @@ public class QnaController {
 			throws Exception {
 		logger.info("qnadelete");
 
-		//service.delete(qnaDTO.getBid());
+		service.delete(qnaDTO.getBid());
 
 		rttr.addAttribute("page", scri.getPage());
 		rttr.addAttribute("perPageNum", scri.getPerPageNum());

@@ -106,7 +106,7 @@ public class QnaController {
 			throws Exception {
 		logger.info("qnadelete");
 
-		//service.delete(qnaDTO.getBid());
+		service.delete(qnaDTO.getBid());
 
 		rttr.addAttribute("page", scri.getPage());
 		rttr.addAttribute("perPageNum", scri.getPerPageNum());
