@@ -3,6 +3,8 @@ package com.ses.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.List;
+import java.util.Map;
 
 import javax.activation.DataSource;
 import javax.inject.Inject;
@@ -14,11 +16,20 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.ses.dto.SiteListDTO;
+
 @Repository
 public class SiteListDAO {
 	@Autowired
 	public SqlSessionTemplate temp;
-	
-	@Inject
-	private SqlSession sqlSession;
+
+	// list 가져와
+	public List<SiteListDTO> GetSLList(Map<String, Object> map) {
+		return temp.selectList("SLmap.SLList", map);
+	}
+
+	// list 검색
+	public List<SiteListDTO> SearchList(Map<String, Object> map) {
+		return temp.selectList("SLmap.Search", map);
+	}
 }

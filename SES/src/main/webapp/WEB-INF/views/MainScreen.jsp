@@ -86,7 +86,7 @@
 					<div class="col-md-1">
 					</div>
 					<div class="col-md-5">
-						<p><a href="easySearch" style="font:30px solid; width:400px; height:500px;"><img src="${pageContext.request.contextPath}/resources/images/EasySearch.png"></a></p>
+						<p><a href="easySearch?kind=facebook" style="font:30px solid; width:400px; height:500px;"><img src="${pageContext.request.contextPath}/resources/images/EasySearch.png"></a></p>
 					</div>
 					<div class="col-md-5">
 						<p><a href="searchLog" style="font:30px solid; width:400px; height:400px;"><img src="${pageContext.request.contextPath}/resources/images/LogSearch.png"></a></p>

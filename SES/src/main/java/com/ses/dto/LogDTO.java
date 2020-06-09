@@ -2,21 +2,21 @@ package com.ses.dto;
 
 public class LogDTO {
 	private String M_ID = "";
-	private String S_NAME = "";
-	private String L_SITE = "";
+	private String SL_NAME = "";
+	private String SU_KIND = "";
 	private String L_ACTIVITY = "";
 	private int L_YEAR = 0;
 	private int L_MONTH = 0;
 	private int L_DAY = 0;
 	private int L_HOUR = 0;
 	private int L_MINUTE = 0;
-
-	public LogDTO(String m_ID, String s_NAME, String l_SITE, String l_ACTIVITY, int l_YEAR, int l_MONTH, int l_DAY,
+	
+	public LogDTO(String m_ID, String sL_NAME, String sU_KIND, String l_ACTIVITY, int l_YEAR, int l_MONTH, int l_DAY,
 			int l_HOUR, int l_MINUTE) {
 		super();
 		M_ID = m_ID;
-		S_NAME = s_NAME;
-		L_SITE = l_SITE;
+		SL_NAME = sL_NAME;
+		SU_KIND = sU_KIND;
 		L_ACTIVITY = l_ACTIVITY;
 		L_YEAR = l_YEAR;
 		L_MONTH = l_MONTH;
@@ -33,20 +33,20 @@ public class LogDTO {
 		M_ID = m_ID;
 	}
 
-	public String getS_NAME() {
-		return S_NAME;
+	public String getSL_NAME() {
+		return SL_NAME;
 	}
 
-	public void setS_NAME(String s_NAME) {
-		S_NAME = s_NAME;
+	public void setSL_NAME(String sL_NAME) {
+		SL_NAME = sL_NAME;
 	}
 
-	public String getL_SITE() {
-		return L_SITE;
+	public String getSU_KIND() {
+		return SU_KIND;
 	}
 
-	public void setL_SITE(String l_SITE) {
-		L_SITE = l_SITE;
+	public void setSU_KIND(String sU_KIND) {
+		SU_KIND = sU_KIND;
 	}
 
 	public String getL_ACTIVITY() {
@@ -94,6 +94,7 @@ public class LogDTO {
 	}
 
 	public void setL_MINUTE(int l_MINUTE) {
-        L_MINUTE = l_MINUTE;
-    }
+		L_MINUTE = l_MINUTE;
+	}
+
 }

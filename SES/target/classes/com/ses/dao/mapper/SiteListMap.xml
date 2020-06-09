@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="SLmap">
-
+	<select id="SLList" parameterType="hashmap"
+		resultType="com.ses.dto.SiteListDTO">
+		SELECT * FROM site_list WHERE M_ID like #{M_ID} and SU_KIND like #{kind}
+	</select>
+	
+	<select id="Search" parameterType="hashmap"
+		resultType="com.ses.dto.SiteListDTO">
+		SELECT * FROM site_list WHERE M_ID like #{M_ID} and SU_KIND like #{kind} and SL_NAME like #{keyword}
+	</select>
 </mapper>
