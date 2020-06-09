@@ -7,7 +7,7 @@ import com.ses.dto.Criteria;
 import com.ses.dto.SearchCriteria;
 
 public interface QnaDAO {
-
+/*
 	// 문의하기 글 작성
 	public void write(QnaDTO qnaDTO) throws Exception;
 
@@ -25,5 +25,5 @@ public interface QnaDAO {
 
 	// 문의하기 게시물 삭제
 	public void delete(int bid) throws Exception;
-
+*/
 }

@@ -20,6 +20,7 @@ import com.ses.dto.PageMaker;
 import com.ses.dto.SearchCriteria;
 
 public class QnaController {
+	/*
 	private static final Logger logger = LoggerFactory.getLogger(QnaController.class);
 
 	@Inject
@@ -115,4 +116,5 @@ public class QnaController {
 
 		return "redirect:/qna";
 	}
+	*/
 }

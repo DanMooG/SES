@@ -11,7 +11,8 @@ import com.ses.dto.QnaDTO;
 import com.ses.dto.SearchCriteria;
 
 @Service
-public class QnaService implements QService{
+public class QnaService{
+	/*
 	@Inject
 	private QnaDAO dao;
 	
@@ -55,4 +56,5 @@ public class QnaService implements QService{
 			
 			dao.delete(bid);
 		}
+		*/
 }
