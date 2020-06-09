@@ -32,13 +32,13 @@ public class MemberController {
 
 	@Inject
 	HttpSession session;
-	//
+	
 	// 로그인 폼 보여주기
-	@RequestMapping("/login")
+	@RequestMapping("/loginForm")
 	public String MLoginForm(Model model) {
-		System.out.println("Controller - Login()");
+		System.out.println("Controller - LoginForm()");
 
-		return "/member/login";
+		return "/member/loginForm";
 	}
 
 	// 로그인
