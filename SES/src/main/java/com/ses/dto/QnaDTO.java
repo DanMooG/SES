@@ -55,6 +55,16 @@ public class QnaDTO {
 	public void setQ_REPLY(String q_REPLY) {
 		Q_REPLY = q_REPLY;
 	}
-	
-	
 }
+/*
+CREATE TABLE `qna` (
+	`Q_TITLE` VARCHAR(100) NULL DEFAULT NULL,
+	`M_ID` VARCHAR(20) NULL DEFAULT NULL,
+	`Q_PWD` INT(5) NULL DEFAULT NULL,
+	`Q_CONTENT` BLOB NULL DEFAULT NULL,
+	`Q_REPLY` BLOB NULL DEFAULT NULL
+)
+COLLATE='utf8_general_ci'
+ENGINE=InnoDB
+;
+*/

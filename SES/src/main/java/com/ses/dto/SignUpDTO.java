@@ -25,6 +25,13 @@ public class SignUpDTO {
 	public void setS_LINK(String s_LINK) {
 		S_LINK = s_LINK;
 	}
-    
-    
 }
+/*
+CREATE TABLE `sign_up` (
+	`SU_KIND` VARCHAR(40) NULL DEFAULT NULL,
+	`SU_LINK` VARCHAR(200) NULL DEFAULT NULL
+)
+COLLATE='utf8_general_ci'
+ENGINE=InnoDB
+;
+*/

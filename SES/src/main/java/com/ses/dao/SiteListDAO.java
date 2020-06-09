@@ -32,4 +32,9 @@ public class SiteListDAO {
 	public List<SiteListDTO> SearchList(Map<String, Object> map) {
 		return temp.selectList("SLmap.Search", map);
 	}
+	
+	// 전체 페이지 개수 구하기
+	public int ListCnt() {
+		return temp.selectOne("SLmap.ListCnt");
+	}
 }

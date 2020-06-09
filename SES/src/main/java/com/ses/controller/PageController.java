@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.ses.dto.MemberDTO;
+import com.ses.dto.PageDTO;
 import com.ses.dto.SiteListDTO;
 import com.ses.service.LService;
 import com.ses.service.MService;
@@ -87,15 +88,16 @@ public class PageController {
 		String kind = request.getParameter("kind");
 		String M_ID = "tytyjacob";
 		Map<String, Object> map = new HashMap<String, Object>();
-		
+
 		map.put("kind", kind);
 		map.put("M_ID", M_ID);
 
-		List<SiteListDTO> dto = Ser_SL.GetSLList(map);
-		
-		model.addAttribute("dtos", dto);
+		List<SiteListDTO> dtos_origin = Ser_SL.GetSLList(map);
+
+		// 값 넘겨주기
+		model.addAttribute("dtos", dtos_origin);
 		model.addAttribute("kind", kind);
-		
+
 		return "/EasySearch";
 	}
 

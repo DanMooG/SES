@@ -8,7 +8,10 @@ import com.ses.dto.SiteListDTO;
 public interface SLService {
 	// 게시물 목록 불러오기
 	public List<SiteListDTO> GetSLList(Map<String, Object> map);
-	
+
 	// 게시물 검색
 	public List<SiteListDTO> SearchList(Map<String, Object> map);
+
+	// 전체 페이지 개수 구하기
+	public int PageCnt();
 }

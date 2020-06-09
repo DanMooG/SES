@@ -11,7 +11,7 @@ import com.ses.dao.SiteListDAO;
 import com.ses.dto.SiteListDTO;
 
 @Service
-public class SiteListService implements SLService{
+public class SiteListService implements SLService {
 	@Inject
 	SiteListDAO slDAO;
 
@@ -24,6 +24,10 @@ public class SiteListService implements SLService{
 	public List<SiteListDTO> SearchList(Map<String, Object> map) {
 		return slDAO.SearchList(map);
 	}
-	
-	
+
+	// 전체 페이지 개수 구하기
+	@Override
+	public int PageCnt() {
+		return slDAO.ListCnt();
+	}
 }

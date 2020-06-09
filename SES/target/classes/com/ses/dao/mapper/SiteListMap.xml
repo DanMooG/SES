@@ -3,11 +3,15 @@
 <mapper namespace="SLmap">
 	<select id="SLList" parameterType="hashmap"
 		resultType="com.ses.dto.SiteListDTO">
-		SELECT * FROM site_list WHERE M_ID like #{M_ID} and SU_KIND like #{kind}
+		SELECT * FROM site_list WHERE M_ID like #{M_ID} and SU_KIND like #{kind} and SL_STATE like 1
 	</select>
 	
 	<select id="Search" parameterType="hashmap"
 		resultType="com.ses.dto.SiteListDTO">
-		SELECT * FROM site_list WHERE M_ID like #{M_ID} and SU_KIND like #{kind} and SL_NAME like #{keyword}
+		SELECT * FROM site_list WHERE M_ID like #{M_ID} and SU_KIND like #{kind} and SL_STATE like 1 and SL_NAME like #{keyword}
+	</select>
+	
+	<select id="ListCnt" resultType="int">
+		select count(*) from site_list WHERE
 	</select>
 </mapper>

@@ -173,16 +173,13 @@ footer {
 							</c:forEach>
 						</tbody>
 						<tfoot>
-							<tr>
-								<td height="10px"></td>
-							</tr>
 							<tr align="center">
-								<td colspan="5"><a href="list?pgnum=1" style="text-decoration: none">${prev}${prev}</a>
-									<a href="list?pgnum=${before}" style="text-decoration: none">${prev}</a>
+								<td colspan="5"><a href="search?pgnum=1" style="text-decoration: none">${prev}${prev}</a>
+									<a href="search?pgnum=${before}" style="text-decoration: none">${prev}</a>
 									<c:forEach items="${pg}" var="p">
-									<a href="list?pgnum=${p}" style="text-decoration: none">${p}</a>
-									</c:forEach> <a href="list?pgnum=${after}" style="text-decoration: none">${next}</a>
-									<a href="list?pgnum=${last}" style="text-decoration: none">${next}${next}</a>
+									<a href="search?pgnum=${p}" style="text-decoration: none">${p}</a>
+									</c:forEach> <a href="search?pgnum=${after}" style="text-decoration: none">${next}</a>
+									<a href="search?pgnum=${last}" style="text-decoration: none">${next}${next}</a>
 								</td>
 							</tr>
 						</tfoot>

@@ -12,13 +12,14 @@ import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.ses.dto.PageDTO;
 import com.ses.dto.SiteListDTO;
 import com.ses.service.SLService;
 
 @Controller
 @Repository
 public class SiteListController {
-	
+
 	@Autowired
 	SLService Ser_SL;
 
@@ -27,20 +28,22 @@ public class SiteListController {
 	public String SearchedList(HttpServletRequest request, Model model) {
 		// parameter로 string으로 걍 보내니까 오류난다 이 똬식 map으로 보내야된대 똬식
 		Map<String, Object> map = new HashMap<String, Object>();
-		//키워드 가져오기
+		// 키워드 가져오기
 		String keyword = request.getParameter("keyword");
 		String kind = request.getParameter("kind");
 		String M_ID = "tytyjacob";
-		
+
 		map.put("kind", kind);
 		map.put("M_ID", M_ID);
-		map.put("keyword", "%"+keyword+"%");
+		map.put("keyword", "%" + keyword + "%");
 
-		List<SiteListDTO> dto = Ser_SL.SearchList(map);
-		
-		model.addAttribute("dtos", dto);
+		// 리스트 내용
+		List<SiteListDTO> dtos_origin = Ser_SL.GetSLList(map);
+
+		// 값 넘겨주기
+		model.addAttribute("dtos", dtos_origin);
 		model.addAttribute("kind", kind);
-		
+
 		return "/EasySearch";
 	}
 }
