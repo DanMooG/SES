@@ -34,37 +34,37 @@ public class MemberController {
 	HttpSession session;
 	//
 	// 로그인 폼 보여주기
-	@RequestMapping("/Login")
+	@RequestMapping("/login")
 	public String MLoginForm(Model model) {
 		System.out.println("Controller - Login()");
 
-		return "/Login";
+		return "/member/login";
 	}
 
 	// 로그인
 	@RequestMapping(value = "/doLogin", method = RequestMethod.POST)
 	public String MLogin(HttpServletResponse response, HttpServletRequest request, RedirectAttributes attr)
 			throws Exception {
-		System.out.println("Controller - doLogin()");
+		System.out.println("Controller - Login()");
 		MemberDTO dto = mService.MLogin(request);
 
 		if (dto == null) { // 해당 회원이 존재하지 않을 경우
-			session.setAttribute("M_Id", null);
-			session.setAttribute("M_PW", null);
+			session.setAttribute("mId", null);
+			session.setAttribute("mPw", null);
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>alert('존재하지 않는 회원입니다!!'); document.location.href='login';</script>");
 			out.flush();
 		} else if (!dto.getM_PW().equals(request.getParameter("M_PW"))) { // 비밀번호가 일치하지 않을 경우
-			session.setAttribute("M_Id", null);
-			session.setAttribute("M_PW", null);
+			session.setAttribute("mId", null);
+			session.setAttribute("mPw", null);
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>alert('비밀번호가 틀렸습니다!!'); document.location.href='login';</script>");
 			out.flush();
 		} else { // 성공
-			session.setAttribute("M_Id", dto.getM_ID());
-			session.setAttribute("M_PW", dto.getM_PW());
+			session.setAttribute("mId", dto.getM_ID());
+			session.setAttribute("mPw", dto.getM_PW());
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>alert('환영합니다!!'); document.location.href='main'</script>");
@@ -72,7 +72,7 @@ public class MemberController {
 			return "list";
 		}
 
-		return "MainScreen";
+		return "main";
 	}
 	
 	// 로그아웃
@@ -100,31 +100,29 @@ public class MemberController {
 			model.addAttribute("max", max);
 			model.addAttribute("min", min);
 
-			return "/join";
+			return "/member/joinForm";
 		}
 
 		
 
 		// 회원정보수정 화면
-		@RequestMapping("/modify")
+		@RequestMapping("/MmodifyForm")
 		public String MModifyForm(HttpServletRequest request, Model model) {
-			System.out.println("Controller - Modify()");
+			System.out.println("Controller - ModifyForm()");
 
 			MemberDTO dto = mService.GetMInfo(session.getAttribute("mId").toString());
-			//dto.setmBirth(dto.getM_BIRTH1().substring(0, 10));
-			//dto.setmBirth(dto.getM_BIRTH2().substring(0, 10));
-			//dto.setmBirth(dto.getM_BIRTH3().substring(0, 10));
-			
+			dto.setmBirth(dto.getmBirth().substring(0, 10));
 
 			model.addAttribute("dto", dto);
 
-			return "/member/Mmodify";
+			return "/member/MmodifyForm";
 		}
 
 		// 회원정보수정 화면
 		@RequestMapping("/Mmodify")
 		public String MModify(HttpServletResponse response, HttpServletRequest request, Model model) throws IOException {
-			System.out.println("Controller - Modify()");			
+			System.out.println("Controller - Modify()");
+			// parameter로 string으로 걍 보내니까 오류난다 이 똬식 map으로 보내야된대 똬식
 			Map<String, Object> map = new HashMap<String, Object>();
 
 			map.put("mId", request.getParameter("mId"));
@@ -166,7 +164,7 @@ public class MemberController {
 			boolean chk = mService.MGetOut(session.getAttribute("mId").toString());
 			
 			if (chk) {
-				//bService.UpdateMember(session.getAttribute("mId").toString());
+				bService.UpdateMember(session.getAttribute("mId").toString());
 				response.setContentType("text/html; charset=UTF-8");
 				PrintWriter out = response.getWriter();
 				out.println("<script>alert('탈퇴되었습니다'); document.location.href='index'</script>");
