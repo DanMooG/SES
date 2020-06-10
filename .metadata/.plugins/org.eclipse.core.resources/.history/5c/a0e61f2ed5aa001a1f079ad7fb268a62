@@ -20,8 +20,8 @@ public class MemberService implements MService {
 
 	// 아이디 중복 체크
 	@Override
-	public boolean CheckId(String M_ID) {
-		return mDAO.CheckId(M_ID);
+	public boolean CheckId(String mId) {
+		return mDAO.CheckId(mId);
 	}
 
 	// 회원가입
@@ -31,8 +31,8 @@ public class MemberService implements MService {
 
 	// 회원정보수정 화면 보여주기
 	@Override
-	public MemberDTO GetMInfo(String M_ID) {
-		return mDAO.GetMInfo(M_ID);
+	public MemberDTO GetMInfo(String m_Id) {
+		return mDAO.GetMInfo(m_Id);
 	}
 
 	// 회원정보수정
@@ -40,12 +40,17 @@ public class MemberService implements MService {
 	public boolean MUpdateInfo(Map<String, Object> map) {
 		return mDAO.MUpdateInfo(map);
 	}
-	
+
+	// 회원탈퇴
+	@Override
+	public boolean MGetOut(String mId) {
+		return mDAO.MGetOut(mId);
+	}
 
 	// 로그인
 	@Override
 	public MemberDTO MLogin(HttpServletRequest request) {
-		MemberDTO dto = mDAO.MLogin(request.getParameter("M_ID"));
+		MemberDTO dto = mDAO.MLogin(request.getParameter("mId"));
 
 		return dto;
 	}

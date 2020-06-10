@@ -19,13 +19,12 @@ public interface MService {
 	public MemberDTO GetMInfo(String M_ID);
 
 	// 회원정보수정
-	public boolean MUpdateInfo(Map<String, Object> map);	
+	public boolean MUpdateInfo(Map<String, Object> map);
+	
 	
 	// 로그인
 	public MemberDTO MLogin(HttpServletRequest request);
 	
 	// 로그아웃
 	public void logout(HttpServletResponse response) throws Exception;
-
-	
 }

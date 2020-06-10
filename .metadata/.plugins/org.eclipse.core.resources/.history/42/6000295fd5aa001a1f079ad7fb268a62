@@ -60,4 +60,10 @@ public class MemberService implements MService {
 		out.println("</script>");
 		out.close();
 	}
+
+	@Override
+	public boolean MGetOut(String M_ID) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }
