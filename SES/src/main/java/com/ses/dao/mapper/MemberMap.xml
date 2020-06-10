@@ -3,38 +3,33 @@
 <mapper namespace="Mmap">
 	<select id="MCheckId" parameterType="String" resultType="String">
 		SELECT
-		mName FROM ses_member WHERE M_Id like #{param1}
+		M_NAME FROM ses_member WHERE M_Id like #{param1}
 	</select>
 
 	<insert id="MJoin" parameterType="hashmap">
 		INSERT INTO ses_member
 		VALUES
-		(#{M_Id}, #{M_PW}, #{M_NAME}, #{mBirth}, #{mTel1}, #{mTel2},
-		#{mTel3})
+		(#{M_Id}, #{M_PW}, #{M_NAME}, #{M_EMAIL1}, #{M_EMAIL2}, #{M_TEL1},
+		#{M_TEL2}, #{M_TEL3}, #{M_BIRTH1}, #{M_BIRTH2}, #{M_BIRTH3})
 	</insert>
 
 	<select id="GetMInfo" parameterType="String"
-		resultType="com.spring.hamsamo.dto.MemberDTO">
-		SELECT * FROM psh_17831024_member WHERE mId like #{param1}
+		resultType="com.ses.dto.MemberDTO">
+		SELECT * FROM ses_member WHERE M_ID like #{param1}
 	</select>
 
 	<update id="MUpdateInfo" parameterType="hashmap">
 		UPDATE
-		psh_17831024_member SET
-		mName = #{mName}, mTel1 = #{mTel1}, mTel2 =
-		#{mTel2}, mTel3 =
-		#{mTel3} WHERE mId like #{mId}
+		ses_member SET
+		M_NAME = #{M_NAME}, M_EMAIL1 = #{M_EMAIL1}, M_EMAIL2 = #{M_EMAIL2}
+		M_TEL1 = #{M_TEL2}, M_TEL3 = #{M_TEL3}, M_BIRTH1 = #{M_BIRTH1}
+		, M_BIRTH2 = #{M_BIRTH2}, M_BIRTH3 = #{M_BIRTH3}		
+		 WHERE M_ID like #{M_ID}
 	</update>
 
-	<delete id="MGetOut" parameterType="String">
-		DELETE FROM
-		psh_17831024_member
-		WHERE mId like #{param1}
-	</delete>
-
 	<select id="MLogin" parameterType="String"
-		resultType="com.spring.hamsamo.dto.MemberDTO">
-		SELECT * from psh_17831024_member
-		WHERE mId like #{param1}
+		resultType="com.ses.dto.MemberDTO">
+		SELECT * from ses_member
+		WHERE M_ID like #{param1}
 	</select>
 </mapper>

@@ -53,14 +53,14 @@ public class MemberController {
 			session.setAttribute("M_PW", null);
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
-			out.println("<script>alert('존재하지 않는 회원입니다!!'); document.location.href='Login';</script>");
+			out.println("<script>alert('존재하지 않는 회원입니다!!'); document.location.href='login';</script>");
 			out.flush();
 		} else if (!dto.getM_PW().equals(request.getParameter("M_PW"))) { // 비밀번호가 일치하지 않을 경우
 			session.setAttribute("M_Id", null);
 			session.setAttribute("M_PW", null);
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
-			out.println("<script>alert('비밀번호가 틀렸습니다!!'); document.location.href='Login';</script>");
+			out.println("<script>alert('비밀번호가 틀렸습니다!!'); document.location.href='login';</script>");
 			out.flush();
 		} else { // 성공
 			session.setAttribute("M_Id", dto.getM_ID());
@@ -89,50 +89,56 @@ public class MemberController {
 		}
 
 		// 회원가입 
-		@RequestMapping("/Join")
+		@RequestMapping("/join")
 		public String MJoinForm(Model model) {
-			System.out.println("Controller - Join()");			
+			System.out.println("Controller - join()");
+			// timestamp
+			Timestamp ts = new Timestamp(System.currentTimeMillis());
+			String max = (ts.getYear() + 1900) - 18 + "-12-31";
+			String min = (ts.getYear() + 1900) - 101 + "-01-01";
 
-			return "/Join";
+			model.addAttribute("max", max);
+			model.addAttribute("min", min);
+
+			return "/join";
 		}
 
 		
 
 		// 회원정보수정 화면
-		@RequestMapping("/Modify")
+		@RequestMapping("/modify")
 		public String MModifyForm(HttpServletRequest request, Model model) {
 			System.out.println("Controller - Modify()");
 
-			MemberDTO dto = mService.GetMInfo(session.getAttribute("M_ID").toString());			
+			MemberDTO dto = mService.GetMInfo(session.getAttribute("mId").toString());
+			//dto.setmBirth(dto.getM_BIRTH1().substring(0, 10));
+			//dto.setmBirth(dto.getM_BIRTH2().substring(0, 10));
+			//dto.setmBirth(dto.getM_BIRTH3().substring(0, 10));
+			
 
 			model.addAttribute("dto", dto);
 
-			return "Modify";
+			return "/member/Mmodify";
 		}
 
 		// 회원정보수정 화면
 		@RequestMapping("/Mmodify")
 		public String MModify(HttpServletResponse response, HttpServletRequest request, Model model) throws IOException {
-			System.out.println("Controller - MModify()");			
+			System.out.println("Controller - Modify()");			
 			Map<String, Object> map = new HashMap<String, Object>();
 
-			map.put("M_Id", request.getParameter("M_ID"));
-			map.put("M_NAME", request.getParameter("M_NAME"));
-			map.put("M_EMAIL1", request.getParameter("M_EMAIL1"));
-			map.put("M_EMAIL2", request.getParameter("M_EMAIL2"));
-			map.put("M_TEL1", request.getParameter("M_TEL1"));
-			map.put("M_TEL2", request.getParameter("M_TEL2"));
-			map.put("M_TEL3", request.getParameter("M_TEL3"));
-			map.put("M_BIRTH1", request.getParameter("M_BIRTH1"));
-			map.put("M_BIRTH2", request.getParameter("M_BIRTH2"));
-			map.put("M_BIRTH3", request.getParameter("M_BIRTH3"));
+			map.put("mId", request.getParameter("mId"));
+			map.put("mName", request.getParameter("mName"));
+			map.put("mTel1", request.getParameter("mTel1"));
+			map.put("mTel2", request.getParameter("mTel2"));
+			map.put("mTel3", request.getParameter("mTel3"));
 
 			boolean chk = mService.MUpdateInfo(map);
 
 			if (chk) {
 				response.setContentType("text/html; charset=UTF-8");
 				PrintWriter out = response.getWriter();
-				out.println("<script>alert('회원정보가 수정되었습니다'); document.location.href='MainScreen'</script>");
+				out.println("<script>alert('회원정보가 수정되었습니다'); document.location.href='list'</script>");
 				out.flush();
 			} else {
 				response.setContentType("text/html; charset=UTF-8");
@@ -141,7 +147,38 @@ public class MemberController {
 				out.flush();
 			}
 
-			return "MainScreen";
+			return "list";
+		}
+
+		// 회원탈퇴 화면
+		@RequestMapping("/GetOutForm")
+		public String MGetOutForm(Model model) {
+			System.out.println("Controller - GetOutForm()");
+
+			return "/member/GetOutForm";
+		}
+
+		// 회원탈퇴
+		@RequestMapping("/getout")
+		public String MGetOut(HttpServletResponse response, Model model) throws IOException {
+			System.out.println("Controller - GetOut()");
+			
+			boolean chk = mService.MGetOut(session.getAttribute("mId").toString());
+			
+			if (chk) {
+				//bService.UpdateMember(session.getAttribute("mId").toString());
+				response.setContentType("text/html; charset=UTF-8");
+				PrintWriter out = response.getWriter();
+				out.println("<script>alert('탈퇴되었습니다'); document.location.href='index'</script>");
+				out.flush();
+			} else {
+				response.setContentType("text/html; charset=UTF-8");
+				PrintWriter out = response.getWriter();
+				out.println("<script>alert('오류가 발생했습니다'); history.go(-1);</script>");
+				out.flush();
+			}
+			
+			return "/index";
 		}
 	}
 

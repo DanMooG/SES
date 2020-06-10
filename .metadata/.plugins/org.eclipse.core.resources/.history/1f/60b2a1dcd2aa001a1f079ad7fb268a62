@@ -89,31 +89,31 @@ public class MemberController {
 		}
 
 		// 회원가입 
-		@RequestMapping("/Join")
+		@RequestMapping("/join")
 		public String MJoinForm(Model model) {
-			System.out.println("Controller - Join()");			
+			System.out.println("Controller - join()");			
 
-			return "/Join";
+			return "/join";
 		}
 
 		
 
 		// 회원정보수정 화면
-		@RequestMapping("/Modify")
+		@RequestMapping("/modify")
 		public String MModifyForm(HttpServletRequest request, Model model) {
 			System.out.println("Controller - Modify()");
 
-			MemberDTO dto = mService.GetMInfo(session.getAttribute("M_ID").toString());			
+			MemberDTO dto = mService.GetMInfo(session.getAttribute("mId").toString());			
 
 			model.addAttribute("dto", dto);
 
-			return "Modify";
+			return "/member/Mmodify";
 		}
 
 		// 회원정보수정 화면
 		@RequestMapping("/Mmodify")
 		public String MModify(HttpServletResponse response, HttpServletRequest request, Model model) throws IOException {
-			System.out.println("Controller - MModify()");			
+			System.out.println("Controller - Modify()");			
 			Map<String, Object> map = new HashMap<String, Object>();
 
 			map.put("M_Id", request.getParameter("M_ID"));
@@ -132,7 +132,7 @@ public class MemberController {
 			if (chk) {
 				response.setContentType("text/html; charset=UTF-8");
 				PrintWriter out = response.getWriter();
-				out.println("<script>alert('회원정보가 수정되었습니다'); document.location.href='MainScreen'</script>");
+				out.println("<script>alert('회원정보가 수정되었습니다'); document.location.href='list'</script>");
 				out.flush();
 			} else {
 				response.setContentType("text/html; charset=UTF-8");
@@ -141,7 +141,7 @@ public class MemberController {
 				out.flush();
 			}
 
-			return "MainScreen";
+			return "list";
 		}
 	}
 

@@ -60,7 +60,7 @@ public class MemberDAOImpl implements MemberDAO{
 	// ·Î±×ÀÎ
 	@Override
 	public MemberDTO MLogin(String M_Id) {
-		return sqlSession.selectOne("Mmap.MLogin", M_Id);
+		return sqlSession.selectOne("Mmap.MLogin", mId);
 	}
 
 }

@@ -13,18 +13,21 @@ import com.ses.dto.MemberDTO;
 @Repository
 public interface MemberDAO {
 	// 아이디 중복 체크
-	public boolean CheckId(String M_ID);
+	public boolean CheckId(String mId);
 
 	// 회원가입
 	public boolean MJoin(Map<String, Object> map);
 
 	// 회원정보수정 화면 보여주기
-	public MemberDTO GetMInfo(String M_ID);
+	public MemberDTO GetMInfo(String m_Id);
 
 	// 회원정보수정
-	public boolean MUpdateInfo(Map<String, Object> map);	
+	public boolean MUpdateInfo(Map<String, Object> map);
+
+	// 회원탈퇴
+	public boolean MGetOut(String mId);
 
 	// 로그인
-	public MemberDTO MLogin(String M_ID);
+	public MemberDTO MLogin(String mId);
 
 }

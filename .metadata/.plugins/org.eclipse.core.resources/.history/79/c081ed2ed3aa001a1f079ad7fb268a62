@@ -107,13 +107,13 @@ public class MemberController {
 
 			model.addAttribute("dto", dto);
 
-			return "Modify";
+			return "/";
 		}
 
 		// 회원정보수정 화면
 		@RequestMapping("/Mmodify")
 		public String MModify(HttpServletResponse response, HttpServletRequest request, Model model) throws IOException {
-			System.out.println("Controller - MModify()");			
+			System.out.println("Controller - Modify()");			
 			Map<String, Object> map = new HashMap<String, Object>();
 
 			map.put("M_Id", request.getParameter("M_ID"));
@@ -132,7 +132,7 @@ public class MemberController {
 			if (chk) {
 				response.setContentType("text/html; charset=UTF-8");
 				PrintWriter out = response.getWriter();
-				out.println("<script>alert('회원정보가 수정되었습니다'); document.location.href='MainScreen'</script>");
+				out.println("<script>alert('회원정보가 수정되었습니다'); document.location.href='list'</script>");
 				out.flush();
 			} else {
 				response.setContentType("text/html; charset=UTF-8");
@@ -141,7 +141,7 @@ public class MemberController {
 				out.flush();
 			}
 
-			return "MainScreen";
+			return "list";
 		}
 	}
 

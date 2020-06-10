@@ -22,8 +22,8 @@ public class MemberDAOImpl implements MemberDAO{
 
 	// 아이디 중복 체크
 	@Override
-	public boolean CheckId(String M_ID) {
-		String rs = temp.selectOne("Mmap.MCheckId", M_ID);
+	public boolean CheckId(String mId) {
+		String rs = temp.selectOne("Mmap.MCheckId", mId);
 		if (rs == null)
 			return true;
 		else
@@ -42,8 +42,8 @@ public class MemberDAOImpl implements MemberDAO{
 	
 	// 회원정보수정 화면 보여주기
 	@Override
-	public MemberDTO GetMInfo(String M_Id) {
-		List<MemberDTO> dtos = temp.selectList("Mmap.GetMInfo", M_Id);
+	public MemberDTO GetMInfo(String m_Id) {
+		List<MemberDTO> dtos = temp.selectList("Mmap.GetMInfo", m_Id);
 		return dtos.get(0);
 	}
 
@@ -55,12 +55,22 @@ public class MemberDAOImpl implements MemberDAO{
 			return true;
 		else
 			return false;
-	}	
+	}
+
+	// 회원탈퇴
+	@Override
+	public boolean MGetOut(String mId) {
+		int rs = temp.delete("Mmap.MGetOut", mId);
+		if (rs == 1)
+			return true;
+		else
+			return false;
+	}
 
 	// 로그인
 	@Override
-	public MemberDTO MLogin(String M_Id) {
-		return sqlSession.selectOne("Mmap.MLogin", M_Id);
+	public MemberDTO MLogin(String mId) {
+		return sqlSession.selectOne("Mmap.MLogin", mId);
 	}
 
 }
