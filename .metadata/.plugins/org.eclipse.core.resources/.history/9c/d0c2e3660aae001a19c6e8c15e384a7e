@@ -33,9 +33,9 @@ public class MemberController {
 	@Inject
 	HttpSession session;
 	//
-	// 로그인  보여주기
+	// 로그인 폼 보여주기
 	@RequestMapping("/Login")
-	public String Login(Model model) {
+	public String MLoginForm(Model model) {
 		System.out.println("Controller - Login()");
 
 		return "/Login";
@@ -55,7 +55,7 @@ public class MemberController {
 			PrintWriter out = response.getWriter();
 			out.println("<script>alert('존재하지 않는 회원입니다!!'); document.location.href='Login';</script>");
 			out.flush();
-			
+			return "Login";
 		} else if (!dto.getM_PW().equals(request.getParameter("M_PW"))) { // 비밀번호가 일치하지 않을 경우
 			session.setAttribute("M_Id", null);
 			session.setAttribute("M_PW", null);
@@ -73,7 +73,7 @@ public class MemberController {
 			return "MainScreen";
 		}
 
-		return "Login";
+		return "MainScreen";
 	}
 	
 	// 로그아웃

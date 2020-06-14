@@ -35,7 +35,7 @@ public class MemberController {
 	//
 	// 로그인  보여주기
 	@RequestMapping("/Login")
-	public String Login(Model model) {
+	public String MLogin(Model model) {
 		System.out.println("Controller - Login()");
 
 		return "/Login";

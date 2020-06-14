@@ -33,9 +33,9 @@ public class MemberController {
 	@Inject
 	HttpSession session;
 	//
-	// 로그인  보여주기
+	// 로그인 폼 보여주기
 	@RequestMapping("/Login")
-	public String Login(Model model) {
+	public String MLoginForm(Model model) {
 		System.out.println("Controller - Login()");
 
 		return "/Login";

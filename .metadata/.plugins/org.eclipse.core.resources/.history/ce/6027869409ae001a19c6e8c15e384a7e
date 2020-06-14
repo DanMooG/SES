@@ -38,7 +38,7 @@ public class PageController {
 	}
 
 	// ·Î±×ÀÎ
-	@RequestMapping("/Login")
+	@RequestMapping("/login")
 	public String GoLogin(HttpServletRequest request, Model model) {
 		return "/Login";
 	}
