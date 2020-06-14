@@ -13,6 +13,8 @@ public class MemberDTO {
     private int M_BIRTH2 = 0;
     private int M_BIRTH3 = 0;
     
+    public MemberDTO() {}
+    
     public MemberDTO(String m_ID, String m_PW, String m_NAME, String m_EMAIL1, String m_EMAIL2, int m_TEL1, int m_TEL2,
             int m_TEL3, int m_BIRTH1, int m_BIRTH2, int m_BIRTH3) {
         super();

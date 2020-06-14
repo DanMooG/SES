@@ -3,6 +3,8 @@ package com.ses.dto;
 public class SignUpDTO {
 	private String S_KIND = "";
     private String S_LINK = "";
+    
+    public SignUpDTO() {}
 	
     public SignUpDTO(String s_KIND, String s_LINK) {
 		super();

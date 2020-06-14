@@ -77,18 +77,6 @@ footer {
 			<div class="panel-body">
 				<!-- Contents -->
 				<br /> <br /> <br />
-				<div class="row" style="float: right;">
-					<div class="col-md-8">
-						<select id="combobox1" class="combobox">
-								<option value="SI">사이트명</option>
-								<option value="KI">계정 종류별</option>
-								<option value="KI">날짜별</option>
-						</select>
-					</div>
-					<div class="col-md-2"></div>
-					<div class="col-md-2"></div>
-				</div>
-				<br /> <br />
 				<center>
 					<table class="table table-hover" style="width: 90%;">
 						<thead align="center">
@@ -96,16 +84,18 @@ footer {
 								<td width="10%" style="background-color: #337ab7; color: White;">번호</td>
 								<td width="35%" style="background-color: #337ab7; color: White;">계정종류</td>
 								<td width="40%" style="background-color: #337ab7; color: White;">외부 사이트 명</td>
-								<td width="15%" style="background-color: #337ab7; color: White;">탈퇴 날짜</td>
+								<td width="15%" style="background-color: #337ab7; color: White;">활동</td>
 							</tr>
 						</thead>
-						<tbody align="center">
-							<tr>
-								<td>1</td>
-								<td>네이버</td>
-								<td>레알팜</td>
-								<td>2020-05-19</td>
-							</tr>
+						<tbody style="color: Black;">
+							<c:forEach items="${dtos}" var="dto">
+								<tr>
+									<td align="center">${dto.NUM}</td>
+									<td align="center">${dto.SU_KIND}</td>
+									<td align="center">${dto.SL_NAME}</td>
+									<td align="center">${dto.DATE_HOUR}</td>
+								</tr>
+							</c:forEach>
 						</tbody>
 					</table>
 					<br /> <br /> <br />

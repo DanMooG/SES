@@ -3,6 +3,8 @@ package com.ses.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.List;
+import java.util.Map;
 
 import javax.activation.DataSource;
 import javax.inject.Inject;
@@ -14,15 +16,15 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.ses.dto.MemberDTO;
+import com.ses.dto.LogDTO;
 
 @Repository
 public class LogDAO {
 	@Autowired
 	public SqlSessionTemplate temp;
 
-	@Inject
-	private SqlSession sqlSession;
-
-
+	// list °¡Á®¿Í
+	public List<LogDTO> GetLList(Map<String, Object> map) {
+		return temp.selectList("Lmap.LList", map);
+	}
 }

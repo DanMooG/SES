@@ -38,7 +38,7 @@ public class SiteListController {
 		map.put("keyword", "%" + keyword + "%");
 
 		// 리스트 내용
-		List<SiteListDTO> dtos_origin = Ser_SL.GetSLList(map);
+		List<SiteListDTO> dtos_origin = Ser_SL.SearchList(map);
 
 		// 값 넘겨주기
 		model.addAttribute("dtos", dtos_origin);

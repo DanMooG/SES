@@ -7,6 +7,8 @@ public class QnaDTO {
 	private String Q_CONTENT = "";
 	private String Q_REPLY = "";
 	
+	public QnaDTO() {}
+	
 	public QnaDTO(String q_TITLE, String m_ID, int q_PWD, String q_CONTENT, String q_REPLY) {
 		super();
 		Q_TITLE = q_TITLE;

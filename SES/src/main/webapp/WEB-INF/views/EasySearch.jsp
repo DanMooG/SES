@@ -141,7 +141,7 @@ footer {
 											<img src="${pageContext.request.contextPath}/resources/images/google_red.png" width="30px">
 										</td>
 										<td>
-											<a href="easySearch?kind=google_red" style="color: White; text-decoration: none;">구글</a>
+											<a href="easySearch?kind=google" style="color: White; text-decoration: none;">구글</a>
 										</td>
 										<td width="10px"></td>
 									</tr>
@@ -172,17 +172,6 @@ footer {
 								</tr>
 							</c:forEach>
 						</tbody>
-						<tfoot>
-							<tr align="center">
-								<td colspan="5"><a href="search?pgnum=1" style="text-decoration: none">${prev}${prev}</a>
-									<a href="search?pgnum=${before}" style="text-decoration: none">${prev}</a>
-									<c:forEach items="${pg}" var="p">
-									<a href="search?pgnum=${p}" style="text-decoration: none">${p}</a>
-									</c:forEach> <a href="search?pgnum=${after}" style="text-decoration: none">${next}</a>
-									<a href="search?pgnum=${last}" style="text-decoration: none">${next}${next}</a>
-								</td>
-							</tr>
-						</tfoot>
 					</table>
 					<br /> <br /> <br />
 					<form action="search" name="searchForm">

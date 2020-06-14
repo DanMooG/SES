@@ -10,6 +10,8 @@ public class PageDTO {
 	private boolean Next; // 다음 페이지로 가는 화살표
 	private int CurBlock; // 현재 페이지 블록
 	private int LastBlock; // 마지막 페이지 블록
+	
+	public PageDTO() {}
 
 	public void prevnext(int PageNum) {
 		if(PageNum > 0 && PageNum < 6) {

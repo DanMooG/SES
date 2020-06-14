@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.ses.dto.LogDTO;
 import com.ses.dto.MemberDTO;
 import com.ses.dto.PageDTO;
 import com.ses.dto.SiteListDTO;
@@ -67,24 +68,36 @@ public class PageController {
 	// 서비스/회사 소개
 	@RequestMapping("/serviceInfo")
 	public String GoServiceInfo(HttpServletRequest request, Model model) {
+		if (session.getAttribute("mId") == null)
+			return "redirect:main";
+
 		return "/ServiceInfo";
 	}
 
 	// 서비스 이용 절차
 	@RequestMapping("/serviceStep")
 	public String GoServiceStep(HttpServletRequest request, Model model) {
+		if (session.getAttribute("mId") == null)
+			return "redirect:main";
+
 		return "/ServiceStep";
 	}
 
 	// 문의하기
 	@RequestMapping("/qna")
 	public String GoQna(HttpServletRequest request, Model model) {
+		if (session.getAttribute("mId") == null)
+			return "redirect:main";
+
 		return "/Qna";
 	}
 
 	// 간편가입 조회
 	@RequestMapping("/easySearch")
 	public String GoEasySearch(HttpServletRequest request, Model model) {
+		// if (session.getAttribute("mId") == null)
+		// return "redirect:main";
+
 		String kind = request.getParameter("kind");
 		String M_ID = "tytyjacob";
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -104,6 +117,27 @@ public class PageController {
 	// 간편가입 탈퇴 내역
 	@RequestMapping("/searchLog")
 	public String GoSearchLog(HttpServletRequest request, Model model) {
+		// if (session.getAttribute("mId") == null)
+		// return "redirect:main";
+
+		String M_ID = "tytyjacob";
+		Map<String, Object> map = new HashMap<String, Object>();
+
+		map.put("M_ID", M_ID);
+
+		List<LogDTO> dtos_origin = Ser_L.GetLList(map);
+		
+		String str = "";
+		// 각 게시물 번호
+		for(int i = 0; i < dtos_origin.size(); i++) {
+			dtos_origin.get(i).setNUM(i+1);
+			str = dtos_origin.get(i).getL_YEAR() + "-" + dtos_origin.get(i).getL_MONTH() + "-" + dtos_origin.get(i).getL_DAY() + " " + dtos_origin.get(i).getL_HOUR() + ":" + dtos_origin.get(i).getL_MINUTE();
+			dtos_origin.get(i).setDATE_HOUR(str);
+		}
+		
+		// 값 넘겨주기
+		model.addAttribute("dtos", dtos_origin);
+
 		return "/SearchLog";
 	}
 }
