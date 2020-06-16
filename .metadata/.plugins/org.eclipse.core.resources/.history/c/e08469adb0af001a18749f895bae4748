@@ -37,12 +37,11 @@ public class PageController {
 		return "/MainScreen";
 	}
 
-	/*
-	 * // 로그인
-	 * 
-	 * @RequestMapping("/Login") public String GoLogin(HttpServletRequest request,
-	 * Model model) { return "/Login"; }
-	 */
+	// 로그인
+	@RequestMapping("/Login")
+	public String GoLogin(HttpServletRequest request, Model model) {
+		return "/Login";
+	}
 
 	// 회원가입
 	@RequestMapping("/join")
