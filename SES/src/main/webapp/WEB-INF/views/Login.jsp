@@ -58,11 +58,11 @@
 		<form action="doLogin" method="post">
 			<h2 class="text-center">로그인</h2>
 			<div class="form-group">
-				<input type="text" name="mId" class="form-control" placeholder="아이디"
+				<input type="text" name="M_ID" class="form-control" placeholder="아이디"
 					required="required">
 			</div>
 			<div class="form-group">
-				<input type="password" name="mPw" class="form-control" placeholder="비밀번호"
+				<input type="password" name="M_PW" class="form-control" placeholder="비밀번호"
 					required="required">
 			</div>
 			<div class="form-group">

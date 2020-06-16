@@ -1,6 +1,7 @@
 package com.ses.dto;
 
 public class SiteListDTO {
+	private int NUM = 0;
 	private String SL_NAME = "";
     private String SL_SITE = "";
     private String M_ID = "";
@@ -29,6 +30,15 @@ public class SiteListDTO {
 		} else {
 			SL_STATE = "¿¬°á";
 		}
+	}
+    
+    public int getNUM() {
+		return NUM;
+	}
+
+
+	public void setNUM(int nUM) {
+		NUM = nUM;
 	}
 
 	public String getSL_NAME() {

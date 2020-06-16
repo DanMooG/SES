@@ -1,6 +1,7 @@
 package com.ses.controller;
 
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -68,8 +69,8 @@ public class PageController {
 	// 서비스/회사 소개
 	@RequestMapping("/serviceInfo")
 	public String GoServiceInfo(HttpServletRequest request, Model model) {
-		if (session.getAttribute("mId") == null)
-			return "redirect:main";
+		// if (session.getAttribute("mId") == null)
+		// return "redirect:main";
 
 		return "/ServiceInfo";
 	}
@@ -77,8 +78,8 @@ public class PageController {
 	// 서비스 이용 절차
 	@RequestMapping("/serviceStep")
 	public String GoServiceStep(HttpServletRequest request, Model model) {
-		if (session.getAttribute("mId") == null)
-			return "redirect:main";
+		// if (session.getAttribute("mId") == null)
+		// return "redirect:main";
 
 		return "/ServiceStep";
 	}
@@ -86,8 +87,8 @@ public class PageController {
 	// 문의하기
 	@RequestMapping("/qna")
 	public String GoQna(HttpServletRequest request, Model model) {
-		if (session.getAttribute("mId") == null)
-			return "redirect:main";
+		// if (session.getAttribute("mId") == null)
+		// return "redirect:main";
 
 		return "/Qna";
 	}
@@ -97,18 +98,87 @@ public class PageController {
 	public String GoEasySearch(HttpServletRequest request, Model model) {
 		// if (session.getAttribute("mId") == null)
 		// return "redirect:main";
-
 		String kind = request.getParameter("kind");
+		String pgNum = request.getParameter("pgnum");
+		if (pgNum == null) // null이면 맨 처음
+			pgNum = "1";
+		// int형으로
+		int pgnum = Integer.parseInt(pgNum);
 		String M_ID = "tytyjacob";
 		Map<String, Object> map = new HashMap<String, Object>();
+		PageDTO pgDTO = new PageDTO();
 
 		map.put("kind", kind);
 		map.put("M_ID", M_ID);
 
-		List<SiteListDTO> dtos_origin = Ser_SL.GetSLList(map);
+		// 전체 게시글 개수 설정
+		pgDTO.setTotalCnt(Ser_SL.PageCnt(map));
+		// 현재 페이지 번호 설정
+		pgDTO.setPageNum(pgnum);
+		// 보여줄 게시물 수 설정
+		pgDTO.setContentNum(5);
+		// 현재 페이지 블록 설정
+		pgDTO.setCurBlock(pgnum);
+		// 마지막 블록 번호 설정
+		pgDTO.setLastBlock(pgDTO.getTotalCnt());
+		// 이전 화살표 표시 여부
+		pgDTO.prevnext(pgnum);
+		// 시작 페이지 설정
+		pgDTO.setStartPage(pgDTO.getCurBlock());
+		// 마지막 페이지 설정
+		pgDTO.setEndPage(pgDTO.getLastBlock(), pgDTO.getCurBlock());
+
+		map = new HashMap<String, Object>();
+		map.put("kind", kind);
+		map.put("M_ID", M_ID);
+		map.put("startNum", (pgnum - 1) * pgDTO.getContentNum());
+		map.put("ContentNum", pgDTO.getContentNum());
+
+		List<SiteListDTO> dtos = Ser_SL.GetSLList(map);
+
+		int first = (pgnum - 1) * pgDTO.getContentNum() + 1;
+		int last = first + pgDTO.getContentNum();
+		int j = 0;
+		// 각 게시물 번호
+		for (int i = first; i < last; i++) {
+			if (i <= pgDTO.getTotalCnt()) {
+				dtos.get(j).setNUM(i);
+				j++;
+			}
+		}
+
+		String prev = "", next = ""; // <, >
+
+		if (pgDTO.isPrev()) { // 이전 블록이 존재하는가
+			prev = "<";
+		}
+		if (pgDTO.isNext()) { // 다음 블록이 존재하는가
+			next = ">";
+		}
+
+		// 넘어가서 출력될 페이지 번호들
+		int[] pg = new int[(pgDTO.getEndPage() - pgDTO.getStartPage()) + 1];
+
+		// 원래는 자바스크립트 써서 해줘야되는데 무슨 파일 또 가져와서 설치해야 된다길래
+		// 그냥 여기서 값 계산해서 넘겨주기
+		j = 0;
+		for (int i = pgDTO.getStartPage(); i < pgDTO.getStartPage() + pgDTO.getContentNum(); i++) {
+			if (pg.length > j)
+				pg[j] = i;
+			j++;
+		}
 
 		// 값 넘겨주기
-		model.addAttribute("dtos", dtos_origin);
+		model.addAttribute("dtos", dtos);
+		model.addAttribute("before", pgDTO.getStartPage() - 1);
+		model.addAttribute("after", pgDTO.getEndPage() + 1);
+		model.addAttribute("prev", prev);
+		model.addAttribute("pg", pg);
+		model.addAttribute("next", next);
+		if (pgDTO.getTotalCnt() % pgDTO.getContentNum() > 0)
+			model.addAttribute("last", pgDTO.getTotalCnt() / pgDTO.getContentNum() + 1);
+		else
+			model.addAttribute("last", pgDTO.getTotalCnt() / pgDTO.getContentNum());
 		model.addAttribute("kind", kind);
 
 		return "/EasySearch";
@@ -125,18 +195,19 @@ public class PageController {
 
 		map.put("M_ID", M_ID);
 
-		List<LogDTO> dtos_origin = Ser_L.GetLList(map);
-		
+		List<LogDTO> dtos = Ser_L.GetLList(map);
+
 		String str = "";
 		// 각 게시물 번호
-		for(int i = 0; i < dtos_origin.size(); i++) {
-			dtos_origin.get(i).setNUM(i+1);
-			str = dtos_origin.get(i).getL_YEAR() + "-" + dtos_origin.get(i).getL_MONTH() + "-" + dtos_origin.get(i).getL_DAY() + " " + dtos_origin.get(i).getL_HOUR() + ":" + dtos_origin.get(i).getL_MINUTE();
-			dtos_origin.get(i).setDATE_HOUR(str);
+		for (int i = 0; i < dtos.size(); i++) {
+			dtos.get(i).setNUM(i + 1);
+			str = dtos.get(i).getL_YEAR() + "-" + dtos.get(i).getL_MONTH() + "-" + dtos.get(i).getL_DAY() + " "
+					+ dtos.get(i).getL_HOUR() + ":" + dtos.get(i).getL_MINUTE();
+			dtos.get(i).setDATE_HOUR(str);
 		}
-		
+
 		// 값 넘겨주기
-		model.addAttribute("dtos", dtos_origin);
+		model.addAttribute("dtos", dtos);
 
 		return "/SearchLog";
 	}

@@ -27,7 +27,12 @@ public class SiteListService implements SLService {
 
 	// 전체 페이지 개수 구하기
 	@Override
-	public int PageCnt() {
-		return slDAO.ListCnt();
+	public int PageCnt(Map<String, Object> map) {
+		return slDAO.ListCnt(map);
+	}
+
+	@Override
+	public int SearchedListCnt(Map<String, Object> map) {
+		return slDAO.SearchedListCnt(map);
 	}
 }

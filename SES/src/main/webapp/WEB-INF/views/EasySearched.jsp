@@ -181,17 +181,17 @@ footer {
 						</tbody>
 						<tfoot>
 							<tr align="center">
-								<td colspan="5"><a
-									href="easySearch?kind=${kind}&pgnum=1"
+								<td colspan="5">
+									<a href="search?kind=${kind}&pgnum=1"
 									style="text-decoration: none">${prev}${prev}</a> <a
-									href="easySearch?kind=${kind}&pgnum=${before}"
+									href="search?kind=${kind}&pgnum=${before}"
 									style="text-decoration: none">${prev}</a> <c:forEach
 										items="${pg}" var="p">
-										<a href="easySearch?kind=${kind}&pgnum=${p}"
+										<a href="search?kind=${kind}&pgnum=${p}"
 											style="text-decoration: none">${p}</a>
-									</c:forEach> <a href="easySearch?kind=${kind}&pgnum=${after}"
+									</c:forEach> <a href="search?kind=${kind}&pgnum=${after}"
 									style="text-decoration: none">${next}</a> <a
-									href="easySearch?kind=${kind}&pgnum=${last}"
+									href="search?kind=${kind}&pgnum=${last}"
 									style="text-decoration: none">${next}${next}</a></td>
 							</tr>
 						</tfoot>
@@ -203,7 +203,7 @@ footer {
 							<div class="col-md-4 align-self-center" align="right">
 								*사이트명 입력</div>
 							<div class="col-md-4 align-self-center">
-								<input type="text" style="width: 100%;" name="keyword">
+								<input type="text" style="width: 100%;" name="keyword" value="${keyword}">
 							</div>
 							<div class="col-md-4 align-self-center" align="left">
 								<p>

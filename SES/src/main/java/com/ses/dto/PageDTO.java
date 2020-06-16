@@ -10,13 +10,23 @@ public class PageDTO {
 	private boolean Next; // 다음 페이지로 가는 화살표
 	private int CurBlock; // 현재 페이지 블록
 	private int LastBlock; // 마지막 페이지 블록
-	
-	public PageDTO() {}
+
+	public PageDTO() {
+	}
 
 	public void prevnext(int PageNum) {
-		if(PageNum > 0 && PageNum < 6) {
-			setPrev(false);
-			setNext(true);
+		if (PageNum > 0 && PageNum < 6) {
+			if ((getTotalCnt() / getContentNum()) < getContentNum()) {
+				setPrev(false);
+				setNext(false);
+			} else if (((getTotalCnt() / getContentNum()) == getContentNum())
+					&& ((getTotalCnt() % getContentNum()) == 0)) {
+				setPrev(false);
+				setNext(false);
+			} else {
+				setPrev(false);
+				setNext(true);
+			}
 		} else if(getLastBlock() == getCurBlock()) {
 			setPrev(true);
 			setNext(false);
@@ -25,7 +35,7 @@ public class PageDTO {
 			setNext(true);
 		}
 	}
-	
+
 	// 전체 페이지 수 계산
 	public int CalcPage(int TotalCnt, int ContentNum) {
 		int total;
@@ -65,7 +75,7 @@ public class PageDTO {
 	}
 
 	public void setStartPage(int CurrBlock) {
-		StartPage = (CurrBlock*5)-4;
+		StartPage = (CurrBlock * 5) - 4;
 	}
 
 	public int getEndPage() {
@@ -73,7 +83,7 @@ public class PageDTO {
 	}
 
 	public void setEndPage(int GetLastBlock, int GetCurrBlock) {
-		if(GetLastBlock == GetCurrBlock) {
+		if (GetLastBlock == GetCurrBlock) {
 			EndPage = CalcPage(getTotalCnt(), getContentNum());
 		} else {
 			EndPage = getStartPage() + 4;
@@ -102,7 +112,7 @@ public class PageDTO {
 
 	public void setCurBlock(int pageNum) {
 		CurBlock = pageNum / 5;
-		if(pageNum%5>0) {
+		if (pageNum % 5 > 0) {
 			CurBlock++;
 		}
 	}
@@ -112,8 +122,8 @@ public class PageDTO {
 	}
 
 	public void setLastBlock(int TotalCnt) {
-		LastBlock = TotalCnt / (5*ContentNum);
-		if(TotalCnt % (5 * this.ContentNum) > 0) {
+		LastBlock = TotalCnt / (5 * ContentNum);
+		if (TotalCnt % (5 * this.ContentNum) > 0) {
 			LastBlock++;
 		}
 	}
