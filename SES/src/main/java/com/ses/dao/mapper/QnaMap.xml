@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="Qmap">
-
+	<select id="GetFour" parameterType="hashmap"
+		resultType="com.ses.dto.QnaDTO">
+		SELECT * FROM Qna limit 0,4
+	</select>
+	
+	<select id="GetQna" parameterType="int"
+		resultType="com.ses.dto.QnaDTO">
+		SELECT * FROM Qna WHERE Q_NUM like #{Qnum}
+	</select>
 </mapper>

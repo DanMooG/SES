@@ -79,7 +79,7 @@ footer {
 				<br /> <br /> <br />
 				<div class="row" style="float: right;">
 					<div class="col-md-8">
-						<p><a href="#"><img src="${pageContext.request.contextPath}/resources/images/write.png" width="70px"></a></p>
+						<p><a href="qnaWrite"><img src="${pageContext.request.contextPath}/resources/images/write.png" width="70px"></a></p>
 					</div>
 					<div class="col-md-2"></div>
 					<div class="col-md-2"></div>

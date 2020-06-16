@@ -19,4 +19,19 @@ public class LogService implements LService{
 	public List<LogDTO> GetLList(Map<String, Object> map) {
 		return lDAO.GetLList(map);
 	}
+
+	@Override
+	public int SearchedListCnt(Map<String, Object> map) {
+		return lDAO.SearchedListCnt(map);
+	}
+
+	@Override
+	public int PageCnt(Map<String, Object> map) {
+		return lDAO.ListCnt(map);
+	}
+
+	@Override
+	public List<LogDTO> SearchList(Map<String, Object> map) {
+		return lDAO.SearchList(map);
+	}
 }

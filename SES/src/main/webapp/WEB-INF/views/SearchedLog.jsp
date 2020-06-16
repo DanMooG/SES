@@ -110,28 +110,29 @@ footer {
 						</tbody>
 						<tfoot>
 							<tr align="center">
-								<td colspan="5"><a href="searchLog?pgnum=1"
+								<td colspan="5"><a href="searchedLog?pgnum=1&bCol=${bCol}&bVal=${bVal}"
 									style="text-decoration: none">${prev}${prev}</a> <a
-									href="searchLog?pgnum=${before}" style="text-decoration: none">${prev}</a>
+									href="searchedLog?pgnum=${before}&bCol=${bCol}&bVal=${bVal}" style="text-decoration: none">${prev}</a>
 									<c:forEach items="${pg}" var="p">
-										<a href="searchLog?pgnum=${p}" style="text-decoration: none">${p}</a>
-									</c:forEach> <a href="searchLog?pgnum=${after}"
+										<a href="searchedLog?pgnum=${p}&bCol=${bCol}&bVal=${bVal}" style="text-decoration: none">${p}</a>
+									</c:forEach> <a href="searchedLog?pgnum=${after}&bCol=${bCol}&bVal=${bVal}"
 									style="text-decoration: none">${next}</a> <a
-									href="searchLog?pgnum=${last}" style="text-decoration: none">${next}${next}</a></td>
+									href="searchedLog?pgnum=${last}&bCol=${bCol}&bVal=${bVal}" style="text-decoration: none">${next}${next}</a></td>
 							</tr>
 						</tfoot>
 					</table>
 					<br /> <br /> <br />
 					<div class="row">
-						<form action="searchedlog" name="myform" onSubmit="return check()">
+						<form action="searchlog" name="myform" onSubmit="return check()">
 							<div class="col-md-4 align-self-center" align="right">
 								<select id="combobox1" class="combobox" name="bCol">
+									<option value="${bCol}" selected>${bCol}</option>
 									<option value="사이트명">사이트명</option>
 									<option value="계정 종류별">계정 종류별</option>
 								</select>
 							</div>
 							<div class="col-md-4 align-self-center">
-								<input type="text" style="width: 100%;" name="bVal">
+								<input type="text" style="width: 100%;" name="bVal" value="${bVal}">
 							</div>
 							<div class="col-md-4 align-self-center" align="left">
 								<p>

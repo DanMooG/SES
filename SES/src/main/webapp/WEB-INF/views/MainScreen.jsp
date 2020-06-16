@@ -101,26 +101,13 @@
 								<h3 class="panel-title"><span class="glyphicon-pencil"></span>&nbsp;&nbsp;<a href="qna">문의하기</a></h3>
 							</div>
 							<div class="panel-body">
-								<div class="media">
-									<div class="media-body">
-										<h4 class="media-heading">게시물1</h4>
+								<c:forEach items="${dtos_qna}" var="dto">
+									<div class="media">
+										<div class="media-body">
+											<h4 class="media-heading"><a href="showQna?Qnum=${dto.getQ_NUM()}">${dto.getQ_TITLE()}</a></h4>
+										</div>
 									</div>
-								</div>
-								<div class="media">
-									<div class="media-body">
-										<h4 class="media-heading">게시물2</h4>
-									</div>
-								</div>
-								<div class="media">
-									<div class="media-body">
-										<h4 class="media-heading">게시물3</h4>
-									</div>
-								</div>
-								<div class="media">
-									<div class="media-body">
-										<h4 class="media-heading">게시물4</h4>
-									</div>
-								</div>
+								</c:forEach>
 							</div>
 						</div>
 					</div>

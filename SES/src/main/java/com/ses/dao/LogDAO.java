@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.ses.dto.LogDTO;
+import com.ses.dto.SiteListDTO;
 
 @Repository
 public class LogDAO {
@@ -26,5 +27,20 @@ public class LogDAO {
 	// list 가져와
 	public List<LogDTO> GetLList(Map<String, Object> map) {
 		return temp.selectList("Lmap.LList", map);
+	}
+
+	// list 검색
+	public List<LogDTO> SearchList(Map<String, Object> map) {
+		return temp.selectList("Lmap.Search", map);
+	}
+
+	// 검색된 페이지 개수 구하기
+	public int SearchedListCnt(Map<String, Object> map) {
+		return temp.selectOne("Lmap.SearchCnt", map);
+	}
+
+	// 전체 페이지 개수 구하기
+	public int ListCnt(Map<String, Object> map) {
+		return temp.selectOne("Lmap.ListCnt", map);
 	}
 }

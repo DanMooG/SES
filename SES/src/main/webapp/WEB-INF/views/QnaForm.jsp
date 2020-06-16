@@ -34,14 +34,6 @@ footer {
 	transform: translatex(-50%);
 }
 </style>
-<script>
-	function check() {
-		if (document.myform.bVal.value == "") {
-			alert("검색 값을 입력하세요!!");
-			return false;
-		}
-	}
-</script>
 </head>
 <body>
 	<main class="container-fluid">
@@ -82,65 +74,52 @@ footer {
 		</div>
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h3>간편 가입 탈퇴 내역</h3>
+				<h3>문의하기 - 글작성</h3>
 			</div>
 			<div class="panel-body">
 				<!-- Contents -->
-				<br /> <br /> <br />
 				<center>
+					<br /> <br />
+					<h3 align="left" style="width: 90%;">질문</h3>
 					<table class="table table-hover" style="width: 90%;">
-						<thead align="center">
+						<tbody>
 							<tr>
-								<td width="10%" style="background-color: #337ab7; color: White;">번호</td>
-								<td width="35%" style="background-color: #337ab7; color: White;">계정종류</td>
-								<td width="40%" style="background-color: #337ab7; color: White;">외부
-									사이트 명</td>
-								<td width="15%" style="background-color: #337ab7; color: White;">활동</td>
+								<td align="center"
+									style="background-color: #337ab7; color: White;">제목</td>
+								<td>${dto.getQ_TITLE()}</td>
 							</tr>
-						</thead>
-						<tbody style="color: Black;">
-							<c:forEach items="${dtos}" var="dto">
-								<tr>
-									<td align="center">${dto.NUM}</td>
-									<td align="center">${dto.SU_KIND}</td>
-									<td align="center">${dto.SL_NAME}</td>
-									<td align="center">${dto.DATE_HOUR}</td>
-								</tr>
-							</c:forEach>
+							<tr>
+								<td align="center"
+									style="background-color: #337ab7; color: White;">작성자</td>
+								<td>${dto.getM_ID()}</td>
+							</tr>
+							<tr>
+								<td colspan="2" height="400px"
+									style="background-color: #337ab7;"><textarea
+										style="width: 100%; height: 100%; font-size: 20px;"
+										readonly="readonly">${dto.getQ_CONTENT()}</textarea></td>
+							</tr>
 						</tbody>
-						<tfoot>
-							<tr align="center">
-								<td colspan="5"><a href="searchLog?pgnum=1"
-									style="text-decoration: none">${prev}${prev}</a> <a
-									href="searchLog?pgnum=${before}" style="text-decoration: none">${prev}</a>
-									<c:forEach items="${pg}" var="p">
-										<a href="searchLog?pgnum=${p}" style="text-decoration: none">${p}</a>
-									</c:forEach> <a href="searchLog?pgnum=${after}"
-									style="text-decoration: none">${next}</a> <a
-									href="searchLog?pgnum=${last}" style="text-decoration: none">${next}${next}</a></td>
-							</tr>
-						</tfoot>
 					</table>
-					<br /> <br /> <br />
-					<div class="row">
-						<form action="searchedlog" name="myform" onSubmit="return check()">
-							<div class="col-md-4 align-self-center" align="right">
-								<select id="combobox1" class="combobox" name="bCol">
-									<option value="사이트명">사이트명</option>
-									<option value="계정 종류별">계정 종류별</option>
-								</select>
-							</div>
-							<div class="col-md-4 align-self-center">
-								<input type="text" style="width: 100%;" name="bVal">
-							</div>
-							<div class="col-md-4 align-self-center" align="left">
-								<p>
-									<input type="image" name="button" width="50px"
-										src="${pageContext.request.contextPath}/resources/images/search.png">
-								</p>
-							</div>
-						</form>
-					</div>
+					<br /> <br />
+					<table style="width: 90%;">
+						<tr>
+							<td>
+								<h3 align="left">답변</h3>
+							</td>
+						</tr>
+						<tr>
+							<td><textarea
+									style="width: 100%; height: 200px; font-size: 20px;"
+									readonly="readonly">${dto.getQ_REPLY()}</textarea></td>
+						</tr>
+					</table>
+					<br /> <br />
+					<p>
+						<a href="qna"><img
+							src="${pageContext.request.contextPath}/resources/images/toList.png"
+							width="150px"></a>
+					</p>
 					<br /> <br /> <br />
 				</center>
 			</div>

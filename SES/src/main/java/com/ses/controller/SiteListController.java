@@ -45,7 +45,7 @@ public class SiteListController {
 		map.put("keyword", "%" + keyword + "%");
 
 		// 전체 게시글 개수 설정
-		pgDTO.setTotalCnt(Ser_SL.SearchedListCnt(map));
+		pgDTO.setTotalCnt(Ser_SL.PageCnt(map));
 		// 현재 페이지 번호 설정
 		pgDTO.setPageNum(pgnum);
 		// 보여줄 게시물 수 설정

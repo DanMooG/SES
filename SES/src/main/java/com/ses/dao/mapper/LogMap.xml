@@ -3,6 +3,19 @@
 <mapper namespace="Lmap">
 	<select id="LList" parameterType="hashmap"
 		resultType="com.ses.dto.LogDTO">
-		SELECT * FROM Log WHERE M_ID like #{M_ID}
+		SELECT * FROM Log WHERE M_ID like #{M_ID} limit #{startNum}, #{ContentNum}
+	</select>
+	
+	<select id="Search" parameterType="hashmap"
+		resultType="com.ses.dto.LogDTO">
+		SELECT * FROM Log WHERE M_ID like #{M_ID} AND SL_NAME LIKE #{bVal1} AND SU_KIND LIKE #{bVal2} limit #{startNum}, #{ContentNum}
+	</select>
+	
+	<select id="ListCnt" parameterType="hashmap" resultType="int">
+		SELECT count(*) FROM Log WHERE M_ID like #{M_ID}
+	</select>
+	
+	<select id="SearchCnt" parameterType="hashmap" resultType="int">
+		SELECT count(*) FROM Log WHERE M_ID like #{M_ID} AND SL_NAME LIKE #{bVal1} AND SU_KIND LIKE #{bVal2}
 	</select>
 </mapper>
