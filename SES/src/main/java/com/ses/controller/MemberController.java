@@ -26,21 +26,15 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.ses.dto.MemberDTO;
 import com.ses.service.MemberService;
 
+@Controller
+@Repository
 public class MemberController {
 	@Autowired
 	MemberService mService;
 
 	@Inject
 	HttpSession session;
-	//
-	// 로그인  보여주기
-	@RequestMapping("/Login")
-	public String Login(Model model) {
-		System.out.println("Controller - Login()");
-
-		return "/Login";
-	}
-
+	
 	// 로그인
 	@RequestMapping(value = "/doLogin", method = RequestMethod.POST)
 	public String MLogin(HttpServletResponse response, HttpServletRequest request, RedirectAttributes attr)
@@ -53,7 +47,7 @@ public class MemberController {
 			session.setAttribute("M_PW", null);
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
-			out.println("<script>alert('존재하지 않는 회원입니다!!'); document.location.href='Login';</script>");
+			out.println("<script>alert('존재하지 않는 회원입니다!!'); document.location.href='login';</script>");
 			out.flush();
 			
 		} else if (!dto.getM_PW().equals(request.getParameter("M_PW"))) { // 비밀번호가 일치하지 않을 경우
@@ -61,14 +55,14 @@ public class MemberController {
 			session.setAttribute("M_PW", null);
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
-			out.println("<script>alert('비밀번호가 틀렸습니다!!'); document.location.href='Login';</script>");
+			out.println("<script>alert('비밀번호가 틀렸습니다!!'); document.location.href='login';</script>");
 			out.flush();
 		} else { // 성공
 			session.setAttribute("M_Id", dto.getM_ID());
 			session.setAttribute("M_PW", dto.getM_PW());
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
-			out.println("<script>alert('환영합니다!!'); document.location.href='Mainscreen'</script>");
+			out.println("<script>alert('환영합니다!!'); document.location.href='main'</script>");
 			out.flush();
 			return "MainScreen";
 		}

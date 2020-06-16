@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="Mmap">
+   <select id="MLogin" parameterType="String"
+      resultType="com.ses.dto.MemberDTO">
+      SELECT * from Member
+      WHERE M_ID like #{param1}
+   </select>
+
+
 	<select id="MCheckId" parameterType="String" resultType="String">
 		SELECT
-		M_NAME FROM ses_member WHERE M_Id like #{param1}
+		M_NAME FROM ses_member WHERE M_ID like #{param1}
 	</select>
 
 	<insert id="MJoin" parameterType="hashmap">
@@ -26,10 +33,5 @@
 		, M_BIRTH2 = #{M_BIRTH2}, M_BIRTH3 = #{M_BIRTH3}		
 		 WHERE M_ID like #{M_ID}
 	</update>
-
-	<select id="MLogin" parameterType="String"
-		resultType="com.ses.dto.MemberDTO">
-		SELECT * from ses_member
-		WHERE M_ID like #{param1}
-	</select>
+	
 </mapper>

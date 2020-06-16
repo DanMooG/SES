@@ -13,6 +13,8 @@ public class MemberDTO {
     private int M_BIRTH2 = 0;
     private int M_BIRTH3 = 0;
     
+    public MemberDTO() {}
+    
     public MemberDTO(String m_ID, String m_PW, String m_NAME, String m_EMAIL1, String m_EMAIL2, int m_TEL1, int m_TEL2,
             int m_TEL3, int m_BIRTH1, int m_BIRTH2, int m_BIRTH3) {
         super();
@@ -97,25 +99,23 @@ public class MemberDTO {
         return M_BIRTH1;
     }
 
-	public int getM_BIRTH2() {
-		return M_BIRTH2;
-	}
+   public int getM_BIRTH2() {
+      return M_BIRTH2;
+   }
 
-	public void setM_BIRTH2(int m_BIRTH2) {
-		M_BIRTH2 = m_BIRTH2;
-	}
+   public void setM_BIRTH2(int m_BIRTH2) {
+      M_BIRTH2 = m_BIRTH2;
+   }
 
-	public int getM_BIRTH3() {
-		return M_BIRTH3;
-	}
+   public int getM_BIRTH3() {
+      return M_BIRTH3;
+   }
 
-	public void setM_BIRTH3(int m_BIRTH3) {
-		M_BIRTH3 = m_BIRTH3;
-	}
+   public void setM_BIRTH3(int m_BIRTH3) {
+      M_BIRTH3 = m_BIRTH3;
+   }
 
-	public void setM_BIRTH1(int m_BIRTH1) {
-		M_BIRTH1 = m_BIRTH1;
-	}
-
-    
+   public void setM_BIRTH1(int m_BIRTH1) {
+      M_BIRTH1 = m_BIRTH1;
+   }
 }

@@ -56,7 +56,7 @@ public class MemberService implements MService {
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();
 		out.println("<script>");
-		out.println("document.location.href='index';");
+		out.println("document.location.href='MainScreen';");
 		out.println("</script>");
 		out.close();
 	}

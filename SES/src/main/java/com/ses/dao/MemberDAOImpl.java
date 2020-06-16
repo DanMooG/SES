@@ -3,7 +3,14 @@ package com.ses.dao;
 import java.util.List;
 import java.util.Map;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
+import javax.activation.DataSource;
 import javax.inject.Inject;
+import javax.naming.Context;
+import javax.naming.InitialContext;
 
 import org.apache.ibatis.session.SqlSession;
 import org.mybatis.spring.SqlSessionTemplate;

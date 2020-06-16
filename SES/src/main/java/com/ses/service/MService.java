@@ -22,7 +22,7 @@ public interface MService {
 	public boolean MUpdateInfo(Map<String, Object> map);	
 	
 	// 로그인
-	public MemberDTO MLogin(HttpServletRequest request);
+	 MemberDTO MLogin(HttpServletRequest request);
 	
 	// 로그아웃
 	public void logout(HttpServletResponse response) throws Exception;
