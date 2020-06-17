@@ -46,9 +46,8 @@
                 	<label for="provision" class="col-lg-2 control-label">회원가입약관</label>
                		<div class="col-lg-10" id="provision">
                     	<textarea class="form-control" rows="8" style="resize:none">약관동의
-블라블라블라블라블라블라블라블라블라블라블라블라
-블라블라블라블라블라블라블라블라블라블라블라블라
-블라블라블라블라블라블라블라블라블라블라블라블라.................
+SES 통합 조회서비스에서 제공하는 ‘웹사이트 가입여부 조회지원’ 서비스 이용을 위한 개인정보 수집·이용에 동의가 필요합니다.
+‘동의함’을 클릭해주세요.
                     	</textarea>
                     <div class="radio">
                     	<label>
@@ -66,9 +65,15 @@
             	<label for="memberInfo" class="col-lg-2 control-label">개인정보취급방침</label>
                 <div class="col-lg-10" id="memberInfo">
                 	<textarea class="form-control" rows="8" style="resize:none">개인정보의 항목 및 수집방법
-블라블라블라블라블라블라블라블라블라블라블라블라                        
-블라블라블라블라블라블라블라블라블라블라블라블라
-블라블라블라블라블라블라블라블라블라블라블라블라.................
+개인정보 수집·이용 목적
+o 간편가입조회 이용자 본인확인 
+
+수집하려는 개인정보의 항목
+o 휴대폰 본인확인: 이름, 휴대폰번호
+o 이메일 본인확인: 이름, 이메일주소
+
+동의 거부 권리 및 동의 거부에 따른 불이익
+o 개인정보 수집·이용에 동의를 거부하실 수 있으며, 동의를 거부하시는 경우에는 SES 간편가입조회 서비스 이용이 제한됩니다.
                 	</textarea>
                 	<div class="radio">
                     	<label>
