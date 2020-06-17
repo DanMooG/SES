@@ -1,5 +1,0 @@
-package com.ses.dao;
-
-public interface MemberDAO {
-
-}
