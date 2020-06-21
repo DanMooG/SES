@@ -4,18 +4,18 @@
 <mapper namespace="Mmap">
 	<select id="MLogin" parameterType="String"
 		resultType="com.ses.dto.MemberDTO">
-		SELECT * from ses_Member
+		SELECT * from member
 		WHERE M_ID like #{param1}
 	</select>
 
 
 	<select id="MCheckId" parameterType="String" resultType="String">
 		SELECT
-		M_NAME FROM ses_member WHERE M_ID like #{param1}
+		M_NAME FROM member WHERE M_ID like #{param1}
 	</select>
 
 	<insert id="MJoin" parameterType="hashmap">
-		INSERT INTO ses_member
+		INSERT INTO member
 		VALUES
 		(#{M_Id}, #{M_PW}, #{M_NAME}, #{M_EMAIL1}, #{M_EMAIL2}, #{M_TEL1},
 		#{M_TEL2}, #{M_TEL3}, #{M_BIRTH1}, #{M_BIRTH2}, #{M_BIRTH3})
@@ -23,12 +23,12 @@
 
 	<select id="GetMInfo" parameterType="String"
 		resultType="com.ses.dto.MemberDTO">
-		SELECT * FROM ses_member WHERE M_ID like #{param1}
+		SELECT * FROM member WHERE M_ID like #{param1}
 	</select>
 
 	<update id="MUpdateInfo" parameterType="hashmap">
 		UPDATE
-		ses_member SET
+		member SET
 		M_NAME = #{M_NAME}, M_EMAIL1 = #{M_EMAIL1}, M_EMAIL2 = #{M_EMAIL2}
 		M_TEL1 = #{M_TEL2}, M_TEL3 = #{M_TEL3}, M_BIRTH1 = #{M_BIRTH1}
 		,
