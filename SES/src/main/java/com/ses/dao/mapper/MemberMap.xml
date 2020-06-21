@@ -4,7 +4,7 @@
 <mapper namespace="Mmap">
 	<select id="MLogin" parameterType="String"
 		resultType="com.ses.dto.MemberDTO">
-		SELECT * from Member
+		SELECT * from ses_Member
 		WHERE M_ID like #{param1}
 	</select>
 
