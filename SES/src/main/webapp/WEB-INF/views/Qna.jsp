@@ -34,6 +34,14 @@ footer {
 	transform: translatex(-50%);
 }
 </style>
+<script>
+	function check() {
+		if (document.myform.bVal.value == "") {
+			alert("검색 값을 입력하세요!!");
+			return false;
+		}
+	}
+</script>
 </head>
 <body>
 	<main class="container-fluid">
@@ -44,7 +52,9 @@ footer {
 		<div class="jumbotron text-left">
 			<div class="row">
 				<div class="col-md-4">
-					<a href="main"><img src="${pageContext.request.contextPath}/resources/images/mainmark.png" width="300px"></a>
+					<a href="main"><img
+						src="${pageContext.request.contextPath}/resources/images/mainmark.png"
+						width="300px"></a>
 				</div>
 				<div class="col-md-8" style="padding-top: 120px;">
 					<!-- navigation -->
@@ -79,7 +89,11 @@ footer {
 				<br /> <br /> <br />
 				<div class="row" style="float: right;">
 					<div class="col-md-8">
-						<p><a href="qnaWrite"><img src="${pageContext.request.contextPath}/resources/images/write.png" width="70px"></a></p>
+						<p>
+							<a href="qnaWrite"><img
+								src="${pageContext.request.contextPath}/resources/images/write.png"
+								width="70px"></a>
+						</p>
 					</div>
 					<div class="col-md-2"></div>
 					<div class="col-md-2"></div>
@@ -96,28 +110,47 @@ footer {
 							</tr>
 						</thead>
 						<tbody align="center">
-							<tr>
-								<td>1</td>
-								<td>호롤롤로</td>
-								<td>2020-05-18</td>
-								<td>박수현</td>
-							</tr>
+							<c:forEach items="${dtos}" var="dto">
+								<tr>
+									<td align="center">${dto.getNUM()}</td>
+									<td align="center"><a
+										href="showQna?Qnum=${dto.getQ_NUM()}">${dto.getQ_TITLE()}</a></td>
+									<td align="center">${dto.getQ_YEAR()}-${dto.getQ_MONTH()}-${dto.getQ_DAY()}</td>
+									<td align="center">${dto.getM_ID()}</td>
+								</tr>
+							</c:forEach>
 						</tbody>
+						<tfoot>
+							<tr align="center">
+								<td colspan="5"><a href="qna?pgnum=1"
+									style="text-decoration: none">${prev}${prev}</a> <a
+									href="qna?pgnum=${before}" style="text-decoration: none">${prev}</a>
+									<c:forEach items="${pg}" var="p">
+										<a href="qna?pgnum=${p}" style="text-decoration: none">${p}</a>
+									</c:forEach> <a href="qna?pgnum=${after}" style="text-decoration: none">${next}</a>
+									<a href="qna?pgnum=${last}" style="text-decoration: none">${next}${next}</a></td>
+							</tr>
+						</tfoot>
 					</table>
 					<br /> <br /> <br />
 					<div class="row">
-						<div class="col-md-4 align-self-center" align="right">
-							<select id="combobox1" class="combobox">
-								<option value="SI">사이트명</option>
-								<option value="KI">계정 종류별</option>
-							</select>
-						</div>
-						<div class="col-md-4 align-self-center">
-							<input type="text" style="width: 100%;">
-						</div>
-						<div class="col-md-4 align-self-center" align="left">
-							<p><a href="#"><img src="${pageContext.request.contextPath}/resources/images/search.png" width="50px"></a></p>
-						</div>
+						<form action="searchqna" name="myform" onSubmit="return check()">
+							<div class="col-md-4 align-self-center" align="right">
+								<select id="combobox1" class="combobox" name="bCol">
+									<option value="TI">제목</option>
+									<option value="WR">작성자</option>
+								</select>
+							</div>
+							<div class="col-md-4 align-self-center">
+								<input type="text" style="width: 100%;" name="bVal">
+							</div>
+							<div class="col-md-4 align-self-center" align="left">
+								<p>
+									<input type="image" name="button" width="50px"
+										src="${pageContext.request.contextPath}/resources/images/search.png">
+								</p>
+							</div>
+						</form>
 					</div>
 					<br /> <br /> <br />
 				</center>
@@ -133,37 +166,44 @@ footer {
 			<div class="container text-center text-md-left">
 
 				<!-- Grid row -->
-    			<div class="row text-center">
-      				<!-- Grid column -->
-      					<div class="col-md-1 mx-auto">
-							<!-- Links -->
-        					<h5 class="font-weight-bold text-uppercase mt-2 mb-3">FAQ</h5>
-						</div>
-						<div class="col-md-2 mx-auto">
-							<!-- Links -->
-	        				<h5 class="font-weight-bold text-uppercase mt-2 mb-3">개인정보처리방침</h5>
-						</div>
-						<div class="col-md-5 mx-auto">
-						</div>
-						<div class="col-md-1 mx-auto">
-							<!-- Links -->
-        					<a href="https://https://www.facebook.com"> <img src="${pageContext.request.contextPath}/resources/images/facebook.png" width="30px">
-						</div>
-   						<div class="col-md-1 mx-auto">
-							<!-- Links -->
-        					<a href="https://www.kakaocorp.com/service/KakaoTalk"> <img src="${pageContext.request.contextPath}/resources/images/kakaotalk.png" width="30px">
-						</div>
-     					<div class="col-md-1 mx-auto">
-							<!-- Links -->
-        					<a href="https://www.naver.com"> <img src="${pageContext.request.contextPath}/resources/images/naver.png" width="30px">
-						</div>
-   						<div class="col-md-1 mx-auto">
-							<!-- Links -->
-        					<a href="https://www.google.com"> <img src="${pageContext.request.contextPath}/resources/images/google.png" width="30px">
-						</div>
-      				<!-- Grid column -->
+				<div class="row text-center">
+					<!-- Grid column -->
+					<div class="col-md-1 mx-auto">
+						<!-- Links -->
+						<h5 class="font-weight-bold text-uppercase mt-2 mb-3">FAQ</h5>
+					</div>
+					<div class="col-md-2 mx-auto">
+						<!-- Links -->
+						<h5 class="font-weight-bold text-uppercase mt-2 mb-3">개인정보처리방침</h5>
+					</div>
+					<div class="col-md-5 mx-auto"></div>
+					<div class="col-md-1 mx-auto">
+						<!-- Links -->
+						<a href="https://https://www.facebook.com"> <img
+							src="${pageContext.request.contextPath}/resources/images/facebook.png"
+							width="30px">
+					</div>
+					<div class="col-md-1 mx-auto">
+						<!-- Links -->
+						<a href="https://www.kakaocorp.com/service/KakaoTalk"> <img
+							src="${pageContext.request.contextPath}/resources/images/kakaotalk.png"
+							width="30px">
+					</div>
+					<div class="col-md-1 mx-auto">
+						<!-- Links -->
+						<a href="https://www.naver.com"> <img
+							src="${pageContext.request.contextPath}/resources/images/naver.png"
+							width="30px">
+					</div>
+					<div class="col-md-1 mx-auto">
+						<!-- Links -->
+						<a href="https://www.google.com"> <img
+							src="${pageContext.request.contextPath}/resources/images/google.png"
+							width="30px">
+					</div>
+					<!-- Grid column -->
 				</div>
-    			<!-- Grid row -->
+				<!-- Grid row -->
 			</div>
 		</footer>
 	</main>

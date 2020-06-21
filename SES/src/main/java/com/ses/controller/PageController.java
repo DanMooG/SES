@@ -97,6 +97,81 @@ public class PageController {
 		// if (session.getAttribute("mId") == null)
 		// return "redirect:main";
 
+		String pgNum = request.getParameter("pgnum");
+		if (pgNum == null) // null이면 맨 처음
+			pgNum = "1";
+		// int형으로
+		int pgnum = Integer.parseInt(pgNum);
+		String M_ID = "tytyjacob";
+		Map<String, Object> map = new HashMap<String, Object>();
+		PageDTO pgDTO = new PageDTO();
+
+		// 전체 게시글 개수 설정
+		pgDTO.setTotalCnt(Ser_Q.PageCnt());
+		// 현재 페이지 번호 설정
+		pgDTO.setPageNum(pgnum);
+		// 보여줄 게시물 수 설정
+		pgDTO.setContentNum(5);
+		// 현재 페이지 블록 설정
+		pgDTO.setCurBlock(pgnum);
+		// 마지막 블록 번호 설정
+		pgDTO.setLastBlock(pgDTO.getTotalCnt());
+		// 이전 화살표 표시 여부
+		pgDTO.prevnext(pgnum);
+		// 시작 페이지 설정
+		pgDTO.setStartPage(pgDTO.getCurBlock());
+		// 마지막 페이지 설정
+		pgDTO.setEndPage(pgDTO.getLastBlock(), pgDTO.getCurBlock());
+
+		map.put("startNum", (pgnum - 1) * pgDTO.getContentNum());
+		map.put("ContentNum", pgDTO.getContentNum());
+		
+		List<QnaDTO> dtos = Ser_Q.GetQList(map);
+
+		int first = (pgnum - 1) * pgDTO.getContentNum() + 1;
+		int last = first + pgDTO.getContentNum();
+		int j = 0;
+		// 각 게시물 번호
+		for (int i = first; i < last; i++) {
+			if (i <= pgDTO.getTotalCnt()) {
+				dtos.get(j).setNUM(i);
+				j++;
+			}
+		}
+
+		String prev = "", next = ""; // <, >
+
+		if (pgDTO.isPrev()) { // 이전 블록이 존재하는가
+			prev = "<";
+		}
+		if (pgDTO.isNext()) { // 다음 블록이 존재하는가
+			next = ">";
+		}
+
+		// 넘어가서 출력될 페이지 번호들
+		int[] pg = new int[(pgDTO.getEndPage() - pgDTO.getStartPage()) + 1];
+
+		// 원래는 자바스크립트 써서 해줘야되는데 무슨 파일 또 가져와서 설치해야 된다길래
+		// 그냥 여기서 값 계산해서 넘겨주기
+		j = 0;
+		for (int i = pgDTO.getStartPage(); i < pgDTO.getStartPage() + pgDTO.getContentNum(); i++) {
+			if (pg.length > j)
+				pg[j] = i;
+			j++;
+		}
+		
+		// 값 넘겨주기
+		model.addAttribute("dtos", dtos);
+		model.addAttribute("before", pgDTO.getStartPage() - 1);
+		model.addAttribute("after", pgDTO.getEndPage() + 1);
+		model.addAttribute("prev", prev);
+		model.addAttribute("pg", pg);
+		model.addAttribute("next", next);
+		if (pgDTO.getTotalCnt() % pgDTO.getContentNum() > 0)
+			model.addAttribute("last", pgDTO.getTotalCnt() / pgDTO.getContentNum() + 1);
+		else
+			model.addAttribute("last", pgDTO.getTotalCnt() / pgDTO.getContentNum());
+		
 		return "/Qna";
 	}
 

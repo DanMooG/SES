@@ -74,57 +74,79 @@ footer {
 		</div>
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h3>문의하기 - 글작성</h3>
+				<h3>문의하기</h3>
 			</div>
 			<div class="panel-body">
 				<!-- Contents -->
+				<br /> <br /> <br />
+				<div class="row" style="float: right;">
+					<div class="col-md-8">
+						<p>
+							<a href="qnaWrite"><img
+								src="${pageContext.request.contextPath}/resources/images/write.png"
+								width="70px"></a>
+						</p>
+					</div>
+					<div class="col-md-2"></div>
+					<div class="col-md-2"></div>
+				</div>
+				<br /> <br />
 				<center>
-					<br /> <br />
-					<h3 align="left" style="width: 90%;">질문</h3>
 					<table class="table table-hover" style="width: 90%;">
-						<tbody>
+						<thead align="center">
 							<tr>
-								<td align="center"
-									style="background-color: #337ab7; color: White;">제목</td>
-								<td>${dto.getQ_TITLE()}</td>
+								<td width="10%" style="background-color: #337ab7; color: White;">번호</td>
+								<td width="40%" style="background-color: #337ab7; color: White;">제목</td>
+								<td width="35%" style="background-color: #337ab7; color: White;">작성날짜</td>
+								<td width="15%" style="background-color: #337ab7; color: White;">작성자</td>
 							</tr>
-							<tr>
-								<td align="center"
-									style="background-color: #337ab7; color: White;">작성날짜</td>
-								<td>${dto.getQ_YEAR()}-${dto.getQ_MONTH()}-${dto.getQ_DAY()}</td>
-							</tr>
-							<tr>
-								<td align="center"
-									style="background-color: #337ab7; color: White;">작성자</td>
-								<td>${dto.getM_ID()}</td>
-							</tr>
-							<tr>
-								<td colspan="2" height="400px"
-									style="background-color: #337ab7;"><textarea
-										style="width: 100%; height: 100%; font-size: 20px;"
-										readonly="readonly">${dto.getQ_CONTENT()}</textarea></td>
-							</tr>
+						</thead>
+						<tbody align="center">
+							<c:forEach items="${dtos}" var="dto">
+								<tr>
+									<td align="center">${dto.getQ_NUM()}</td>
+									<td align="center"><a href="${dto.getQ_TITLE()}">${dto.getQ_TITLE()}</a></td>
+									<td align="center">${dto.getQ_YEAR()}-${dto.getQ_MONTH()}-${dto.getQ_DAY()}</td>
+									<td align="center">${dto.getM_ID()}</td>
+								</tr>
+							</c:forEach>
 						</tbody>
+						<tfoot>
+							<tr align="center">
+								<td colspan="5"><a
+									href="searchqna?pgnum=1"
+									style="text-decoration: none">${prev}${prev}</a> <a
+									href="searchqna?pgnum=${before}"
+									style="text-decoration: none">${prev}</a> <c:forEach
+										items="${pg}" var="p">
+										<a href="searchqna?pgnum=${p}"
+											style="text-decoration: none">${p}</a>
+									</c:forEach> <a href="searchqna?pgnum=${after}"
+									style="text-decoration: none">${next}</a> <a
+									href="searchqna?pgnum=${last}"
+									style="text-decoration: none">${next}${next}</a></td>
+							</tr>
+						</tfoot>
 					</table>
-					<br /> <br />
-					<table style="width: 90%;">
-						<tr>
-							<td>
-								<h3 align="left">답변</h3>
-							</td>
-						</tr>
-						<tr>
-							<td><textarea
-									style="width: 100%; height: 200px; font-size: 20px;"
-									readonly="readonly">${dto.getQ_REPLY()}</textarea></td>
-						</tr>
-					</table>
-					<br /> <br />
-					<p>
-						<a href="qna"><img
-							src="${pageContext.request.contextPath}/resources/images/toList.png"
-							width="150px"></a>
-					</p>
+					<br /> <br /> <br />
+					<div class="row">
+						<div class="col-md-4 align-self-center" align="right">
+							<select id="combobox1" class="combobox">
+								<option value="TI">제목</option>
+								<option value="WR">작성자</option>
+							</select>
+						</div>
+						<div class="col-md-4 align-self-center">
+							<input type="text" style="width: 100%;">
+						</div>
+						<div class="col-md-4 align-self-center" align="left">
+							<p>
+								<a href="#"><img
+									src="${pageContext.request.contextPath}/resources/images/search.png"
+									width="50px"></a>
+							</p>
+						</div>
+					</div>
 					<br /> <br /> <br />
 				</center>
 			</div>
