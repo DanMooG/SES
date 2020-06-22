@@ -85,18 +85,48 @@ public class MemberController {
 
 		// 회원가입 
 		@RequestMapping("/Join")
-		public String MJoin(Model model) {
+		public String MJoin(HttpServletResponse response, HttpServletRequest request, Model model) throws IOException {
 			System.out.println("Controller - Join()");
 			
-			MemberDTO dto = mService.GetMInfo(session.getAttribute("M_ID").toString());
-			int idx = dto.getM_EMAIL2().indexOf("@");
-			dto.setM_EMAIL1(dto.getM_EMAIL1().substring(0, idx));
-			dto.setM_EMAIL2(dto.getM_EMAIL2().substring(idx+1));
-			
 			//String data[] = dto.getM_BIRTH1().split("-");
-			dto.setM_BIRTH1(dto.getM_BIRTH1().substring(0, 4));
+			
+			Map<String, Object> map = new HashMap<String, Object>();
 
-			return "/Join";
+			map.put("M_ID", request.getParameter("M_ID"));
+			map.put("M_NAME", request.getParameter("M_NAME"));
+			map.put("M_PW", request.getParameter("M_PW"));
+			map.put("M_PWCHK", request.getParameter("M_PWCHK"));
+			map.put("M_BIRTH1", request.getParameter("mBirth"));
+			map.put("M_BIRTH2", request.getParameter("mBirth"));
+			map.put("M_BIRTH3", request.getParameter("mBirth"));
+			map.put("M_TEL1", request.getParameter("phoneNumber1"));
+			map.put("M_TEL2", request.getParameter("phoneNumber2"));
+			map.put("M_TEL3", request.getParameter("phoneNumber3"));
+			map.put("M_EMAIL1", request.getParameter("email"));
+			map.put("M_EAMIL2", request.getParameter("mBirth"));
+
+			boolean chkId = mService.CheckId(request.getParameter("M_ID"));
+
+			if (chkId) {
+				boolean chkJoin = mService.MJoin(map);
+				if (chkJoin) {
+					response.setContentType("text/html; charset=UTF-8");
+					PrintWriter out = response.getWriter();
+					out.println("<script>alert('가입되었습니다'); document.location.href='login'</script>");
+					out.flush();
+				} else {
+					response.setContentType("text/html; charset=UTF-8");
+					PrintWriter out = response.getWriter();
+					out.println("<script>alert('오류가 발생했습니다'); history.go(-1);</script>");
+					out.flush();
+				}
+			} else {
+				response.setContentType("text/html; charset=UTF-8");
+				PrintWriter out = response.getWriter();
+				out.println("<script>alert('아이디가 중복되었습니다'); history.go(-1);</script>");
+				out.flush();
+			}
+			return "/member/loginForm";
 		}
 
 		

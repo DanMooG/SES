@@ -95,14 +95,14 @@ o 개인정보 수집·이용에 동의를 거부하실 수 있으며, 동의를
 					<label for="inputId" class="col-lg-2 control-label">아이디</label>
 					<div class="col-lg-10">
 						<input type="text" class="form-control onlyAlphabetAndNumber"
-							id="id" data-rule-required="true"
+							id="M_ID" data-rule-required="true"
 							placeholder="30자이내의 알파벳, 언더스코어(_), 숫자만 입력 가능합니다." maxlength="30">
 					</div>
 				</div>
 				<div class="form-group" id="divPassword">
 					<label for="inputPassword" class="col-lg-2 control-label">비밀번호</label>
 					<div class="col-lg-10">
-						<input type="password" class="form-control" id="password"
+						<input type="password" class="form-control" id="M_PW""
 							name="excludeHangul" data-rule-required="true" placeholder="패스워드"
 							maxlength="30">
 					</div>
@@ -111,14 +111,14 @@ o 개인정보 수집·이용에 동의를 거부하실 수 있으며, 동의를
 					<label for="inputPasswordCheck" class="col-lg-2 control-label">비밀번호
 						확인</label>
 					<div class="col-lg-10">
-						<input type="password" class="form-control" id="passwordCheck"
+						<input type="password" class="form-control" id="M_PWCHK"
 							data-rule-required="true" placeholder="패스워드 확인" maxlength="30">
 					</div>
 				</div>
 				<div class="form-group" id="divName">
 					<label for="inputName" class="col-lg-2 control-label">성명</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control onlyHangul" id="name"
+						<input type="text" class="form-control onlyHangul" id="M_NAME"
 							data-rule-required="true" placeholder="한글만 입력 가능합니다."
 							maxlength="15">
 					</div>
@@ -126,7 +126,7 @@ o 개인정보 수집·이용에 동의를 거부하실 수 있으며, 동의를
 				<div class="form-group" id="divBirth">
 					<label for="inputBirth" class="col-lg-2 control-label">생년월일</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control onlyHangul" id="datepicker"
+						<input type="text" class="form-control onlyHangul" id="M_BIRTH1"
 							data-date-format="yyyy-mm-dd" maxlength="15">
 					</div>
 				</div>
@@ -147,7 +147,7 @@ o 개인정보 수집·이용에 동의를 거부하실 수 있으며, 동의를
 								<div class="row">
 									<div class="col-lg-4">
 										<select class="form-control" data-toggle="dropdown"
-											name="phoneNumber" style="width: 120px;">
+											name="phoneNumber1" style="width: 120px;">
 											<option value="">선택하세요</option>
 											<option value="010">010</option>
 											<option value="011">011</option>
@@ -155,12 +155,12 @@ o 개인정보 수집·이용에 동의를 거부하실 수 있으며, 동의를
 									</div>
 									<div class="col-lg-4">
 										<input type="tel" class="form-control onlyNumber"
-											id="phoneNumber" data-rule-required="true" maxlength="4"
+											id="phoneNumber2" data-rule-required="true" maxlength="4"
 											style="width: 115px;">
 									</div>
 									<div class="col-lg-4">
 										<input type="tel" class="form-control onlyNumber"
-											id="phoneNumber" data-rule-required="true" maxlength="4"
+											id="phoneNumber3" data-rule-required="true" maxlength="4"
 											style="width: 115px;">
 									</div>
 								</div>
