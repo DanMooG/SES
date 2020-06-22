@@ -1,7 +1,7 @@
 package com.ses.dto;
 
-public class MemberDTO {
-    private String M_ID = "";
+public class MemberDTO {   
+	private String M_ID = "";
     private String M_PW = "";
     private String M_NAME = "";
     private String M_EMAIL1 = "";

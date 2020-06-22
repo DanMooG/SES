@@ -67,7 +67,7 @@ public class MemberController {
 			return "MainScreen";
 		}
 
-		return "Login";
+		return "login";
 	}
 	
 	// 로그아웃
@@ -88,7 +88,20 @@ public class MemberController {
 		public String MJoin(HttpServletResponse response, HttpServletRequest request, Model model) throws IOException {
 			System.out.println("Controller - Join()");
 			
-			//String data[] = dto.getM_BIRTH1().split("-");
+			String birth[] = request.getParameter("mBirth").split("-");			
+			
+			for(int i=0 ; i<birth.length ; i++)
+	        {
+	            System.out.println("birth["+i+"] : "+birth[i]);
+	        }
+			
+			String email[] = request.getParameter("email").split("@");
+			
+			for(int i=0 ; i<email.length ; i++)
+	        {
+	            System.out.println("email["+i+"] : "+email[i]);
+	        }
+			
 			
 			Map<String, Object> map = new HashMap<String, Object>();
 
@@ -96,14 +109,14 @@ public class MemberController {
 			map.put("M_NAME", request.getParameter("M_NAME"));
 			map.put("M_PW", request.getParameter("M_PW"));
 			map.put("M_PWCHK", request.getParameter("M_PWCHK"));
-			map.put("M_BIRTH1", request.getParameter("mBirth"));
-			map.put("M_BIRTH2", request.getParameter("mBirth"));
-			map.put("M_BIRTH3", request.getParameter("mBirth"));
 			map.put("M_TEL1", request.getParameter("phoneNumber1"));
 			map.put("M_TEL2", request.getParameter("phoneNumber2"));
 			map.put("M_TEL3", request.getParameter("phoneNumber3"));
-			map.put("M_EMAIL1", request.getParameter("email"));
-			map.put("M_EAMIL2", request.getParameter("mBirth"));
+			map.put("M_BIRTH1", birth[0]);
+			map.put("M_BIRTH2", birth[1]);
+			map.put("M_BIRTH3", birth[2]);			
+			map.put("M_EMAIL1", email[0]);
+			map.put("M_EAMIL2", email[1]);
 
 			boolean chkId = mService.CheckId(request.getParameter("M_ID"));
 
@@ -126,7 +139,7 @@ public class MemberController {
 				out.println("<script>alert('아이디가 중복되었습니다'); history.go(-1);</script>");
 				out.flush();
 			}
-			return "/member/loginForm";
+			return "login";
 		}
 
 		
