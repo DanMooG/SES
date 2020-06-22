@@ -18,4 +18,16 @@
 	<select id="ListCnt" parameterType="hashmap" resultType="int">
 		SELECT count(*) FROM site_list WHERE M_ID like #{M_ID} and SU_KIND like #{kind} and SL_STATE like 1
 	</select>
+	
+	<update id="CancelSNS" parameterType="hashmap">
+		UPDATE
+		site_list SET
+		SL_STATE = 0
+		WHERE M_ID = #{M_ID} AND SL_NAME = #{SL_NAME}
+	</update>
+	
+	<select id="SearchOne" parameterType="hashmap"
+		resultType="com.ses.dto.SiteListDTO">
+		SELECT * FROM site_list WHERE M_ID like #{M_ID} and SL_NAME like #{SL_NAME}
+	</select>
 </mapper>

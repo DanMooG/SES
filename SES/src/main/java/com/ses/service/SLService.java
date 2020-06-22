@@ -17,4 +17,10 @@ public interface SLService {
 	
 	// 전체 페이지 개수 구하기
 	public int PageCnt(Map<String, Object> map);
+	
+	// 연결 해지
+	public boolean CancelSNS(Map<String, Object> map);
+	
+	// 특정 행 검색
+	public SiteListDTO SearchOne(Map<String, Object> map);
 }

@@ -28,4 +28,9 @@
 		resultType="com.ses.dto.QnaDTO">
 		SELECT * FROM Qna WHERE Q_TITLE LIKE #{bVal1} AND M_ID LIKE #{bVal2} limit #{startNum}, #{ContentNum}
 	</select>
+	
+	<insert id="NewQna" parameterType="hashmap">
+		INSERT INTO Qna (Q_TITLE, M_ID, Q_PWD, Q_CONTENT, Q_YEAR, Q_MONTH, Q_DAY, Q_REPLY)
+		VALUES (#{Q_TITLE}, #{M_ID}, #{Q_PWD}, #{Q_CONTENT}, #{Q_YEAR}, #{Q_MONTH}, #{Q_DAY}, #{Q_REPLY})
+	</insert>
 </mapper>

@@ -35,4 +35,16 @@ public class SiteListService implements SLService {
 	public int SearchedListCnt(Map<String, Object> map) {
 		return slDAO.SearchedListCnt(map);
 	}
+
+	// 연결 해지
+	@Override
+	public boolean CancelSNS(Map<String, Object> map) {
+		return slDAO.CancelSNS(map);
+	}
+
+	// 특정 행 검색
+	@Override
+	public SiteListDTO SearchOne(Map<String, Object> map) {
+		return slDAO.SearchOne(map);
+	}
 }

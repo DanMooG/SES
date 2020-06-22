@@ -54,4 +54,13 @@ public class QnaDAO {
 	public List<QnaDTO> SearchList(Map<String, Object> map) {
 		return temp.selectList("Qmap.Search", map);
 	}
+
+	//새로운 문의 입력
+	public boolean NewQna(Map<String, Object> map) {
+		int rs = temp.insert("Qmap.NewQna", map);
+		if (rs == 1)
+			return true;
+		else
+			return false;
+	}
 }

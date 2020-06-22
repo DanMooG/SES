@@ -18,4 +18,7 @@ public interface LService {
 
 	// 전체 페이지 개수 구하기
 	public int PageCnt(Map<String, Object> map);
+	
+	// 간편가입 해지 시 새로운 로그
+	public boolean InputLog(Map<String, Object> map);
 }

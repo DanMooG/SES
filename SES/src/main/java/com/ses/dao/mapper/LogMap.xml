@@ -18,4 +18,10 @@
 	<select id="SearchCnt" parameterType="hashmap" resultType="int">
 		SELECT count(*) FROM Log WHERE M_ID like #{M_ID} AND SL_NAME LIKE #{bVal1} AND SU_KIND LIKE #{bVal2}
 	</select>
+	
+	<insert id="InputLog" parameterType="hashmap">
+		INSERT INTO Log
+		VALUES
+		(#{M_ID}, #{SL_NAME}, #{SL_SITE}, #{SU_KIND}, #{L_ACTIVITY}, #{L_YEAR}, #{L_MONTH}, #{L_DAY}, #{L_HOUR}, #{L_MINUTE})
+	</insert>
 </mapper>

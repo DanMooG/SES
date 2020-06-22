@@ -43,4 +43,13 @@ public class LogDAO {
 	public int ListCnt(Map<String, Object> map) {
 		return temp.selectOne("Lmap.ListCnt", map);
 	}
+
+	// 간편가입 해지 시 새로운 로그
+	public boolean InputLog(Map<String, Object> map) {
+		int rs = temp.insert("Lmap.InputLog", map);
+		if (rs == 1)
+			return true;
+		else
+			return false;
+	}
 }

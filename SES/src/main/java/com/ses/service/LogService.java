@@ -34,4 +34,10 @@ public class LogService implements LService{
 	public List<LogDTO> SearchList(Map<String, Object> map) {
 		return lDAO.SearchList(map);
 	}
+
+	// 간편가입 해지 시 새로운 로그
+	@Override
+	public boolean InputLog(Map<String, Object> map) {
+		return lDAO.InputLog(map);
+	}
 }

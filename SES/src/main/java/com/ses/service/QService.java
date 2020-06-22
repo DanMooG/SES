@@ -28,4 +28,7 @@ public interface QService {
 
 	// 게시물 검색
 	public List<QnaDTO> SearchList(Map<String, Object> map);
+	
+	//새로운 문의 입력
+	public boolean NewQna(Map<String, Object> map);
 }

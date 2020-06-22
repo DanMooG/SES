@@ -50,4 +50,10 @@ public class QnaService implements QService {
 	public List<QnaDTO> SearchList(Map<String, Object> map) {
 		return qDAO.SearchList(map);
 	}
+
+	//새로운 문의 입력
+	@Override
+	public boolean NewQna(Map<String, Object> map) {
+		return qDAO.NewQna(map);
+	}
 }

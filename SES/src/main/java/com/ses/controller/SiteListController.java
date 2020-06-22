@@ -1,10 +1,14 @@
 package com.ses.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.ses.dto.PageDTO;
 import com.ses.dto.SiteListDTO;
+import com.ses.service.LService;
 import com.ses.service.SLService;
 
 @Controller
@@ -22,6 +27,8 @@ public class SiteListController {
 
 	@Autowired
 	SLService Ser_SL;
+	@Autowired
+	LService Ser_L;
 
 	// 키워드 검색
 	@RequestMapping("/search")
@@ -117,5 +124,55 @@ public class SiteListController {
 		model.addAttribute("kind", kind);
 
 		return "/EasySearched";
+	}
+	
+	// 사이트 연결 해지
+	@RequestMapping("/cancel")
+	public String CancelSNS(HttpServletResponse response, HttpServletRequest request, Model model) throws IOException {
+		Map<String, Object> map_sl = new HashMap<String, Object>();
+		Map<String, Object> map_l = new HashMap<String, Object>();
+		String M_ID = "tytyjacob";
+		String title = request.getParameter("sl_Name");
+		int y = 0, mm = 0, d = 0, h = 0, m = 0;
+		Date time = new Date();
+		y = time.getYear()+1900;
+		mm = time.getMonth()+1;
+		d = time.getDate();
+		h = time.getHours();
+		m = time.getMinutes();
+		System.out.println(h + ":" + m);
+		
+		map_sl.put("SL_NAME", title);
+		map_sl.put("M_ID", M_ID);
+		
+		boolean result_cancel = Ser_SL.CancelSNS(map_sl);
+		
+		SiteListDTO dto = Ser_SL.SearchOne(map_sl);
+		
+		map_l.put("M_ID", M_ID);
+		map_l.put("SL_NAME", title);
+		map_l.put("SL_SITE", dto.getSL_SITE());
+		map_l.put("SU_KIND", dto.getSU_KIND());
+		map_l.put("L_ACTIVITY", "해지");
+		map_l.put("L_YEAR", y);
+		map_l.put("L_MONTH", mm);
+		map_l.put("L_DAY", d);
+		map_l.put("L_HOUR", h);
+		map_l.put("L_MINUTE", m);
+		
+		boolean result_log = Ser_L.InputLog(map_l);
+		if(result_cancel && result_log) {
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('해지되었습니다!!'); document.location.href='easySearch?kind=facebook'</script>");
+			out.flush();
+		} else {
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('오류가 발생하였습니다!!'); history.go(-1);</script>");
+			out.flush();
+		}
+		
+		return "redirect:/easySearch?kind=facebook";
 	}
 }

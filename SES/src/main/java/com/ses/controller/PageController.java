@@ -125,7 +125,7 @@ public class PageController {
 
 		map.put("startNum", (pgnum - 1) * pgDTO.getContentNum());
 		map.put("ContentNum", pgDTO.getContentNum());
-		
+
 		List<QnaDTO> dtos = Ser_Q.GetQList(map);
 
 		int first = (pgnum - 1) * pgDTO.getContentNum() + 1;
@@ -159,7 +159,7 @@ public class PageController {
 				pg[j] = i;
 			j++;
 		}
-		
+
 		// 값 넘겨주기
 		model.addAttribute("dtos", dtos);
 		model.addAttribute("before", pgDTO.getStartPage() - 1);
@@ -171,13 +171,20 @@ public class PageController {
 			model.addAttribute("last", pgDTO.getTotalCnt() / pgDTO.getContentNum() + 1);
 		else
 			model.addAttribute("last", pgDTO.getTotalCnt() / pgDTO.getContentNum());
-		
+
 		return "/Qna";
 	}
 
 	// 문의하기 작성 폼
 	@RequestMapping("/qnaWrite")
 	public String GoQnaWrite(HttpServletRequest request, Model model) {
+		int num = Ser_Q.PageCnt() + 1;
+		String M_ID = "tytyjacob";
+
+		// 값 넘겨주기
+		model.addAttribute("QNum", num);
+		model.addAttribute("M_ID", M_ID);
+
 		return "/QnaWrite";
 	}
 

@@ -168,21 +168,23 @@ footer {
 						</thead>
 						<tbody style="color: Black;">
 							<c:forEach items="${dtos}" var="dto">
-								<tr>
-									<td align="center">${dto.NUM}</td>
-									<td align="center">${dto.SL_NAME}</td>
-									<td align="center"><a href="${dto.SL_SITE}">${dto.SL_SITE}</a></td>
-									<td align="center">${dto.SL_YEAR}-${dto.SL_MONTH}-${dto.SL_DAY}</td>
-									<td align="center">${dto.SL_STATE}&nbsp;<a href="main"><img
-											src="${pageContext.request.contextPath}/resources/images/cancel.png"
-											width="50px"></a></td>
-								</tr>
+								<form action="cancel" name="searchForm">
+									<input type="hidden" name="sl_Name" value="${dto.SL_NAME}">
+									<tr>
+										<td align="center">${dto.NUM}</td>
+										<td align="center">${dto.SL_NAME}</td>
+										<td align="center"><a href="${dto.SL_SITE}">${dto.SL_SITE}</a></td>
+										<td align="center">${dto.SL_YEAR}-${dto.SL_MONTH}-${dto.SL_DAY}</td>
+										<td align="center">${dto.SL_STATE}&nbsp;<input
+											type="image" name="button" width="50px"
+											src="${pageContext.request.contextPath}/resources/images/cancel.png"></td>
+									</tr>
+								</form>
 							</c:forEach>
 						</tbody>
 						<tfoot>
 							<tr align="center">
-								<td colspan="5"><a
-									href="easySearch?kind=${kind}&pgnum=1"
+								<td colspan="5"><a href="easySearch?kind=${kind}&pgnum=1"
 									style="text-decoration: none">${prev}${prev}</a> <a
 									href="easySearch?kind=${kind}&pgnum=${before}"
 									style="text-decoration: none">${prev}</a> <c:forEach

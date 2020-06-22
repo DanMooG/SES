@@ -42,4 +42,18 @@ public class SiteListDAO {
 	public int ListCnt(Map<String, Object> map) {
 		return temp.selectOne("SLmap.ListCnt", map);
 	}
+
+	// 연결 해지
+	public boolean CancelSNS(Map<String, Object> map) {
+		int rs = temp.update("SLmap.CancelSNS", map);
+		if (rs == 1)
+			return true;
+		else
+			return false;
+	}
+
+	// 특정 행 검색
+	public SiteListDTO SearchOne(Map<String, Object> map) {
+		return temp.selectOne("SLmap.SearchOne", map);
+	}
 }

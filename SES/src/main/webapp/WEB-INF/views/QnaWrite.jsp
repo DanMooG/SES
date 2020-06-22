@@ -34,6 +34,27 @@ footer {
 	transform: translatex(-50%);
 }
 </style>
+<script>
+	function check() {
+		if (document.myform.qTitle.value == "") {
+			alert("제목을 입력하세요!!");
+			return false;
+		} else if (document.myform.qPwd.value == "") {
+			alert("비밀번호를 입력하세요!!");
+			return false;
+		} else if (document.myform.qQna.value == "") {
+			alert("문의사항을 입력하세요!!");
+			return false;
+		} else {
+			var content = document.myform.qPwd.value;
+			if(content.length > 4){
+				alert("비밀번호는 4자리입니다!!");
+				return false;
+			}
+		}
+		
+	}
+</script>
 </head>
 <body>
 	<main class="container-fluid">
@@ -44,7 +65,9 @@ footer {
 		<div class="jumbotron text-left">
 			<div class="row">
 				<div class="col-md-4">
-					<a href="main"><img src="${pageContext.request.contextPath}/resources/images/mainmark.png" width="300px"></a>
+					<a href="main"><img
+						src="${pageContext.request.contextPath}/resources/images/mainmark.png"
+						width="300px"></a>
 				</div>
 				<div class="col-md-8" style="padding-top: 120px;">
 					<!-- navigation -->
@@ -77,33 +100,45 @@ footer {
 			<div class="panel-body">
 				<!-- Contents -->
 				<center>
-				<br /> <br />
-					<table class="table table-hover" style="width: 90%;">
-						<tbody>
-							<tr>
-								<td align="center" style="width: 20%; background-color: #337ab7; color: White;">번호</td>
-								<td></td>
-							</tr>
-							<tr>
-								<td align="center" style="background-color: #337ab7; color: White;">제목</td>
-								<td><input type="text" style="width: 40%;"></td>
-							</tr>
-							<tr>
-								<td align="center" style="background-color: #337ab7; color: White;">작성자</td>
-								<td><input type="text" style="width: 40%;"></td>
-							</tr>
-							<tr>
-								<td align="center" style="background-color: #337ab7; color: White;">비밀번호</td>
-								<td><input type="text" style="width: 40%;"></td>
-							</tr>
-							<tr>
-								<td colspan="2" height="400px" style="background-color: #337ab7;"><textarea style="width: 100%; height:100%; font-size: 20px;"></textarea></td>
-							</tr>
-						</tbody>
-					</table>
-					<br /> <br />
-					<p><a href="#"><img src="${pageContext.request.contextPath}/resources/images/input.png" width="100px"></a></p>
-					<br /> <br /> <br />
+					<form action="writeQna" name="myform" onSubmit="return check()">
+						<br /> <br />
+						<table class="table table-hover" style="width: 90%;">
+							<tbody>
+								<tr>
+									<td align="center"
+										style="width: 20%; background-color: #337ab7; color: White;">번호</td>
+									<td>${QNum}</td>
+								</tr>
+								<tr>
+									<td align="center"
+										style="background-color: #337ab7; color: White;">제목</td>
+									<td><input type="text" style="width: 40%;" name="qTitle"></td>
+								</tr>
+								<tr>
+									<td align="center"
+										style="background-color: #337ab7; color: White;">작성자</td>
+									<td>${M_ID}</td>
+								</tr>
+								<tr>
+									<td align="center"
+										style="background-color: #337ab7; color: White;">비밀번호</td>
+									<td><input type="text" style="width: 40%;" name="qPwd"></td>
+								</tr>
+								<tr>
+									<td colspan="2" height="400px"
+										style="background-color: #337ab7;"><textarea
+											style="width: 100%; height: 100%; font-size: 20px;"
+											name="qQna"></textarea></td>
+								</tr>
+							</tbody>
+						</table>
+						<br /> <br />
+						<p>
+							<input type="image" name="button" width="100px"
+								src="${pageContext.request.contextPath}/resources/images/input.png">
+						</p>
+						<br /> <br /> <br />
+					</form>
 				</center>
 			</div>
 		</div>
@@ -117,37 +152,44 @@ footer {
 			<div class="container text-center text-md-left">
 
 				<!-- Grid row -->
-    			<div class="row text-center">
-      				<!-- Grid column -->
-      					<div class="col-md-1 mx-auto">
-							<!-- Links -->
-        					<h5 class="font-weight-bold text-uppercase mt-2 mb-3">FAQ</h5>
-						</div>
-						<div class="col-md-2 mx-auto">
-							<!-- Links -->
-	        				<h5 class="font-weight-bold text-uppercase mt-2 mb-3">개인정보처리방침</h5>
-						</div>
-						<div class="col-md-5 mx-auto">
-						</div>
-						<div class="col-md-1 mx-auto">
-							<!-- Links -->
-        					<a href="https://https://www.facebook.com"> <img src="${pageContext.request.contextPath}/resources/images/facebook.png" width="30px">
-						</div>
-   						<div class="col-md-1 mx-auto">
-							<!-- Links -->
-        					<a href="https://www.kakaocorp.com/service/KakaoTalk"> <img src="${pageContext.request.contextPath}/resources/images/kakaotalk.png" width="30px">
-						</div>
-     					<div class="col-md-1 mx-auto">
-							<!-- Links -->
-        					<a href="https://www.naver.com"> <img src="${pageContext.request.contextPath}/resources/images/naver.png" width="30px">
-						</div>
-   						<div class="col-md-1 mx-auto">
-							<!-- Links -->
-        					<a href="https://www.google.com"> <img src="${pageContext.request.contextPath}/resources/images/google.png" width="30px">
-						</div>
-      				<!-- Grid column -->
+				<div class="row text-center">
+					<!-- Grid column -->
+					<div class="col-md-1 mx-auto">
+						<!-- Links -->
+						<h5 class="font-weight-bold text-uppercase mt-2 mb-3">FAQ</h5>
+					</div>
+					<div class="col-md-2 mx-auto">
+						<!-- Links -->
+						<h5 class="font-weight-bold text-uppercase mt-2 mb-3">개인정보처리방침</h5>
+					</div>
+					<div class="col-md-5 mx-auto"></div>
+					<div class="col-md-1 mx-auto">
+						<!-- Links -->
+						<a href="https://https://www.facebook.com"> <img
+							src="${pageContext.request.contextPath}/resources/images/facebook.png"
+							width="30px">
+					</div>
+					<div class="col-md-1 mx-auto">
+						<!-- Links -->
+						<a href="https://www.kakaocorp.com/service/KakaoTalk"> <img
+							src="${pageContext.request.contextPath}/resources/images/kakaotalk.png"
+							width="30px">
+					</div>
+					<div class="col-md-1 mx-auto">
+						<!-- Links -->
+						<a href="https://www.naver.com"> <img
+							src="${pageContext.request.contextPath}/resources/images/naver.png"
+							width="30px">
+					</div>
+					<div class="col-md-1 mx-auto">
+						<!-- Links -->
+						<a href="https://www.google.com"> <img
+							src="${pageContext.request.contextPath}/resources/images/google.png"
+							width="30px">
+					</div>
+					<!-- Grid column -->
 				</div>
-    			<!-- Grid row -->
+				<!-- Grid row -->
 			</div>
 		</footer>
 	</main>

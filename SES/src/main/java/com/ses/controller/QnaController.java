@@ -1,10 +1,14 @@
 package com.ses.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -91,7 +95,7 @@ public class QnaController {
 
 		// 리스트 내용
 		List<QnaDTO> dtos = Ser_Q.SearchList(map);
-		
+
 		int first = (pgnum - 1) * pgDTO.getContentNum() + 1;
 		int last = first + pgDTO.getContentNum();
 		int j = 0;
@@ -139,5 +143,43 @@ public class QnaController {
 			model.addAttribute("last", pgDTO.getTotalCnt() / pgDTO.getContentNum());
 
 		return "/QnaSearched";
+	}
+
+	// 키워드 검색
+	@RequestMapping("/writeQna")
+	public String newQna(HttpServletResponse response, HttpServletRequest request, Model model) throws IOException {
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		String M_ID = "tytyjacob";
+		int y = 0, m = 0, d = 0;
+		Date time = new Date();
+		y = time.getYear()+1900;
+		m = time.getMonth()+1;
+		d = time.getDate();
+		
+		map.put("Q_TITLE", request.getParameter("qTitle"));
+		map.put("M_ID", M_ID);
+		map.put("Q_PWD", Integer.parseInt(request.getParameter("qPwd")));
+		map.put("Q_CONTENT", request.getParameter("qQna"));
+		map.put("Q_YEAR", y);
+		map.put("Q_MONTH", m);
+		map.put("Q_DAY", d);
+		map.put("Q_REPLY", null);
+		
+		boolean result = Ser_Q.NewQna(map);
+		
+		if(result) {
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('작성되었습니다!!'); document.location.href='qna'</script>");
+			out.flush();
+		} else {
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('오류가 발생하였습니다!!'); history.go(-1);</script>");
+			out.flush();
+		}
+		
+		return "/qna";
 	}
 }
