@@ -86,7 +86,15 @@ public class MemberController {
 		// 회원가입 
 		@RequestMapping("/Join")
 		public String MJoin(Model model) {
-			System.out.println("Controller - Join()");			
+			System.out.println("Controller - Join()");
+			
+			MemberDTO dto = mService.GetMInfo(session.getAttribute("M_ID").toString());
+			int idx = dto.getM_EMAIL2().indexOf("@");
+			dto.setM_EMAIL1(dto.getM_EMAIL1().substring(0, idx));
+			dto.setM_EMAIL2(dto.getM_EMAIL2().substring(idx+1));
+			
+			//String data[] = dto.getM_BIRTH1().split("-");
+			dto.setM_BIRTH1(dto.getM_BIRTH1().substring(0, 4));
 
 			return "/Join";
 		}
