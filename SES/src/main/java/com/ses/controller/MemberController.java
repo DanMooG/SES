@@ -85,9 +85,9 @@ public class MemberController {
 		}
 
 		// 회원가입 
-		@RequestMapping("/doJoin")
+		@RequestMapping("/Join")
 		public String MJoin(HttpServletResponse response, HttpServletRequest request, Model model) throws IOException {
-			System.out.println("Controller - doJoin()");
+			System.out.println("Controller - Join()");
 			
 			String birth[] = request.getParameter("mBirth").split("-");			
 			
