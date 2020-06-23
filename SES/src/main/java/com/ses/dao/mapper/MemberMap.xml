@@ -6,4 +6,17 @@
 		SELECT * from Member
 		WHERE M_ID like #{param1}
 	</select>
+
+	<select id="MCheckId" parameterType="String" resultType="String">
+		SELECT
+		M_ID FROM Member WHERE M_ID like #{mId}
+	</select>
+
+	<insert id="MJoin" parameterType="hashmap">
+		INSERT INTO Member
+		VALUES
+		(#{mId}, #{mPw}, #{mName}, #{mEmail1}, #{mEmail2}, #{mTel1}, #{mTel2},
+		#{mTel3}, #{mBirth1}, #{mBirth2}, #{mBirth3}, #{mFBCHK}, #{mKTCHK},
+		#{mNCHK}, #{mGCHK})
+	</insert>
 </mapper>

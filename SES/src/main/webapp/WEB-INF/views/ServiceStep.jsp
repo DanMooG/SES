@@ -34,11 +34,33 @@ footer {
 	transform: translatex(-50%);
 }
 </style>
+<script type="text/javascript">
+	function isLogin(){
+		var mID =  "<%=session.getAttribute("mId") %>" //세션 ID 가져오기
+		if(mID == null || mID == "null"){
+			$("#lgstate").hide();
+		} else if(mID != null){
+			$("#lgstate").show();
+		}
+	}
+ window.onload=isLogin;
+</script>
 </head>
 <body>
 	<main class="container-fluid">
 		<script type="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 		<script src="js/bootstrap.js"></script>
+
+		<div class="nav navbar-default" id="lgstate">
+			<ul class="nav navbar-nav navbar-right">
+				<li><a class="nav-item">${mId}<h5>님 환영합니다!</h5></a><span
+					class="sr-only"></span></li>
+				<li><a class="nav-item" href="logout"><h5>로그아웃</h5> <span
+						class="sr-only"></span></a></li>
+				<li><a class="nav-item" href="modify"><h5>회원정보수정</h5> <span
+						class="sr-only"></span></a></li>
+			</ul>
+		</div>
 
 		<!-- header -->
 		<div class="jumbotron text-left">

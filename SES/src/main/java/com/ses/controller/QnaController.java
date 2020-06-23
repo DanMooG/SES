@@ -3,18 +3,22 @@ package com.ses.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
+import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.ses.dto.LogDTO;
 import com.ses.dto.PageDTO;
@@ -28,6 +32,9 @@ public class QnaController {
 
 	@Autowired
 	QService Ser_Q;
+	
+	@Inject
+	HttpSession session;
 
 	// 메인화면
 	@RequestMapping("/showQna")
@@ -49,7 +56,6 @@ public class QnaController {
 		// parameter로 string으로 걍 보내니까 오류난다 이 똬식 map으로 보내야된대 똬식
 		Map<String, Object> map = new HashMap<String, Object>();
 		PageDTO pgDTO = new PageDTO();
-		String M_ID = "tytyjacob";
 		String bCol = request.getParameter("bCol");
 		String bVal = request.getParameter("bVal");
 		String pgNum = request.getParameter("pgnum");
@@ -145,33 +151,32 @@ public class QnaController {
 		return "/QnaSearched";
 	}
 
-	// 키워드 검색
+	// Qna 작성
 	@RequestMapping("/writeQna")
 	public String newQna(HttpServletResponse response, HttpServletRequest request, Model model) throws IOException {
 		Map<String, Object> map = new HashMap<String, Object>();
-		
-		String M_ID = "tytyjacob";
+
 		int y = 0, m = 0, d = 0;
 		Date time = new Date();
-		y = time.getYear()+1900;
-		m = time.getMonth()+1;
+		y = time.getYear() + 1900;
+		m = time.getMonth() + 1;
 		d = time.getDate();
-		
+
 		map.put("Q_TITLE", request.getParameter("qTitle"));
-		map.put("M_ID", M_ID);
+		map.put("M_ID", session.getAttribute("mId"));
 		map.put("Q_PWD", Integer.parseInt(request.getParameter("qPwd")));
 		map.put("Q_CONTENT", request.getParameter("qQna"));
 		map.put("Q_YEAR", y);
 		map.put("Q_MONTH", m);
 		map.put("Q_DAY", d);
 		map.put("Q_REPLY", null);
-		
+
 		boolean result = Ser_Q.NewQna(map);
-		
-		if(result) {
+
+		if (result) {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
-			out.println("<script>alert('작성되었습니다!!'); document.location.href='qna'</script>");
+			out.println("<script>alert('작성되었습니다!!'); document.location.replace('qna')</script>");
 			out.flush();
 		} else {
 			response.setContentType("text/html; charset=UTF-8");
@@ -179,7 +184,28 @@ public class QnaController {
 			out.println("<script>alert('오류가 발생하였습니다!!'); history.go(-1);</script>");
 			out.flush();
 		}
-		
+
 		return "/qna";
+	}
+
+	// 비밀번호 확인 후 해당 페이지로
+	@RequestMapping(value = "/ChkQnaPwd", method = RequestMethod.POST)
+	public String ChkPWD(HttpServletResponse response, HttpServletRequest request, Model model) throws IOException {
+		Map<String, Object> map = new HashMap<String, Object>();
+		String next = "";
+		boolean result = false;
+
+		QnaDTO dto = Ser_Q.GetQna(Integer.parseInt(request.getParameter("Qnum")));
+
+		if (dto.getQ_PWD() == Integer.parseInt(request.getParameter("Q_PWD"))) {
+			next = "redirect:/showQna?Qnum=" + dto.getQ_NUM();
+		} else {
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('비밀번호가 일치하지 않습니다!!'); history.go(-1);</script>");
+			out.flush();
+		}
+
+		return next;
 	}
 }

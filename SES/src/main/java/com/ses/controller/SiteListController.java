@@ -7,8 +7,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,26 +31,30 @@ public class SiteListController {
 	SLService Ser_SL;
 	@Autowired
 	LService Ser_L;
+	
+	@Inject
+	HttpSession session;
 
 	// 키워드 검색
 	@RequestMapping("/search")
 	public String SearchedList(HttpServletRequest request, Model model) {
+		if (session.getAttribute("mId") == null)
+			return "redirect:index";
+		
 		// parameter로 string으로 걍 보내니까 오류난다 이 똬식 map으로 보내야된대 똬식
 		Map<String, Object> map = new HashMap<String, Object>();
 		// 키워드 가져오기
 		String keyword = request.getParameter("keyword");
-		System.out.println(keyword);
 		String pgNum = request.getParameter("pgnum");
 		if (pgNum == null) // null이면 맨 처음
 			pgNum = "1";
 		// int형으로
 		int pgnum = Integer.parseInt(pgNum);
 		String kind = request.getParameter("kind");
-		String M_ID = "tytyjacob";
 		PageDTO pgDTO = new PageDTO();
 
 		map.put("kind", kind);
-		map.put("M_ID", M_ID);
+		map.put("M_ID", session.getAttribute("mId"));
 		map.put("keyword", "%" + keyword + "%");
 
 		// 전체 게시글 개수 설정
@@ -69,7 +75,7 @@ public class SiteListController {
 		pgDTO.setEndPage(pgDTO.getLastBlock(), pgDTO.getCurBlock());
 
 		map.put("kind", kind);
-		map.put("M_ID", M_ID);
+		map.put("M_ID", session.getAttribute("mId"));
 		map.put("keyword", "%" + keyword + "%");
 		map.put("startNum", (pgnum - 1) * pgDTO.getContentNum());
 		map.put("ContentNum", pgDTO.getContentNum());
@@ -129,9 +135,11 @@ public class SiteListController {
 	// 사이트 연결 해지
 	@RequestMapping("/cancel")
 	public String CancelSNS(HttpServletResponse response, HttpServletRequest request, Model model) throws IOException {
+		if (session.getAttribute("mId") == null)
+			return "redirect:index";
+		
 		Map<String, Object> map_sl = new HashMap<String, Object>();
 		Map<String, Object> map_l = new HashMap<String, Object>();
-		String M_ID = "tytyjacob";
 		String title = request.getParameter("sl_Name");
 		int y = 0, mm = 0, d = 0, h = 0, m = 0;
 		Date time = new Date();
@@ -140,16 +148,15 @@ public class SiteListController {
 		d = time.getDate();
 		h = time.getHours();
 		m = time.getMinutes();
-		System.out.println(h + ":" + m);
 		
 		map_sl.put("SL_NAME", title);
-		map_sl.put("M_ID", M_ID);
+		map_sl.put("M_ID", session.getAttribute("mId"));
 		
 		boolean result_cancel = Ser_SL.CancelSNS(map_sl);
 		
 		SiteListDTO dto = Ser_SL.SearchOne(map_sl);
 		
-		map_l.put("M_ID", M_ID);
+		map_l.put("M_ID", session.getAttribute("mId"));
 		map_l.put("SL_NAME", title);
 		map_l.put("SL_SITE", dto.getSL_SITE());
 		map_l.put("SU_KIND", dto.getSU_KIND());
@@ -164,7 +171,7 @@ public class SiteListController {
 		if(result_cancel && result_log) {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
-			out.println("<script>alert('해지되었습니다!!'); document.location.href='easySearch?kind=facebook'</script>");
+			out.println("<script>alert('해지되었습니다!!'); document.location.replace('easySearch?kind=facebook')</script>");
 			out.flush();
 		} else {
 			response.setContentType("text/html; charset=UTF-8");
@@ -173,6 +180,6 @@ public class SiteListController {
 			out.flush();
 		}
 		
-		return "redirect:/easySearch?kind=facebook";
+		return "/easySearch?kind=facebook";
 	}
 }

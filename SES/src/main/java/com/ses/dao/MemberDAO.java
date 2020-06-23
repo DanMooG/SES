@@ -3,6 +3,7 @@ package com.ses.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.Map;
 
 import javax.activation.DataSource;
 import javax.inject.Inject;
@@ -27,5 +28,23 @@ public class MemberDAO {
 	// 로그인
 	public MemberDTO MLogin(String mId) {
 		return sqlSession.selectOne("Mmap.MLogin", mId);
+	}
+
+	// 아이디 중복 체크
+	public boolean CheckId(String mId) {
+		String rs = temp.selectOne("Mmap.MCheckId", mId);
+		if (rs == null)
+			return true;
+		else
+			return false;
+	}
+
+	// 회원가입
+	public boolean MJoin(Map<String, Object> map) {
+		int rs = temp.insert("Mmap.MJoin", map);
+		if (rs == 1)
+			return true;
+		else
+			return false;
 	}
 }

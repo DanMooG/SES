@@ -34,7 +34,7 @@ footer {
 	transform: translatex(-50%);
 }
 </style>
-<script>
+<script type="text/javascript">
 	function check() {
 		if (document.myform.qTitle.value == "") {
 			alert("제목을 입력하세요!!");
@@ -54,12 +54,39 @@ footer {
 		}
 		
 	}
+	
+	function isLogin(){
+		var mID =  "<%=session.getAttribute("mId") %>" //세션 ID 가져오기
+		if(mID == null || mID == "null"){
+			$("#lgstate").hide();
+			$("#easyS").attr("href", "#");
+			$("#easyS").attr("onClick", "alert('로그인 후 이용해주세요');");
+			$("#logS").attr("href", "#");
+			$("#logS").attr("onClick", "alert('로그인 후 이용해주세요');");
+		} else if(mID != null){
+			$("#lgstate").show();
+			$("#easyS").attr("href", "easySearch?kind=facebook");
+			$("#logS").attr("href", "searchLog");
+		}
+	}
+ 	window.onload=isLogin;
 </script>
 </head>
 <body>
 	<main class="container-fluid">
 		<script type="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 		<script src="js/bootstrap.js"></script>
+
+		<div class="nav navbar-default" id="lgstate">
+			<ul class="nav navbar-nav navbar-right">
+				<li><a class="nav-item">${mId}<h5>님 환영합니다!</h5></a><span
+					class="sr-only"></span></li>
+				<li><a class="nav-item" href="logout"><h5>로그아웃</h5> <span
+						class="sr-only"></span></a></li>
+				<li><a class="nav-item" href="modify"><h5>회원정보수정</h5> <span
+						class="sr-only"></span></a></li>
+			</ul>
+		</div>
 
 		<!-- header -->
 		<div class="jumbotron text-left">
@@ -122,7 +149,7 @@ footer {
 								<tr>
 									<td align="center"
 										style="background-color: #337ab7; color: White;">비밀번호</td>
-									<td><input type="text" style="width: 40%;" name="qPwd"></td>
+									<td><input type="password" style="width: 40%;" name="qPwd"></td>
 								</tr>
 								<tr>
 									<td colspan="2" height="400px"

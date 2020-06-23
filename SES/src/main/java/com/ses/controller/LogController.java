@@ -4,7 +4,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,6 +25,9 @@ public class LogController {
 
 	@Autowired
 	LService Ser_L;
+	
+	@Inject
+	HttpSession session;
 
 	// 키워드 검색
 	@RequestMapping("/searchedlog")
@@ -30,7 +35,6 @@ public class LogController {
 		// parameter로 string으로 걍 보내니까 오류난다 이 똬식 map으로 보내야된대 똬식
 		Map<String, Object> map = new HashMap<String, Object>();
 		PageDTO pgDTO = new PageDTO();
-		String M_ID = "tytyjacob";
 		String bCol = request.getParameter("bCol");
 		String bVal = request.getParameter("bVal");
 		String pgNum = request.getParameter("pgnum");
@@ -39,7 +43,7 @@ public class LogController {
 		// int형으로
 		int pgnum = Integer.parseInt(pgNum);
 
-		map.put("M_ID", M_ID);
+		map.put("M_ID", session.getAttribute("mId"));
 		if (bCol.equals("사이트명")) {
 			map.put("bVal1", "%" + bVal + "%");
 			map.put("bVal2", "%");
@@ -65,7 +69,7 @@ public class LogController {
 		// 마지막 페이지 설정
 		pgDTO.setEndPage(pgDTO.getLastBlock(), pgDTO.getCurBlock());
 
-		map.put("M_ID", M_ID);
+		map.put("M_ID", session.getAttribute("mId"));
 		if (bCol.equals("사이트명")) {
 			map.put("bVal1", "%" + bVal + "%");
 			map.put("bVal2", "%");

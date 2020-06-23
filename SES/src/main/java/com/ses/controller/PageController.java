@@ -1,6 +1,7 @@
 package com.ses.controller;
 
 import java.io.PrintWriter;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -70,39 +71,46 @@ public class PageController {
 	// 회원가입
 	@RequestMapping("/join")
 	public String GoJoin(HttpServletRequest request, Model model) {
+		// 작성 날짜 넣으려고 timestamp 작성한 거
+		Timestamp ts = new Timestamp(System.currentTimeMillis());
+		String max = (ts.getYear() + 1900) - 18 + "-12-31";
+		String min = (ts.getYear() + 1900) - 101 + "-01-01";
+
+		model.addAttribute("max", max);
+		model.addAttribute("min", min);
+
 		return "/Join";
+	}
+
+	// 문의하기 비밀번호 확인
+	@RequestMapping("/QnaPwdForm")
+	public String Check_Qna_PWD(HttpServletRequest request, Model model) {
+		// 값 넘겨주기
+		model.addAttribute("Qnum", request.getParameter("Qnum"));
+
+		return "/QnaPwd";
 	}
 
 	// 서비스/회사 소개
 	@RequestMapping("/serviceInfo")
 	public String GoServiceInfo(HttpServletRequest request, Model model) {
-		// if (session.getAttribute("mId") == null)
-		// return "redirect:main";
-
 		return "/ServiceInfo";
 	}
 
 	// 서비스 이용 절차
 	@RequestMapping("/serviceStep")
 	public String GoServiceStep(HttpServletRequest request, Model model) {
-		// if (session.getAttribute("mId") == null)
-		// return "redirect:main";
-
 		return "/ServiceStep";
 	}
 
 	// 문의하기
 	@RequestMapping("/qna")
 	public String GoQna(HttpServletRequest request, Model model) {
-		// if (session.getAttribute("mId") == null)
-		// return "redirect:main";
-
 		String pgNum = request.getParameter("pgnum");
 		if (pgNum == null) // null이면 맨 처음
 			pgNum = "1";
 		// int형으로
 		int pgnum = Integer.parseInt(pgNum);
-		String M_ID = "tytyjacob";
 		Map<String, Object> map = new HashMap<String, Object>();
 		PageDTO pgDTO = new PageDTO();
 
@@ -179,11 +187,10 @@ public class PageController {
 	@RequestMapping("/qnaWrite")
 	public String GoQnaWrite(HttpServletRequest request, Model model) {
 		int num = Ser_Q.PageCnt() + 1;
-		String M_ID = "tytyjacob";
 
 		// 값 넘겨주기
 		model.addAttribute("QNum", num);
-		model.addAttribute("M_ID", M_ID);
+		model.addAttribute("M_ID", session.getAttribute("mId"));
 
 		return "/QnaWrite";
 	}
@@ -191,20 +198,20 @@ public class PageController {
 	// 간편가입 조회
 	@RequestMapping("/easySearch")
 	public String GoEasySearch(HttpServletRequest request, Model model) {
-		// if (session.getAttribute("mId") == null)
-		// return "redirect:main";
+		if (session.getAttribute("mId") == null)
+			return "redirect:/main";
+
 		String kind = request.getParameter("kind");
 		String pgNum = request.getParameter("pgnum");
 		if (pgNum == null) // null이면 맨 처음
 			pgNum = "1";
 		// int형으로
 		int pgnum = Integer.parseInt(pgNum);
-		String M_ID = "tytyjacob";
 		Map<String, Object> map = new HashMap<String, Object>();
 		PageDTO pgDTO = new PageDTO();
 
 		map.put("kind", kind);
-		map.put("M_ID", M_ID);
+		map.put("M_ID", session.getAttribute("mId"));
 
 		// 전체 게시글 개수 설정
 		pgDTO.setTotalCnt(Ser_SL.PageCnt(map));
@@ -225,7 +232,7 @@ public class PageController {
 
 		map = new HashMap<String, Object>();
 		map.put("kind", kind);
-		map.put("M_ID", M_ID);
+		map.put("M_ID", session.getAttribute("mId"));
 		map.put("startNum", (pgnum - 1) * pgDTO.getContentNum());
 		map.put("ContentNum", pgDTO.getContentNum());
 
@@ -282,10 +289,9 @@ public class PageController {
 	// 간편가입 탈퇴 내역
 	@RequestMapping("/searchLog")
 	public String GoSearchLog(HttpServletRequest request, Model model) {
-		// if (session.getAttribute("mId") == null)
-		// return "redirect:main";
+		if (session.getAttribute("mId") == null)
+			return "redirect:/main";
 
-		String M_ID = "tytyjacob";
 		String pgNum = request.getParameter("pgnum");
 		if (pgNum == null) // null이면 맨 처음
 			pgNum = "1";
@@ -294,7 +300,7 @@ public class PageController {
 		Map<String, Object> map = new HashMap<String, Object>();
 		PageDTO pgDTO = new PageDTO();
 
-		map.put("M_ID", M_ID);
+		map.put("M_ID", session.getAttribute("mId"));
 
 		// 전체 게시글 개수 설정
 		pgDTO.setTotalCnt(Ser_L.PageCnt(map));
@@ -313,7 +319,7 @@ public class PageController {
 		// 마지막 페이지 설정
 		pgDTO.setEndPage(pgDTO.getLastBlock(), pgDTO.getCurBlock());
 
-		map.put("M_ID", M_ID);
+		map.put("M_ID", session.getAttribute("mId"));
 		map.put("startNum", (pgnum - 1) * pgDTO.getContentNum());
 		map.put("ContentNum", pgDTO.getContentNum());
 

@@ -34,19 +34,43 @@ footer {
 	transform: translatex(-50%);
 }
 </style>
-<script>
+<script type="text/javascript">
 	function check() {
 		if (document.myform.bVal.value == "") {
 			alert("검색 값을 입력하세요!!");
 			return false;
 		}
 	}
+	
+	function isLogin(){
+		var mID =  "<%=session.getAttribute("mId") %>" //세션 ID 가져오기
+		if(mID == null || mID == "null"){
+			$("#lgstate").hide();
+			$("#writeQna").attr("href", "#");
+			$("#writeQna").attr("onClick", "alert('로그인 후 이용해주세요');");
+		} else if(mID != null){
+			$("#lgstate").show();
+			$("#writeQna").attr("href", "qnaWrite");
+		}
+	}
+ window.onload=isLogin;
 </script>
 </head>
 <body>
 	<main class="container-fluid">
 		<script type="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 		<script src="js/bootstrap.js"></script>
+
+		<div class="nav navbar-default" id="lgstate">
+			<ul class="nav navbar-nav navbar-right">
+				<li><a class="nav-item">${mId}<h5>님 환영합니다!</h5></a><span
+					class="sr-only"></span></li>
+				<li><a class="nav-item" href="logout"><h5>로그아웃</h5> <span
+						class="sr-only"></span></a></li>
+				<li><a class="nav-item" href="modify"><h5>회원정보수정</h5> <span
+						class="sr-only"></span></a></li>
+			</ul>
+		</div>
 
 		<!-- header -->
 		<div class="jumbotron text-left">
@@ -90,7 +114,7 @@ footer {
 				<div class="row" style="float: right;">
 					<div class="col-md-8">
 						<p>
-							<a href="qnaWrite"><img
+							<a id="writeQna" href="#"><img
 								src="${pageContext.request.contextPath}/resources/images/write.png"
 								width="70px"></a>
 						</p>
@@ -114,7 +138,7 @@ footer {
 								<tr>
 									<td align="center">${dto.getNUM()}</td>
 									<td align="center"><a
-										href="showQna?Qnum=${dto.getQ_NUM()}">${dto.getQ_TITLE()}</a></td>
+										href="QnaPwdForm?Qnum=${dto.getQ_NUM()}">${dto.getQ_TITLE()}</a></td>
 									<td align="center">${dto.getQ_YEAR()}-${dto.getQ_MONTH()}-${dto.getQ_DAY()}</td>
 									<td align="center">${dto.getM_ID()}</td>
 								</tr>

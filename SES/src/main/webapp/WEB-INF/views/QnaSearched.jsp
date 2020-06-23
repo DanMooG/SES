@@ -34,6 +34,27 @@ footer {
 	transform: translatex(-50%);
 }
 </style>
+<script type="text/javascript">
+	function check() {
+		if (document.myform.bVal.value == "") {
+			alert("검색 값을 입력하세요!!");
+			return false;
+		}
+	}
+	
+	function isLogin(){
+		var mID =  "<%=session.getAttribute("mId") %>" //세션 ID 가져오기
+		if(mID == null || mID == "null"){
+			$("#lgstate").hide();
+			$("#writeQna").attr("href", "#");
+			$("#writeQna").attr("onClick", "alert('로그인 후 이용해주세요');");
+		} else if(mID != null){
+			$("#lgstate").show();
+			$("#writeQna").attr("href", "qnaWrite");
+		}
+	}
+	window.onload=isLogin;
+</script>
 </head>
 <body>
 	<main class="container-fluid">
@@ -82,7 +103,7 @@ footer {
 				<div class="row" style="float: right;">
 					<div class="col-md-8">
 						<p>
-							<a href="qnaWrite"><img
+							<a id="writeQna" href="#"><img
 								src="${pageContext.request.contextPath}/resources/images/write.png"
 								width="70px"></a>
 						</p>
@@ -113,39 +134,36 @@ footer {
 						</tbody>
 						<tfoot>
 							<tr align="center">
-								<td colspan="5"><a
-									href="searchqna?pgnum=1"
+								<td colspan="5"><a href="searchqna?pgnum=1"
 									style="text-decoration: none">${prev}${prev}</a> <a
-									href="searchqna?pgnum=${before}"
-									style="text-decoration: none">${prev}</a> <c:forEach
-										items="${pg}" var="p">
-										<a href="searchqna?pgnum=${p}"
-											style="text-decoration: none">${p}</a>
+									href="searchqna?pgnum=${before}" style="text-decoration: none">${prev}</a>
+									<c:forEach items="${pg}" var="p">
+										<a href="searchqna?pgnum=${p}" style="text-decoration: none">${p}</a>
 									</c:forEach> <a href="searchqna?pgnum=${after}"
 									style="text-decoration: none">${next}</a> <a
-									href="searchqna?pgnum=${last}"
-									style="text-decoration: none">${next}${next}</a></td>
+									href="searchqna?pgnum=${last}" style="text-decoration: none">${next}${next}</a></td>
 							</tr>
 						</tfoot>
 					</table>
 					<br /> <br /> <br />
 					<div class="row">
-						<div class="col-md-4 align-self-center" align="right">
-							<select id="combobox1" class="combobox">
-								<option value="TI">제목</option>
-								<option value="WR">작성자</option>
-							</select>
-						</div>
-						<div class="col-md-4 align-self-center">
-							<input type="text" style="width: 100%;">
-						</div>
-						<div class="col-md-4 align-self-center" align="left">
-							<p>
-								<a href="#"><img
-									src="${pageContext.request.contextPath}/resources/images/search.png"
-									width="50px"></a>
-							</p>
-						</div>
+						<form action="searchqna" name="myform" onSubmit="return check()">
+							<div class="col-md-4 align-self-center" align="right">
+								<select id="combobox1" class="combobox" name="bCol">
+									<option value="TI">제목</option>
+									<option value="WR">작성자</option>
+								</select>
+							</div>
+							<div class="col-md-4 align-self-center">
+								<input type="text" style="width: 100%;" name="bVal">
+							</div>
+							<div class="col-md-4 align-self-center" align="left">
+								<p>
+									<input type="image" name="button" width="50px"
+										src="${pageContext.request.contextPath}/resources/images/search.png">
+								</p>
+							</div>
+						</form>
 					</div>
 					<br /> <br /> <br />
 				</center>
