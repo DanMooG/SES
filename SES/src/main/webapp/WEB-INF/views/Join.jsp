@@ -23,6 +23,104 @@
 	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
 	crossorigin="anonymous">
 <title>SES(Search Easy-Sign-up)</title>
+
+<script>
+	function check() {
+		if (document.myform.M_ID.value == "") {
+			alert("아이디를 입력하세요!!");
+			document.myform.M_ID.focus();
+			return false;
+		}
+
+		//아이디 유효성 검사 (영문소문자, 숫자만 허용)
+		for (i = 0; i < document.myform.M_ID.value.length; i++) {
+			ch = document.myform.M_ID.value.charAt(i)
+			if (!(ch >= '0' && ch <= '9') && !(ch >= 'a' && ch <= 'z')
+					&& !(ch >= 'A' && ch <= 'Z')) {
+				alert("아이디는 대소문자, 숫자만 입력가능합니다!!")
+				document.myform.M_ID.focus()
+				document.myform.M_ID.select()
+				return false;
+			}
+		}
+
+		//아이디 길이 체크 (4~12자)
+		if (document.myform.M_ID.value.length<4 || document.myform.M_ID.value.length>12) {
+			alert("아이디를 4~12자까지 입력해주세요!!")
+			document.myform.M_ID.focus()
+			document.myform.M_ID.select()
+			return false;
+		}
+
+		if (document.myform.M_NAME.value == "") {
+			alert("이름을 입력하세요!!");
+			document.myform.M_NAME.focus();
+			return false;
+		}
+		if (document.myform.M_PW.value == "") {
+			alert("비밀번호를 입력하세요!!");
+			document.myform.mPw.focus();
+			return false;
+		}
+		if (document.myform.M_PWCHK.value == "") {
+			alert("비밀번호 확인을 입력하세요!!");
+			document.myform.mPw.focus();
+			return false;
+		}
+
+		if (document.myform.M_PW.value == document.myform.M_ID.value) {
+			alert("아이디와 비밀번호가 같습니다.")
+			document.myform.mPw.focus()
+			return false;
+		}
+
+		//비밀번호 길이 체크(4~8자 까지 허용)
+		if (document.myform.M_PW.value.length<4 || document.myform.M_PW.value.length>12) {
+			alert("비밀번호를 4~12자까지 입력해주세요.")
+			document.myform.mPw.focus()
+			document.myform.mPw.select()
+			return false;
+		}
+
+		if (document.myform.M_BIRTH.value == "") {
+			alert("생년월일을 선택하세요!!");
+			return false;
+		}
+		if (document.myform.M_TEL1[0].selected == true) {
+			alert("전화번호를 선택하세요!!");
+			return false;
+		}
+		if (document.myform.M_TEL2.value == "") {
+			alert("전화번호를 입력하세요!!");
+			document.myform.M_TEL2.focus();
+			return false;
+		}
+		// 전화번호 길이 체크 (4자)
+		if (document.myform.M_TEL2.value.length<4 || document.myform.M_TEL2.value.length>4) {
+			alert("전화번호는 4자리입니다!!")
+			document.myform.M_TEL2.focus()
+			document.myform.M_TEL2.select()
+			return false;
+		}
+		if (document.myform.M_TEL3.value == "") {
+			alert("전화번호를 입력하세요!!");
+			document.myform.M_TEL3.focus();
+			return false;
+		}
+		// 전화번호 길이 체크 (4자)
+		if (document.myform.M_TEL3.value.length<4 || document.myform.M_TEL3.value.length>4) {
+			alert("전화번호는 4자리입니다!!")
+			document.myform.M_TEL3.focus()
+			document.myform.M_TEL3.select()
+			return false;
+		}
+		if (document.myform.M_PW.value != document.myform.M_PWCHK.value) {
+			alert("입력한 2개의 비밀번호가 일치하지 않습니다!!");
+			document.myform.M_PW.focus();
+			return false;
+		}
+	}
+</script>
 </head>
 <body>
 	<script type="https://code.jquery.com/jquery-3.1.1.min.js"></script>

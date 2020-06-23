@@ -24,13 +24,14 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.ses.dto.MemberDTO;
+import com.ses.service.MService;
 import com.ses.service.MemberService;
 
 @Controller
 @Repository
 public class MemberController {
 	@Autowired
-	MemberService mService;
+	MService mService;
 
 	@Inject
 	HttpSession session;
@@ -84,9 +85,9 @@ public class MemberController {
 		}
 
 		// 회원가입 
-		@RequestMapping("/Join")
+		@RequestMapping("/doJoin")
 		public String MJoin(HttpServletResponse response, HttpServletRequest request, Model model) throws IOException {
-			System.out.println("Controller - Join()");
+			System.out.println("Controller - doJoin()");
 			
 			String birth[] = request.getParameter("mBirth").split("-");			
 			
