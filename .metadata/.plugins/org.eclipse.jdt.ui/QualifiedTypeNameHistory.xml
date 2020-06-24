@@ -7,6 +7,7 @@
 <fullyQualifiedTypeName name="com.ses.dto.SearchCriteria"/>
 <fullyQualifiedTypeName name="com.ses.dao.QnaDAOImpl"/>
 <fullyQualifiedTypeName name="java.lang.Exception"/>
-<fullyQualifiedTypeName name="com.ses.service.MService"/>
 <fullyQualifiedTypeName name="com.ses.dto.MemberDTO"/>
+<fullyQualifiedTypeName name="com.ses.service.MService"/>
+<fullyQualifiedTypeName name="com.ses.service.MemberService"/>
 </qualifiedTypeNameHistroy>
