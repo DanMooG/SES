@@ -1,7 +1,7 @@
 package com.ses.dto;
 
-public class MemberDTO {   
-	private String M_ID = "";
+public class MemberDTO {
+    private String M_ID = "";
     private String M_PW = "";
     private String M_NAME = "";
     private String M_EMAIL1 = "";
@@ -99,23 +99,42 @@ public class MemberDTO {
         return M_BIRTH1;
     }
 
-   public int getM_BIRTH2() {
-      return M_BIRTH2;
-   }
+	public int getM_BIRTH2() {
+		return M_BIRTH2;
+	}
 
-   public void setM_BIRTH2(int m_BIRTH2) {
-      M_BIRTH2 = m_BIRTH2;
-   }
+	public void setM_BIRTH2(int m_BIRTH2) {
+		M_BIRTH2 = m_BIRTH2;
+	}
 
-   public int getM_BIRTH3() {
-      return M_BIRTH3;
-   }
+	public int getM_BIRTH3() {
+		return M_BIRTH3;
+	}
 
-   public void setM_BIRTH3(int m_BIRTH3) {
-      M_BIRTH3 = m_BIRTH3;
-   }
+	public void setM_BIRTH3(int m_BIRTH3) {
+		M_BIRTH3 = m_BIRTH3;
+	}
 
-   public void setM_BIRTH1(int m_BIRTH1) {
-      M_BIRTH1 = m_BIRTH1;
-   }
+	public void setM_BIRTH1(int m_BIRTH1) {
+		M_BIRTH1 = m_BIRTH1;
+	}
 }
+
+/*
+CREATE TABLE `member` (
+	`M_ID` VARCHAR(20) NULL DEFAULT NULL,
+	`M_PW` VARCHAR(20) NULL DEFAULT NULL,
+	`M_NAME` VARCHAR(20) NULL DEFAULT NULL,
+	`M_EMAIL1` VARCHAR(40) NULL DEFAULT NULL,
+	`M_EMAIL2` VARCHAR(40) NULL DEFAULT NULL,
+	`M_TEL1` INT(11) NOT NULL DEFAULT 0,
+	`M_TEL2` INT(11) NOT NULL DEFAULT 0,
+	`M_TEL3` INT(11) NOT NULL DEFAULT 0,
+	`M_BIRTH1` INT(11) NOT NULL DEFAULT 0,
+	`M_BIRTH2` INT(11) NOT NULL DEFAULT 0,
+	`M_BIRTH3` INT(11) NOT NULL DEFAULT 0
+)
+COLLATE='utf8_general_ci'
+ENGINE=InnoDB
+;
+*/

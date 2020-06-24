@@ -71,6 +71,4 @@
 				value="true" />
 		</beans:bean>
 	</mvc:interceptors>
-
-
 </beans:beans>

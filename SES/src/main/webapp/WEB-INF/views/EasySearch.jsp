@@ -40,12 +40,24 @@ footer {
 		<script type="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 		<script src="js/bootstrap.js"></script>
 
+		<div class="nav navbar-default" id="lgstate">
+			<ul class="nav navbar-nav navbar-right">
+				<li><a class="nav-item">${mId}<h5>님 환영합니다!</h5></a><span
+					class="sr-only"></span></li>
+				<li><a class="nav-item" href="logout"><h5>로그아웃</h5> <span
+						class="sr-only"></span></a></li>
+				<li><a class="nav-item" href="modify"><h5>회원정보수정</h5> <span
+						class="sr-only"></span></a></li>
+			</ul>
+		</div>
+
 		<!-- header -->
 		<div class="jumbotron text-left">
 			<div class="row">
 				<div class="col-md-4">
 					<a href="main"><img
-						src="${pageContext.request.contextPath}/resources/images/mainmark.png" width="300px"></a>
+						src="${pageContext.request.contextPath}/resources/images/mainmark.png"
+						width="300px"></a>
 				</div>
 				<div class="col-md-8" style="padding-top: 120px;">
 					<!-- navigation -->
@@ -75,70 +87,134 @@ footer {
 			<div class="panel-heading">
 				<h3>간편 가입 조회</h3>
 			</div>
+			<br /> <br />
 			<div class="panel-body">
 				<!-- Contents -->
 				<div class="top-menu container">
 					<ul class="nav nav-tabs">
-						<li class="active">
-							<a href="#tab1" class="demoTab" data-toggle="tab" style="background-color: #4267b2; color: White">
-								<img src="${pageContext.request.contextPath}/resources/images/facebook.png" width="30px">
-								페이스북
-							</a>
+						<li style="background-color: #4267b2;">
+							<p class="tab" data-toggle="tab"
+								style="border-top-left-radius: 2em; border-top-right-radius: 2em;">
+							<table style="background-color: #4267b2;">
+								<tr>
+									<td><img
+										src="${pageContext.request.contextPath}/resources/images/facebook.png"
+										width="30px"></td>
+									<td><a href="easySearch?kind=facebook&pgnum=1"
+										style="color: White; text-decoration: none;">페이스북</a></td>
+									<td width="10px"></td>
+								</tr>
+							</table>
+							</p>
 						</li>
-						<li>
-							<a href="#tab2" class="demoTab" data-toggle="tab" style="background-color: #f9e000; color: #3b1c1c">
-								<img src="${pageContext.request.contextPath}/resources/images/kakaotalk.png" width="30px">
-								카카오톡
-							</a>
+						<li style="background-color: #f9e000">
+							<p class="tab" data-toggle="tab"
+								style="border-top-left-radius: 2em; border-top-right-radius: 2em;">
+							<table style="background-color: #f9e000">
+								<tr>
+									<td><img
+										src="${pageContext.request.contextPath}/resources/images/kakaotalk.png"
+										width="30px"></td>
+									<td><a href="easySearch?kind=kakaotalk&pgnum=1"
+										style="color: #3b1c1c; text-decoration: none;">카카오톡</a></td>
+									<td width="10px"></td>
+								</tr>
+							</table>
+							</p>
 						</li>
-						<li>
-							<a href="#tab3" data-toggle="tab" style="background-color: #1dc800; color: White">
-								<img src="${pageContext.request.contextPath}/resources/images/naver.png" width="30px">
-								네이버
-							</a>
+						<li style="background-color: #1dc800">
+							<p class="tab" data-toggle="tab"
+								style="border-top-left-radius: 2em; border-top-right-radius: 2em;">
+							<table style="background-color: #1dc800">
+								<tr>
+									<td><img
+										src="${pageContext.request.contextPath}/resources/images/naver.png"
+										width="30px"></td>
+									<td><a href="easySearch?kind=naver&pgnum=1"
+										style="color: White; text-decoration: none;">네이버</a></td>
+									<td width="10px"></td>
+								</tr>
+							</table>
+							</p>
 						</li>
-						<li>
-							<a href="#tab4" data-toggle="tab" style="background-color: #dc4e41; color: White">
-								<img src="${pageContext.request.contextPath}/resources/images/google_red.png" width="30px">
-								구글
-							</a>
+						<li style="background-color: #dc4e41">
+							<p class="tab" data-toggle="tab"
+								style="border-top-left-radius: 2em; border-top-right-radius: 2em;">
+							<table style="background-color: #dc4e41">
+								<tr>
+									<td><img
+										src="${pageContext.request.contextPath}/resources/images/google_red.png"
+										width="30px"></td>
+									<td><a href="easySearch?kind=google&pgnum=1"
+										style="color: White; text-decoration: none;">구글</a></td>
+									<td width="10px"></td>
+								</tr>
+							</table>
+							</p>
 						</li>
 					</ul>
 				</div>
 				<center>
-					<table class="table table-hover" style="width: 90%;">
-						<thead align="center">
+					<br /> <br />
+					<table class="table table-hover" style="width: 90%; color: White">
+						<thead align="center" style="background-color: #4267b2;">
 							<tr>
+								<td width="10%">번호</td>
 								<td width="25%">외부 사이트 명</td>
 								<td width="30%">사이트 주소</td>
 								<td width="25%">연결 날짜</td>
 								<td width="20%">연결 관리</td>
 							</tr>
 						</thead>
-						<tbody>
-							<tr>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-							</tr>
+						<tbody style="color: Black;">
+							<c:forEach items="${dtos}" var="dto">
+								<form action="cancel" name="searchForm">
+									<input type="hidden" name="sl_Name" value="${dto.SL_NAME}">
+									<tr>
+										<td align="center">${dto.NUM}</td>
+										<td align="center">${dto.SL_NAME}</td>
+										<td align="center"><a href="${dto.SL_SITE}">${dto.SL_SITE}</a></td>
+										<td align="center">${dto.SL_YEAR}-${dto.SL_MONTH}-${dto.SL_DAY}</td>
+										<td align="center">${dto.SL_STATE}&nbsp;<input
+											type="image" name="button" width="50px"
+											src="${pageContext.request.contextPath}/resources/images/cancel.png"></td>
+									</tr>
+								</form>
+							</c:forEach>
 						</tbody>
+						<tfoot>
+							<tr align="center">
+								<td colspan="5"><a href="easySearch?kind=${kind}&pgnum=1"
+									style="text-decoration: none">${prev}${prev}</a> <a
+									href="easySearch?kind=${kind}&pgnum=${before}"
+									style="text-decoration: none">${prev}</a> <c:forEach
+										items="${pg}" var="p">
+										<a href="easySearch?kind=${kind}&pgnum=${p}"
+											style="text-decoration: none">${p}</a>
+									</c:forEach> <a href="easySearch?kind=${kind}&pgnum=${after}"
+									style="text-decoration: none">${next}</a> <a
+									href="easySearch?kind=${kind}&pgnum=${last}"
+									style="text-decoration: none">${next}${next}</a></td>
+							</tr>
+						</tfoot>
 					</table>
 					<br /> <br /> <br />
-					<div class="row">
-						<div class="col-md-4 align-self-center" align="right">
-							<select id="combobox1" class="combobox">
-								<option value="SI">사이트명</option>
-								<option value="KI">계정 종류별</option>
-							</select>
+					<form action="search?kind=${kind}&pgnum=1" name="searchForm">
+						<input type="hidden" name="kind" value="${kind}">
+						<div class="row">
+							<div class="col-md-4 align-self-center" align="right">
+								*사이트명 입력</div>
+							<div class="col-md-4 align-self-center">
+								<input type="text" style="width: 100%;" name="keyword">
+							</div>
+							<div class="col-md-4 align-self-center" align="left">
+								<p>
+									<input type="image" name="button" width="50px"
+										src="${pageContext.request.contextPath}/resources/images/search.png">
+								</p>
+							</div>
 						</div>
-						<div class="col-md-4 align-self-center">
-							<input type="text" style="width: 100%;">
-						</div>
-						<div class="col-md-4 align-self-center" align="left">
-							<p><a href="#"><img src="${pageContext.request.contextPath}/resources/images/search.png" width="50px"></a></p>
-						</div>
-					</div>
+					</form>
 					<br /> <br /> <br />
 				</center>
 			</div>

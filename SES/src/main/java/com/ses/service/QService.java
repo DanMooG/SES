@@ -1,30 +1,34 @@
 package com.ses.service;
 
 import java.util.List;
+import java.util.Map;
 
+import org.springframework.stereotype.Service;
+
+import com.ses.dto.LogDTO;
 import com.ses.dto.QnaDTO;
-import com.ses.dto.Criteria;
-import com.ses.dto.SearchCriteria;
+import com.ses.dto.SiteListDTO;
 
+@Service
 public interface QService {
+	// 게시물 목록 불러오기
+	public List<QnaDTO> GetQList(Map<String, Object> map);
 
-	// 문의하기 작성
-	public void write(QnaDTO qnaDTO) throws Exception;
+	// 메인화면에 띄울 4개 가져오기
+	public List<QnaDTO> GetFour();
 
-	// 문의하기 목록 조회
-	public List<QnaDTO> qna(SearchCriteria scri) throws Exception;
+	// 문의하기 클릭 시 내용 보여주기
+	public QnaDTO GetQna(int Qnum);
+
+	// 전체 페이지 개수 구하기
+	public int PageCnt();
+
+	// 검색된 게시물 개수 구하기
+	public int SearchedListCnt(Map<String, Object> map);
+
+	// 게시물 검색
+	public List<QnaDTO> SearchList(Map<String, Object> map);
 	
-	// 문의하기  게시물 총 갯수
-	public int qnaCount(SearchCriteria scri) throws Exception;
-	
-	// 문의하기 조회
-	public QnaDTO read(int bid) throws Exception;
-	
-	// 문의하기 게시물 수정
-	public void update(QnaDTO qnaDTO) throws Exception;
-	
-	// 문의하기 게시물 삭제
-	public void delete(int bid) throws Exception;
-	
+	//새로운 문의 입력
+	public boolean NewQna(Map<String, Object> map);
 }
-
