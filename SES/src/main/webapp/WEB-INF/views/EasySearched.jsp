@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page import="java.net.URLEncoder"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
@@ -182,17 +183,14 @@ footer {
 						<tfoot>
 							<tr align="center">
 								<td colspan="5">
-									<a href="search?kind=${kind}&pgnum=1"
-									style="text-decoration: none">${prev}${prev}</a> <a
-									href="search?kind=${kind}&pgnum=${before}"
-									style="text-decoration: none">${prev}</a> <c:forEach
+									<a href="search?kind=${kind}&pgnum=1&keyword=<%=URLEncoder.encode(request.getParameter("keyword"), "UTF-8")%>" style="text-decoration: none">${prev}${prev}</a> 
+									<a href="search?kind=${kind}&pgnum=${before}&keyword=<%= URLEncoder.encode(request.getParameter("keyword"), "UTF-8")%>" style="text-decoration: none">${prev}</a> 
+									<c:forEach
 										items="${pg}" var="p">
-										<a href="search?kind=${kind}&pgnum=${p}"
-											style="text-decoration: none">${p}</a>
-									</c:forEach> <a href="search?kind=${kind}&pgnum=${after}"
-									style="text-decoration: none">${next}</a> <a
-									href="search?kind=${kind}&pgnum=${last}"
-									style="text-decoration: none">${next}${next}</a></td>
+										<a href="search?kind=${kind}&pgnum=${p}&keyword=<%= URLEncoder.encode(request.getParameter("keyword"), "UTF-8")%>" style="text-decoration: none">${p}</a>
+									</c:forEach> 
+									<a href="search?kind=${kind}&pgnum=${after}&keyword=<%= URLEncoder.encode(request.getParameter("keyword"), "UTF-8")%>" style="text-decoration: none">${next}</a> 
+									<a href="search?kind=${kind}&pgnum=${last}&keyword=<%= URLEncoder.encode(request.getParameter("keyword"), "UTF-8")%>" style="text-decoration: none">${next}${next}</a></td>
 							</tr>
 						</tfoot>
 					</table>

@@ -138,7 +138,7 @@ footer {
 							<div class="col-md-4 align-self-center" align="right">
 								<select id="combobox1" class="combobox" name="bCol">
 									<option value="사이트명">사이트명</option>
-									<option value="계정 종류별">계정 종류별</option>
+									<option value="계정종류별">계정종류별</option>
 								</select>
 							</div>
 							<div class="col-md-4 align-self-center">

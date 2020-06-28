@@ -54,8 +54,12 @@ public class MemberController {
 		} else { // 성공
 			session.setAttribute("mId", dto.getM_ID());
 			session.setAttribute("mPw", dto.getM_PW());
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('환영합니다!!'); document.location.replace('main')</script>");
+			out.flush();
 		}
-		return "redirect:/main";
+		return "main";
 	}
 
 	// 로그아웃
@@ -105,19 +109,20 @@ public class MemberController {
 				PrintWriter out = response.getWriter();
 				out.println("<script>alert('가입되었습니다'); document.location.replace('login')</script>");
 				out.flush();
+				return "/login";
 			} else {
 				response.setContentType("text/html; charset=UTF-8");
 				PrintWriter out = response.getWriter();
-				out.println("<script>alert('오류가 발생했습니다'); history.go(-1);</script>");
+				out.println("<script>alert('오류가 발생했습니다'); document.location.replace('join')</script>");
 				out.flush();
+				return "/join";
 			}
 		} else {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
-			out.println("<script>alert('아이디가 중복되었습니다'); history.go(-1);</script>");
+			out.println("<script>alert('아이디가 중복되었습니다'); document.location.replace('join')</script>");
 			out.flush();
+			return "/join";
 		}
-		
-		return "/login";
 	}
 }

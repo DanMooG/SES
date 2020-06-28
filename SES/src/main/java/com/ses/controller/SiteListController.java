@@ -17,6 +17,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.ses.dto.PageDTO;
 import com.ses.dto.SiteListDTO;
@@ -55,7 +56,7 @@ public class SiteListController {
 
 		map.put("kind", kind);
 		map.put("M_ID", session.getAttribute("mId"));
-		map.put("keyword", "%" + keyword + "%");
+		map.put("keyword", "%" + request.getParameter("keyword") + "%");
 
 		// 전체 게시글 개수 설정
 		pgDTO.setTotalCnt(Ser_SL.PageCnt(map));

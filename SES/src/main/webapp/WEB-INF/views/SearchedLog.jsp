@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page import="java.net.URLEncoder"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
@@ -121,14 +122,14 @@ footer {
 						</tbody>
 						<tfoot>
 							<tr align="center">
-								<td colspan="5"><a href="searchedLog?pgnum=1&bCol=${bCol}&bVal=${bVal}"
+								<td colspan="5"><a href="searchedlog?pgnum=1&bCol=<%=URLEncoder.encode(request.getParameter("bCol"), "UTF-8")%>&bVal=<%=URLEncoder.encode(request.getParameter("bVal"), "UTF-8")%>"
 									style="text-decoration: none">${prev}${prev}</a> <a
-									href="searchedLog?pgnum=${before}&bCol=${bCol}&bVal=${bVal}" style="text-decoration: none">${prev}</a>
+									href="searchedlog?pgnum=${before}&bCol=<%=URLEncoder.encode(request.getParameter("bCol"), "UTF-8")%>&bVal=<%=URLEncoder.encode(request.getParameter("bVal"), "UTF-8")%>" style="text-decoration: none">${prev}</a>
 									<c:forEach items="${pg}" var="p">
-										<a href="searchedLog?pgnum=${p}&bCol=${bCol}&bVal=${bVal}" style="text-decoration: none">${p}</a>
-									</c:forEach> <a href="searchedLog?pgnum=${after}&bCol=${bCol}&bVal=${bVal}"
+										<a href="searchedlog?pgnum=${p}&bCol=<%=URLEncoder.encode(request.getParameter("bCol"), "UTF-8")%>&bVal=<%=URLEncoder.encode(request.getParameter("bVal"), "UTF-8")%>" style="text-decoration: none">${p}</a>
+									</c:forEach> <a href="searchedlog?pgnum=${after}&bCol=<%=URLEncoder.encode(request.getParameter("bCol"), "UTF-8")%>&bVal=<%=URLEncoder.encode(request.getParameter("bVal"), "UTF-8")%>"
 									style="text-decoration: none">${next}</a> <a
-									href="searchedLog?pgnum=${last}&bCol=${bCol}&bVal=${bVal}" style="text-decoration: none">${next}${next}</a></td>
+									href="searchedlog?pgnum=${last}&bCol=<%=URLEncoder.encode(request.getParameter("bCol"), "UTF-8")%>&bVal=<%=URLEncoder.encode(request.getParameter("bVal"), "UTF-8")%>" style="text-decoration: none">${next}${next}</a></td>
 							</tr>
 						</tfoot>
 					</table>
@@ -139,7 +140,7 @@ footer {
 								<select id="combobox1" class="combobox" name="bCol">
 									<option value="${bCol}" selected>${bCol}</option>
 									<option value="사이트명">사이트명</option>
-									<option value="계정 종류별">계정 종류별</option>
+									<option value="계정종류별">계정종류별</option>
 								</select>
 							</div>
 							<div class="col-md-4 align-self-center">

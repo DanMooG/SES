@@ -64,10 +64,10 @@ public class QnaController {
 		// int형으로
 		int pgnum = Integer.parseInt(pgNum);
 
-		if (bCol.equals("TI")) {
+		if (bCol.equals("제목")) {
 			map.put("bVal1", "%" + bVal + "%");
 			map.put("bVal2", "%");
-		} else if (bCol.equals("WR")) {
+		} else if (bCol.equals("작성자")) {
 			map.put("bVal1", "%");
 			map.put("bVal2", "%" + bVal + "%");
 		}

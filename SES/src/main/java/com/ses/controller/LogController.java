@@ -47,7 +47,7 @@ public class LogController {
 		if (bCol.equals("사이트명")) {
 			map.put("bVal1", "%" + bVal + "%");
 			map.put("bVal2", "%");
-		} else if (bCol.equals("계정 종류별")) {
+		} else if (bCol.equals("계정종류별")) {
 			map.put("bVal1", "%");
 			map.put("bVal2", "%" + bVal + "%");
 		}

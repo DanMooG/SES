@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page import="java.net.URLEncoder"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
@@ -43,17 +44,18 @@ footer {
 	}
 	
 	function isLogin(){
-		var mID =  "<%=session.getAttribute("mId") %>" //세션 ID 가져오기
-		if(mID == null || mID == "null"){
+		var mID =  "<%=session.getAttribute("mId")%>
+	" //세션 ID 가져오기
+		if (mID == null || mID == "null") {
 			$("#lgstate").hide();
 			$("#writeQna").attr("href", "#");
 			$("#writeQna").attr("onClick", "alert('로그인 후 이용해주세요');");
-		} else if(mID != null){
+		} else if (mID != null) {
 			$("#lgstate").show();
 			$("#writeQna").attr("href", "qnaWrite");
 		}
 	}
-	window.onload=isLogin;
+	window.onload = isLogin;
 </script>
 </head>
 <body>
@@ -125,7 +127,7 @@ footer {
 						<tbody align="center">
 							<c:forEach items="${dtos}" var="dto">
 								<tr>
-									<td align="center">${dto.getQ_NUM()}</td>
+									<td align="center">${dto.getNUM()}</td>
 									<td align="center"><a href="${dto.getQ_TITLE()}">${dto.getQ_TITLE()}</a></td>
 									<td align="center">${dto.getQ_YEAR()}-${dto.getQ_MONTH()}-${dto.getQ_DAY()}</td>
 									<td align="center">${dto.getM_ID()}</td>
@@ -134,14 +136,20 @@ footer {
 						</tbody>
 						<tfoot>
 							<tr align="center">
-								<td colspan="5"><a href="searchqna?pgnum=1"
+								<td colspan="5"><a
+									href="searchqna?pgnum=1&bCol=<%=URLEncoder.encode(request.getParameter("bCol"), "UTF-8")%>&bVal=<%=URLEncoder.encode(request.getParameter("bVal"), "UTF-8")%>"
 									style="text-decoration: none">${prev}${prev}</a> <a
-									href="searchqna?pgnum=${before}" style="text-decoration: none">${prev}</a>
-									<c:forEach items="${pg}" var="p">
-										<a href="searchqna?pgnum=${p}" style="text-decoration: none">${p}</a>
-									</c:forEach> <a href="searchqna?pgnum=${after}"
+									href="searchqna?pgnum=${before}&bCol=<%=URLEncoder.encode(request.getParameter("bCol"), "UTF-8")%>&bVal=<%=URLEncoder.encode(request.getParameter("bVal"), "UTF-8")%>"
+									style="text-decoration: none">${prev}</a> <c:forEach
+										items="${pg}" var="p">
+										<a
+											href="searchqna?pgnum=${p}&bCol=<%=URLEncoder.encode(request.getParameter("bCol"), "UTF-8")%>&bVal=<%=URLEncoder.encode(request.getParameter("bVal"), "UTF-8")%>"
+											style="text-decoration: none">${p}</a>
+									</c:forEach> <a
+									href="searchqna?pgnum=${after}&bCol=<%=URLEncoder.encode(request.getParameter("bCol"), "UTF-8")%>&bVal=<%=URLEncoder.encode(request.getParameter("bVal"), "UTF-8")%>"
 									style="text-decoration: none">${next}</a> <a
-									href="searchqna?pgnum=${last}" style="text-decoration: none">${next}${next}</a></td>
+									href="searchqna?pgnum=${last}&bCol=<%=URLEncoder.encode(request.getParameter("bCol"), "UTF-8")%>&bVal=<%=URLEncoder.encode(request.getParameter("bVal"), "UTF-8")%>"
+									style="text-decoration: none">${next}${next}</a></td>
 							</tr>
 						</tfoot>
 					</table>
@@ -150,12 +158,13 @@ footer {
 						<form action="searchqna" name="myform" onSubmit="return check()">
 							<div class="col-md-4 align-self-center" align="right">
 								<select id="combobox1" class="combobox" name="bCol">
-									<option value="TI">제목</option>
-									<option value="WR">작성자</option>
+									<option value="${bCol}" selected>${bCol}</option>
+									<option value="제목">제목</option>
+									<option value="작성자">작성자</option>
 								</select>
 							</div>
 							<div class="col-md-4 align-self-center">
-								<input type="text" style="width: 100%;" name="bVal">
+								<input type="text" style="width: 100%;" name="bVal" value="${bVal}">
 							</div>
 							<div class="col-md-4 align-self-center" align="left">
 								<p>

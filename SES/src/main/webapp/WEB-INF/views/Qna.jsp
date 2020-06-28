@@ -161,8 +161,8 @@ footer {
 						<form action="searchqna" name="myform" onSubmit="return check()">
 							<div class="col-md-4 align-self-center" align="right">
 								<select id="combobox1" class="combobox" name="bCol">
-									<option value="TI">제목</option>
-									<option value="WR">작성자</option>
+									<option value="제목">제목</option>
+									<option value="작성자">작성자</option>
 								</select>
 							</div>
 							<div class="col-md-4 align-self-center">
