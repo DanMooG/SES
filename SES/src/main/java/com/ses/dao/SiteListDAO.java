@@ -56,4 +56,9 @@ public class SiteListDAO {
 	public SiteListDTO SearchOne(Map<String, Object> map) {
 		return temp.selectOne("SLmap.SearchOne", map);
 	}
+
+	// 해당 회원의 연결 계정 개수 구하기
+	public int MemberPageCnt(String mId) {
+		return temp.selectOne("SLmap.MemberPageCnt", mId);
+	}
 }

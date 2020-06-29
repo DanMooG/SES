@@ -56,6 +56,11 @@ public class PageController {
 		// 리스트 내용
 		List<QnaDTO> dtos = Ser_Q.GetFour();
 
+		if (session.getAttribute("mId") != null) {
+			int cnt = Ser_SL.MemberPageCnt(session.getAttribute("mId").toString());
+
+			model.addAttribute("Mcnt", cnt);
+		}
 		// 값 넘겨주기
 		model.addAttribute("dtos_qna", dtos);
 

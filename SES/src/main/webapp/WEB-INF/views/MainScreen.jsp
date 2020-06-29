@@ -33,6 +33,12 @@ footer {
 	left: 50%;
 	transform: translatex(-50%);
 }
+ .imageContainer {
+       width:200px; 
+       height:100px; 
+       background-image: url(${pageContext.request.contextPath}/resources/images/IDinfo.png);
+       background-size: cover;
+ }
 </style>
 <script type="text/javascript">
 	function isLogin(){
@@ -43,10 +49,12 @@ footer {
 			$("#easyS").attr("onClick", "alert('로그인 후 이용해주세요');");
 			$("#logS").attr("href", "#");
 			$("#logS").attr("onClick", "alert('로그인 후 이용해주세요');");
+			$("#info").hide();
 		} else if(mID != null){
 			$("#lgstate").show();
 			$("#easyS").attr("href", "easySearch?kind=facebook");
 			$("#logS").attr("href", "searchLog");
+			$("#loginbtn").hide();
 		}
 	}
  window.onload=isLogin;
@@ -88,7 +96,7 @@ footer {
 						role="button" aria-haspopup="true" aria-expanded="false"> 고객센터<span
 							class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li class="dropdown-item"><a href="#">자주하는 질문</a></li>
+							<!-- <li class="dropdown-item"><a href="#">자주하는 질문</a></li>-->
 							<li class="dropdown-item"><a href="qna">문의하기</a></li>
 						</ul></li>
 				</ul>
@@ -104,10 +112,15 @@ footer {
 				<div class="row">
 					<div class="col-md-2">
 						<p>
-							<a href="login"
+							<a id="loginbtn" href="login"
 								style="font: 30px bold; width: 200px; height: 150px;"><img
 								src="${pageContext.request.contextPath}/resources/images/login.png"
 								width="200px"></a>
+						</p>
+						<p class="imageContainer" id="info" style="font: 20px bold; width: 200px; height: 100px;" align="center">
+							<br/>
+							ID: ${mId}<br/>
+							연결 계정 수 : ${Mcnt}
 						</p>
 					</div>
 				</div>

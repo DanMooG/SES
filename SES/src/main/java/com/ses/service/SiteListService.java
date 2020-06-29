@@ -47,4 +47,10 @@ public class SiteListService implements SLService {
 	public SiteListDTO SearchOne(Map<String, Object> map) {
 		return slDAO.SearchOne(map);
 	}
+
+	// 해당 회원의 연결 계정 개수 구하기
+	@Override
+	public int MemberPageCnt(String mId) {
+		return slDAO.MemberPageCnt(mId);
+	}
 }

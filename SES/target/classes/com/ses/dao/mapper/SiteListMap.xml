@@ -30,4 +30,8 @@
 		resultType="com.ses.dto.SiteListDTO">
 		SELECT * FROM site_list WHERE M_ID like #{M_ID} and SL_NAME like #{SL_NAME}
 	</select>
+	
+	<select id="MemberPageCnt" parameterType="hashmap" resultType="int">
+		SELECT count(*) FROM site_list WHERE M_ID like #{M_ID} and SL_STATE like 1
+	</select>
 </mapper>

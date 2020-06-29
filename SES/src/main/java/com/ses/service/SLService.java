@@ -23,4 +23,7 @@ public interface SLService {
 	
 	// 특정 행 검색
 	public SiteListDTO SearchOne(Map<String, Object> map);
+	
+	// 해당 회원의 연결 계정 개수 구하기
+	public int MemberPageCnt(String mId);
 }
