@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%
+	request.setCharacterEncoding("UTF-8");
+%>
+<%
+	response.setContentType("text/html; charset=UTF-8");
+%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
@@ -37,32 +43,6 @@ function check() {
         return false;
     } 
 	
-	if (document.myform.mId.value == "") {
-		alert("아이디를 입력하세요!!");
-		document.myform.mId.focus();
-		return false;
-	}
-
-	//아이디 유효성 검사 (영문소문자, 숫자만 허용)
-	for (i = 0; i < document.myform.mId.value.length; i++) {
-		ch = document.myform.mId.value.charAt(i)
-		if (!(ch >= '0' && ch <= '9') && !(ch >= 'a' && ch <= 'z')
-				&& !(ch >= 'A' && ch <= 'Z')) {
-			alert("아이디는 대소문자, 숫자만 입력가능합니다!!")
-			document.myform.mId.focus()
-			document.myform.mId.select()
-			return false;
-		}
-	}
-
-	//아이디 길이 체크 (4~12자)
-	if (document.myform.mId.value.length<4 || document.myform.mId.value.length>12) {
-		alert("아이디를 4~12자까지 입력해주세요!!")
-		document.myform.mId.focus()
-		document.myform.mId.select()
-		return false;
-	}
-
 	if (document.myform.mName.value == "") {
 		alert("이름을 입력하세요!!");
 		document.myform.mName.focus();
@@ -71,17 +51,6 @@ function check() {
 	if (document.myform.mPw.value == "") {
 		alert("비밀번호를 입력하세요!!");
 		document.myform.mPw.focus();
-		return false;
-	}
-	if (document.myform.mPwChk.value == "") {
-		alert("비밀번호 확인을 입력하세요!!");
-		document.myform.mPw.focus();
-		return false;
-	}
-
-	if (document.myform.mPw.value == document.myform.mId.value) {
-		alert("아이디와 비밀번호가 같습니다.")
-		document.myform.mPw.focus()
 		return false;
 	}
 
@@ -109,10 +78,6 @@ function check() {
 	}
 	if (document.myform.datepicker.value == "") {
 		alert("생년월일을 선택하세요!!");
-		return false;
-	}
-	if (document.myform.mTel1[0].selected == true) {
-		alert("전화번호를 선택하세요!!");
 		return false;
 	}
 	if (document.myform.mTel2.value == "") {
@@ -163,11 +128,6 @@ function check() {
 		document.myform.mTel3.select()
 		return false;
 	}
-	if (document.myform.mPw.value != document.myform.mPwChk.value) {
-		alert("입력한 2개의 비밀번호가 일치하지 않습니다!!");
-		document.myform.mPw.focus();
-		return false;
-	}
 	var email = document.getElementById("mEmail").value;
 	var exptext = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
 	if(exptext.test(email)==false){
@@ -194,18 +154,19 @@ function check() {
 	if(robj[0].checked == true){
 		document.myform.emailYN.value = "Y";
     }
-    if(robj[1].checked == true){
-        alert("이메일 이용약관에 동의하지 않으면 관련 서비스를 받으실 수 없습니다!! 회원 정보수정에서 재연동 할 수 있습니다.");
+	if(robj[1].checked == true){
+        alert("이메일 이용약관에 동의하지 않으면 관련 서비스를 받으실 수 없습니다!! 나중에 다시 재연동 할 수 있습니다.");
         document.myform.emailYN.value = "N";
-    } 
+    }
     var robj = document.myform.smsReceiveYn;
 	if(robj[0].checked == true){
 		document.myform.smsYN.value = "Y";
     }
-    if(robj[1].checked == true){
-        alert("SMS 이용약관에 동의하지 않으면 관련 서비스를 받으실 수 없습니다!! 회원 정보수정에서 재연동 할 수 있습니다.");
+	if(robj[1].checked == true){
+        alert("SMS 이용약관에 동의하지 않으면 관련 서비스를 받으실 수 없습니다!! 나중에 다시 재연동 할 수 있습니다.");
         document.myform.smsYN.value = "N";
     }
+	return true;
 }
 
 function fcchkYN() {
@@ -281,113 +242,152 @@ function gchkYN() {
 
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h3>회원가입</h3>
+				<h3>회원정보수정</h3>
 			</div>
 		</div>
 
 		<div class="row">
 			<!-- 본문 들어가는 부분 -->
-			<div class="form-group" align="center">
-				<div class="col-lg-offset-2 col-lg-10">
-					<h5 style="color: red;">※회원가입 전에 계정연동을 해야 서비스를 이용할 수 있습니다※</h5>
-				</div>
-			</div>
 			<div class="form-group" align="right">
+				<%
+					String fc = (String) request.getAttribute("fcYN");
+					String kt = (String) request.getAttribute("ktYN");
+					String n = (String) request.getAttribute("nYN");
+					String g = (String) request.getAttribute("gYN");
+
+					if (!(fc.equals("Y") && kt.equals("Y") && n.equals("Y") && g.equals("Y"))) {
+				%>
 				<label for="connectSNS" class="col-lg-2 control-label"
 					style="color: red;" align="right">계정 연동</label>
 				<p>
+					<%
+						}
+					%>
+				
 				<table align="center">
 					<tr>
+						<%
+							if (fc.equals("Y") && kt.equals("Y")) {
+								if(n.equals("Y") && g.equals("Y")) {
+						%>
+						<td><h5 style="color: red;">※!!계정 연동 해지는 각 계정에 가서 할 수 있습니다!!※</h5></td>
+						<%
+								}
+							}
+						%>
+						<%
+							if (fc.equals("N")) {
+						%>
+
 						<td>
 							<form name="fcForm" method="post" onclick="return fcchkYN()">
 								<input type="image" name="fcBtn" width="100px"
 									src="${pageContext.request.contextPath}/resources/images/FacebookConn.png">
 							</form>
 						</td>
+						<%
+							}
+						%>
 						<td width="10px"></td>
+						<%
+							if (kt.equals("N")) {
+						%>
 						<td>
 							<form name="ktForm" method="post" onclick="return ktchkYN()">
 								<input type="image" name="ktBtn" width="100px"
 									src="${pageContext.request.contextPath}/resources/images/KakaotalkConn.png">
 							</form>
 						</td>
+						<%
+							}
+						%>
 						<td width="10px"></td>
+						<%
+							if (n.equals("N")) {
+						%>
 						<td>
 							<form name="nForm" method="post" onclick="return nchkYN()">
 								<input type="image" name="nBtn" width="100px"
 									src="${pageContext.request.contextPath}/resources/images/NaverConn.png">
 							</form>
 						</td>
+						<%
+							}
+						%>
 						<td width="10px"></td>
+						<%
+							if (g.equals("N")) {
+						%>
 						<td>
 							<form name="gForm" method="post" onclick="return gchkYN()">
 								<input type="image" name="gBtn" width="100px"
 									src="${pageContext.request.contextPath}/resources/images/GoogleConn.png">
 							</form>
 						</td>
+						<%
+							}
+						%>
 					</tr>
 				</table>
 				</p>
 			</div>
-			<form action="doJoin" class="form-horizontal" name="myform"
+			<div class="form-group" align="right">
+				<label for="connectSNS" class="col-lg-2 control-label"
+					style="color: red;" align="right">현재 계정 상태</label>
+				<p>
+				<table align="center">
+					<tr>
+						<td>Facebook: <%
+							if (fc.equals("Y")) {
+						%> O <%
+							} else {
+						%> X <%
+							}
+						%>
+						</td>
+						<td width="10px"></td>
+						<td>Kakaotalk: <%
+							if (kt.equals("Y")) {
+						%> O <%
+							} else {
+						%> X <%
+							}
+						%>
+						</td>
+						<td width="10px"></td>
+						<td>Naver: <%
+							if (n.equals("Y")) {
+						%> O <%
+							} else {
+						%> X <%
+							}
+						%>
+						</td>
+						<td width="10px"></td>
+						<td>Google: <%
+							if (g.equals("Y")) {
+						%> O <%
+							} else {
+						%> X <%
+							}
+						%>
+						</td>
+					</tr>
+				</table>
+				</p>
+			</div>
+			<form action="doModify" class="form-horizontal" name="myform"
 				method="post" onsubmit="return check()">
-				<div class="form-group">
-					<label for="provision" class="col-lg-2 control-label">회원가입약관</label>
-					<div class="col-lg-10" id="provision">
-						<textarea class="form-control" rows="8" style="resize: none">SES 통합 조회서비스에서 제공하는 ‘웹사이트 가입여부 조회지원’ 서비스 이용을 위한 개인정보 수집·이용에 동의가 필요합니다.
-‘동의함’을 클릭해주세요.
-                    	</textarea>
-						<div class="radio">
-							<label> <input type="radio" id="provisionYn"
-								name="provisionYn" value="Y" autofocus="autofocus" checked>동의합니다.
-							</label>
-						</div>
-						<div class="radio">
-							<label> <input type="radio" id="provisionYn"
-								name="provisionYn" value="N">동의하지 않습니다.
-							</label>
-						</div>
-					</div>
-				</div>
-				<div class="form-group">
-					<label for="memberInfo" class="col-lg-2 control-label">개인정보취급방침</label>
-					<div class="col-lg-10" id="memberInfo">
-						<textarea class="form-control" rows="8" style="resize: none">개인정보 수집·이용 목적
-o 간편가입조회 이용자 본인확인 
-
-수집하려는 개인정보의 항목
-o 휴대폰 본인확인: 이름, 휴대폰번호
-o 이메일 본인확인: 이름, 이메일주소
-
-동의 거부 권리 및 동의 거부에 따른 불이익
-o 개인정보 수집·이용에 동의를 거부하실 수 있으며, 동의를 거부하시는 경우에는 SES 간편가입조회 서비스 이용이 제한됩니다.
-                		</textarea>
-						<div class="radio">
-							<label> <input type="radio" id="memberInfoYn"
-								name="memberInfoYn" value="Y" checked>동의합니다.
-							</label>
-						</div>
-						<div class="radio">
-							<label> <input type="radio" id="memberInfoYn"
-								name="memberInfoYn" value="N">동의하지 않습니다.
-							</label>
-						</div>
-					</div>
-				</div>
 				<div class="form-group" id="divId">
 					<label for="inputId" class="col-lg-2 control-label">아이디</label>
-					<div class="col-lg-10">
-						<input type="text" class="form-control onlyAlphabetAndNumber"
-							id="mId" name="mId" data-rule-required="true"
-							placeholder="30자이내의 알파벳, 언더스코어(_), 숫자만 입력 가능합니다." maxlength="30">
-					</div>
+					<div class="col-lg-10">${mId}</div>
 				</div>
 				<div class="form-group" id="divName">
 					<label for="inputName" class="col-lg-2 control-label">성명</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control onlyHangul" id="mName" name="mName"
-							data-rule-required="true" placeholder="한글만 입력 가능합니다."
-							maxlength="15">
+						<input type="text" class="form-control onlyHangul" id="mName"
+							name="mName" data-rule-required="true"
+							placeholder="한글만 입력 가능합니다." value="${mName}" maxlength="15">
 					</div>
 				</div>
 				<div class="form-group" id="divPassword">
@@ -398,20 +398,9 @@ o 개인정보 수집·이용에 동의를 거부하실 수 있으며, 동의를
 							maxlength="30">
 					</div>
 				</div>
-				<div class="form-group" id="divPasswordCheck">
-					<label for="inputPasswordCheck" class="col-lg-2 control-label">비밀번호
-						확인</label>
-					<div class="col-lg-10">
-						<input type="password" class="form-control" id="mPwChk"
-							data-rule-required="true" placeholder="패스워드 확인" maxlength="30">
-					</div>
-				</div>
 				<div class="form-group" id="divBirth">
 					<label for="inputBirth" class="col-lg-2 control-label">생년월일</label>
-					<div class="col-lg-10">
-						<input type="text" class="form-control onlyHangul" id="datepicker" name="datepicker"
-							data-date-format="yyyy-mm-dd" maxlength="15">
-					</div>
+					<div class="col-lg-10">${birth}</div>
 				</div>
 				<div class="form-group" id="divPhoneNumber">
 					<label for="inputPhoneNumber" class="col-lg-2 control-label">휴대폰
@@ -421,20 +410,22 @@ o 개인정보 수집·이용에 동의를 거부하실 수 있으며, 동의를
 							<div class="col-lg-5">
 								<div class="row">
 									<div class="col-lg-4">
-										<select class="form-control" data-toggle="dropdown" id="mTel1" name="mTel1"
-											style="width: 120px;">
-											<option value="">선택하세요</option>
+										<select class="form-control" data-toggle="dropdown" id="mTel1"
+											name="mTel1" style="width: 120px;">
+											<option value="${tel1}">${tel1}</option>
 											<option value="010">010</option>
 											<option value="011">011</option>
 										</select>
 									</div>
 									<div class="col-lg-4">
-										<input type="tel" class="form-control onlyNumber" id="mTel2" name="mTel2"
-											data-rule-required="true" maxlength="4" style="width: 115px;">
+										<input type="tel" class="form-control onlyNumber" id="mTel2"
+											name="mTel2" data-rule-required="true" maxlength="4"
+											style="width: 115px;" value="${tel2}">
 									</div>
 									<div class="col-lg-4">
-										<input type="tel" class="form-control onlyNumber" id="mTel3" name="mTel3"
-											data-rule-required="true" maxlength="4" style="width: 115px;">
+										<input type="tel" class="form-control onlyNumber" id="mTel3"
+											name="mTel3" data-rule-required="true" maxlength="4"
+											style="width: 115px;" value="${tel3}">
 									</div>
 								</div>
 							</div>
@@ -445,21 +436,34 @@ o 개인정보 수집·이용에 동의를 거부하실 수 있으며, 동의를
 				<div class="form-group" id="divEmail">
 					<label for="inputEmail" class="col-lg-2 control-label">이메일</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control onlyHangul" id="mEmail" name="mEmail"
-							data-rule-required="true" placeholder="이메일을 입력해주세요"
-							maxlength="50">
+						<input type="text" class="form-control onlyHangul" id="mEmail"
+							name="mEmail" data-rule-required="true" placeholder="이메일을 입력해주세요"
+							maxlength="50" value="${mEmail}">
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="inputEmailReceiveYn" class="col-lg-2 control-label">이메일
 						수신여부</label>
 					<div class="col-lg-10">
-						<label class="radio-inline"> <input type="radio"
-							id="emailReceiveYn" name="emailReceiveYn" value="Y" checked>
-							동의합니다.
-						</label> <label class="radio-inline"> <input type="radio"
-							id="emailReceiveYn" name="emailReceiveYn" value="N"> 동의하지
-							않습니다.
+						<label class="radio-inline"> <%
+ 	String emailValue = (String) request.getAttribute("emailYN");
+ 	if (emailValue.equals("Y")) {
+ %> <input type="radio" id="emailReceiveYn" name="emailReceiveYn"
+							value="Y" checked> <%
+ 	} else {
+ %> <input type="radio" id="emailReceiveYn" name="emailReceiveYn"
+							value="Y"> <%
+ 	}
+ %> 동의합니다.
+						</label> <label class="radio-inline"> <%
+ 	if (emailValue.equals("Y")) {
+ %> <input type="radio" id="emailReceiveYn" name="emailReceiveYn"
+							value="N"> <%
+ 	} else {
+ %> <input type="radio" id="emailReceiveYn" name="emailReceiveYn"
+							value="N" checked> <%
+ 	}
+ %> 동의하지 않습니다.
 						</label>
 					</div>
 				</div>
@@ -467,30 +471,42 @@ o 개인정보 수집·이용에 동의를 거부하실 수 있으며, 동의를
 					<label for="inputPhoneNumber" class="col-lg-2 control-label">SMS
 						수신여부</label>
 					<div class="col-lg-10">
-						<label class="radio-inline"> <input type="radio"
-							id="smsReceiveYn" name="smsReceiveYn" value="Y" checked>
-							동의합니다.
-						</label> <label class="radio-inline"> <input type="radio"
-							id="smsReceiveYn" name="smsReceiveYn" value="N"> 동의하지
-							않습니다.
+						<label class="radio-inline"> <%
+ 	String smsValue = (String) request.getAttribute("smsYN");
+ 	if (smsValue.equals("Y")) {
+ %> <input type="radio" id="smsReceiveYn" name="smsReceiveYn" value="Y"
+							checked> <%
+ 	} else {
+ %> <input type="radio" id="smsReceiveYn" name="smsReceiveYn" value="Y">
+							<%
+								}
+							%> 동의합니다.
+						</label> <label class="radio-inline"> <%
+ 	if (smsValue.equals("Y")) {
+ %> <input type="radio" id="smsReceiveYn" name="smsReceiveYn" value="N">
+							<%
+								} else {
+							%> <input type="radio" id="smsReceiveYn" name="smsReceiveYn"
+							value="N" checked> <%
+ 	}
+ %> 동의하지 않습니다.
 						</label>
 					</div>
 				</div>
-				<input type="hidden" name="emailYN" value="N">
-				<input type="hidden" name="smsYN" value="N">
-				<input type="hidden" name="fcYN" value="N">
-				<input type="hidden" name="ktYN" value="N">
-				<input type="hidden" name="nYN" value="N">
-				<input type="hidden" name="gYN" value="N"> 
-				<br /> <br />
+				<input type="hidden" name="emailYN" value="${emailYN}"> <input
+					type="hidden" name="smsYN" value="${smsYN}"> <input
+					type="hidden" name="fcYN" value="${fcYN}"> <input
+					type="hidden" name="ktYN" value="${ktYN}"> <input
+					type="hidden" name="nYN" value="${nYN}"> <input
+					type="hidden" name="gYN" value="${gYN}"> <br /> <br />
 				<div c lass="form-group" align="center">
 					<div class="col-lg-offset-2 col-lg-10">
-						<button type="submit" id="joinBtn" class="btn btn-primary">회원가입</button>
+						<button type="submit" id="modifyBtn" class="btn btn-primary">정보수정</button>
 					</div>
 				</div>
 				<div class="form-group" align="center">
 					<div class="col-lg-offset-2 col-lg-10">
-						<h5 style="color: red;">※회원가입 전에 계정연동을 해야 서비스를 이용할 수 있습니다※</h5>
+						<h5 style="color: red;">※계정연동을 해야 서비스를 이용할 수 있습니다※</h5>
 					</div>
 				</div>
 			</form>
@@ -556,15 +572,6 @@ o 개인정보 수집·이용에 동의를 거부하실 수 있으며, 동의를
 			integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
 			crossorigin="anonymous"></script>
 		<script type="text/javascript">
-			$('#datepicker').datepicker({
-				weekStart : 1,
-				daysOfWeekHighlighted : "6,0",
-				autoclose : true,
-				todayHighlight : true,
-				endDate: "today"
-			});
-			$('#datepicker').datepicker("setDate", new Date());
-		</script>
 		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
 			integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
 			crossorigin="anonymous"></script>

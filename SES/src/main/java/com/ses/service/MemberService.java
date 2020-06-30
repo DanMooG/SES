@@ -43,7 +43,40 @@ public class MemberService implements MService {
 	}
 
 	// 회원가입
+	@Override
 	public boolean MJoin(Map<String, Object> map) {
 		return mDAO.MJoin(map);
+	}
+
+	// ID찾기
+	@Override
+	public String FindID(Map<String, Object> map) {
+		return mDAO.FindID(map);
+	}
+
+	// PW찾기
+	@Override
+	public boolean FindPW(Map<String, Object> map) {
+		return mDAO.FindPW(map);
+	}
+
+	// 임시비밀번호로 변경
+	@Override
+	public void ChangePW(Map<String, Object> map) {
+		mDAO.ChangePW(map);
+	}
+
+	// 회원정보 갖고오기
+	@Override
+	public MemberDTO GetInfo(String mID) {
+		MemberDTO dto = mDAO.MLogin(mID);
+
+		return dto;
+	}
+
+	// 회원정보 수정
+	@Override
+	public boolean ModifyInfo(Map<String, Object> map) {
+		return mDAO.ModifyInfo(map);
 	}
 }

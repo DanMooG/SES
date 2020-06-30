@@ -20,4 +20,19 @@ public interface MService {
 
 	// 회원가입
 	public boolean MJoin(Map<String, Object> map);
+
+	// ID찾기
+	public String FindID(Map<String, Object> map);
+
+	// PW찾기
+	public boolean FindPW(Map<String, Object> map);
+
+	// 임시비밀번호로 변경
+	public void ChangePW(Map<String, Object> map);
+
+	// 회원정보 갖고오기
+	public MemberDTO GetInfo(String mID);
+
+	// 회원정보 수정
+	public boolean ModifyInfo(Map<String, Object> map);
 }

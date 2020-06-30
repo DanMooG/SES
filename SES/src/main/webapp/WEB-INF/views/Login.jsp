@@ -70,7 +70,7 @@
 			</div>
 			<div class="clearfix">
 				<p class="text-center">
-					<a href="join">회원가입</a> | <a href="#">Forgot Password?</a>
+					<a href="join">회원가입</a> | <a href="viewfindIDPW">Forgot Id/Password?</a>
 				</p>
 			</div>
 		</form>

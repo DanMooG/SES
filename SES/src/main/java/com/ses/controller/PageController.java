@@ -73,6 +73,27 @@ public class PageController {
 		return "/Login";
 	}
 
+	// 회원정보수정
+	@RequestMapping("/modify")
+	public String GoModify(HttpServletRequest request, Model model) {
+		MemberDTO dto = Ser_M.GetInfo(session.getAttribute("mId").toString());
+		
+		model.addAttribute("mName", dto.getM_NAME());
+		model.addAttribute("birth", dto.getM_BIRTH1()+"-"+dto.getM_BIRTH2()+"-"+dto.getM_BIRTH3());
+		model.addAttribute("tel1", "0" + dto.getM_TEL1());
+		model.addAttribute("tel2", dto.getM_TEL2());
+		model.addAttribute("tel3", dto.getM_TEL3());
+		model.addAttribute("mEmail", dto.getM_EMAIL1()+"@"+dto.getM_EMAIL2());
+		model.addAttribute("fcYN", dto.getM_FBCHK());
+		model.addAttribute("ktYN", dto.getM_KTCHK());
+		model.addAttribute("nYN", dto.getM_NCHK());
+		model.addAttribute("gYN", dto.getM_GCHK());
+		model.addAttribute("emailYN", dto.getM_EMAIL_CHK());
+		model.addAttribute("smsYN", dto.getM_SMS_CHK());
+		
+		return "/ModifyInfo";
+	}
+
 	// 회원가입
 	@RequestMapping("/join")
 	public String GoJoin(HttpServletRequest request, Model model) {
@@ -381,5 +402,11 @@ public class PageController {
 			model.addAttribute("last", pgDTO.getTotalCnt() / pgDTO.getContentNum());
 
 		return "/SearchLog";
+	}
+
+	// 회원 ID, PW 찾기
+	@RequestMapping("/viewfindIDPW")
+	public String FindIDPW(HttpServletRequest request, Model model) {
+		return "/FindIDPW";
 	}
 }

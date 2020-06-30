@@ -47,4 +47,32 @@ public class MemberDAO {
 		else
 			return false;
 	}
+
+	// ID찾기
+	public String FindID(Map<String, Object> map) {
+		return temp.selectOne("Mmap.FindID", map);
+	}
+
+	// PW찾기
+	public boolean FindPW(Map<String, Object> map) {
+		String rs = temp.selectOne("Mmap.FindPW", map);
+		if (rs == null)
+			return true;
+		else
+			return false;
+	}
+
+	// 임시비밀번호로 변경
+	public void ChangePW(Map<String, Object> map) {
+		temp.update("Mmap.ChgPW", map);
+	}
+
+	// 회원정보 수정
+	public boolean ModifyInfo(Map<String, Object> map) {
+		int rs = temp.update("Mmap.ModifyInfo", map);
+		if (rs == 1)
+			return true;
+		else
+			return false;
+	}
 }
