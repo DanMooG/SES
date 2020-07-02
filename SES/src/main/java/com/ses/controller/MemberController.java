@@ -107,10 +107,7 @@ public class MemberController{
 		if (chkId) {
 			boolean chkJoin = mService.MJoin(map);
 			if (chkJoin) {
-				response.setContentType("text/html; charset=UTF-8");
-				PrintWriter out = response.getWriter();
-				out.println("<script>alert('가입되었습니다'); document.location.href='Login';</script>");
-				out.flush();
+				return "redirect:/login";
 			} else {
 				response.setContentType("text/html; charset=UTF-8");
 				PrintWriter out = response.getWriter();
@@ -123,7 +120,6 @@ public class MemberController{
 			out.println("<script>alert('아이디가 중복되었습니다'); history.go(-1);</script>");
 			out.flush();
 		}
-
 		return "/Login";
 	}
 
@@ -148,7 +144,7 @@ public class MemberController{
 		} else {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
-			out.println("<script>alert('아이디는 " + mID + " 입니다'); document.location.replace('Login')</script>");
+			out.println("<script>alert('아이디는 " + mID + " 입니다');</script>");
 			out.flush();
 		}
 
@@ -195,7 +191,7 @@ public class MemberController{
 
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
-			out.println("<script>alert('비밀번호를 " + newPW + " 로 초기화하였습니다'); document.location.replace('Login')</script>");
+			out.println("<script>alert('비밀번호를 " + newPW + " 로 초기화하였습니다');</script>");
 			out.flush();
 		}
 
@@ -215,7 +211,6 @@ public class MemberController{
 			out.flush();
 		}
 		
-
 		map.put("mId", session.getAttribute("mId").toString());
 		map.put("mName", request.getParameter("mName"));
 		map.put("mEmail1", emails[0]);
