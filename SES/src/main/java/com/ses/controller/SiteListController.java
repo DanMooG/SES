@@ -59,7 +59,7 @@ public class SiteListController {
 		map.put("keyword", "%" + request.getParameter("keyword") + "%");
 
 		// 전체 게시글 개수 설정
-		pgDTO.setTotalCnt(Ser_SL.PageCnt(map));
+		pgDTO.setTotalCnt(Ser_SL.SearchedListCnt(map));
 		// 현재 페이지 번호 설정
 		pgDTO.setPageNum(pgnum);
 		// 보여줄 게시물 수 설정
@@ -87,6 +87,7 @@ public class SiteListController {
 		int first = (pgnum - 1) * pgDTO.getContentNum() + 1;
 		int last = first + pgDTO.getContentNum();
 		int j = 0;
+		
 		// 각 게시물 번호
 		for (int i = first; i < last; i++) {
 			if (i <= pgDTO.getTotalCnt()) {

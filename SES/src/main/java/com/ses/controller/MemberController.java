@@ -227,17 +227,14 @@ public class MemberController{
 
 		boolean chkModify = mService.ModifyInfo(map);
 		if (chkModify) {
-			response.setContentType("text/html; charset=UTF-8");
-			PrintWriter out = response.getWriter();
-			out.println("<script>alert('수정되었습니다!!'); document.location.replace('main')</script>");
-			out.flush();
+			return "/ModifyOK";
 		} else {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>alert('오류가 발생하였습니다!!'); history.go(-1);</script>");
 			out.flush();
 		}
-		
-		return "/main";
+
+		return "/modify";
 	}
 }
