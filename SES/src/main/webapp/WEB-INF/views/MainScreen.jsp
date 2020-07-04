@@ -33,12 +33,14 @@ footer {
 	left: 50%;
 	transform: translatex(-50%);
 }
- .imageContainer {
-       width:200px; 
-       height:100px; 
-       background-image: url(${pageContext.request.contextPath}/resources/images/IDinfo.png);
-       background-size: cover;
- }
+
+.imageContainer {
+	width: 200px;
+	height: 100px;
+	background-image:
+		url(${pageContext.request.contextPath}/resources/images/IDinfo.png);
+	background-size: cover;
+}
 </style>
 <script type="text/javascript">
 	function isLogin(){
@@ -117,10 +119,10 @@ footer {
 								src="${pageContext.request.contextPath}/resources/images/login.png"
 								width="200px"></a>
 						</p>
-						<p class="imageContainer" id="info" style="font: 20px bold; width: 200px; height: 100px;" align="center">
-							<br/>
-							ID: ${mId}<br/>
-							연결 계정 수 : ${Mcnt}
+						<p class="imageContainer" id="info"
+							style="font: 20px bold; width: 200px; height: 100px;"
+							align="center">
+							<br /> ID: ${mId}<br /> 연결 계정 수 : ${Mcnt}
 						</p>
 					</div>
 				</div>
@@ -187,37 +189,10 @@ footer {
 						</div>
 					</div>
 					<div class="col-md-5">
-						<div class="panel panel-primary"
+						<img
+							src="${pageContext.request.contextPath}/resources/images/add
+							.png"
 							style="width: 400px; height: 225px;">
-							<div class="panel-heading">
-								<h3 class="panel-title">
-									<span class="glyphicon-pencil"></span>&nbsp;&nbsp;<a href="#">자주하는
-										질문</a>
-								</h3>
-							</div>
-							<div class="panel-body">
-								<div class="media">
-									<div class="media-body">
-										<h4 class="media-heading">게시물1</h4>
-									</div>
-								</div>
-								<div class="media">
-									<div class="media-body">
-										<h4 class="media-heading">게시물2</h4>
-									</div>
-								</div>
-								<div class="media">
-									<div class="media-body">
-										<h4 class="media-heading">게시물3</h4>
-									</div>
-								</div>
-								<div class="media">
-									<div class="media-body">
-										<h4 class="media-heading">게시물4</h4>
-									</div>
-								</div>
-							</div>
-						</div>
 					</div>
 				</div>
 			</div>
