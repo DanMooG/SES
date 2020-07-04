@@ -75,4 +75,13 @@ public class MemberDAO {
 		else
 			return false;
 	}
+
+	// 비밀번호 변경
+	public boolean ChagePWD(Map<String, Object> map) {
+		int rs = temp.update("Mmap.ChgPW", map);
+		if (rs == 1)
+			return true;
+		else
+			return false;
+	}
 }

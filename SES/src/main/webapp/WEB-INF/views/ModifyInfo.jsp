@@ -32,18 +32,7 @@
 </head>
 <script type="text/javascript">
 function check() {
-    var robj = document.myform.provisionYn;
-    if(robj[1].checked == true){
-        alert("회원가입약관에 동의하셔야합니다!!");
-        return false;
-    } 
-    var robj = document.myform.memberInfoYn;
-    if(robj[1].checked == true){
-        alert("개인정보취급방침에 동의하셔야합니다!!");
-        return false;
-    } 
-	
-	if (document.myform.mName.value == "") {
+    if (document.myform.mName.value == "") {
 		alert("이름을 입력하세요!!");
 		document.myform.mName.focus();
 		return false;
@@ -264,15 +253,27 @@ function gchkYN() {
 						}
 					%>
 				
+				<table align="right">
+					<tr>
+						<td>
+							<form action="chgPW" name="pwForm">
+								<button type="submit" id="modifyPW" class="btn btn-primary">
+									비밀번호 변경</button>
+							</form>
+						</td>
+						<td width="15px"></td>
+					</tr>
+				</table>
 				<table align="center">
 					<tr>
 						<%
 							if (fc.equals("Y") && kt.equals("Y")) {
-								if(n.equals("Y") && g.equals("Y")) {
+								if (n.equals("Y") && g.equals("Y")) {
 						%>
-						<td><h5 style="color: red;">※!!계정 연동 해지는 각 계정에 가서 할 수 있습니다!!※</h5></td>
+						<td><h5 style="color: red;">※!!계정 연동 해지는 각 계정에 가서 할 수
+								있습니다!!※</h5></td>
 						<%
-								}
+							}
 							}
 						%>
 						<%
@@ -330,6 +331,7 @@ function gchkYN() {
 					</tr>
 				</table>
 				</p>
+
 			</div>
 			<div class="form-group" align="right">
 				<label for="connectSNS" class="col-lg-2 control-label"
@@ -502,86 +504,87 @@ function gchkYN() {
 				<div c lass="form-group" align="center">
 					<div class="col-lg-offset-2 col-lg-10">
 						<button type="submit" id="modifyBtn" class="btn btn-primary">정보수정</button>
-					</div>
-				</div>
-				<div class="form-group" align="center">
-					<div class="col-lg-offset-2 col-lg-10">
-						<h5 style="color: red;">※계정연동을 해야 서비스를 이용할 수 있습니다※</h5>
-					</div>
-				</div>
 			</form>
-			<br /> <br /> <br />
-			<!--// 본문 들어가는 부분 -->
-
-			<hr />
-			<!-- Footer -->
-			<footer class="page-footer font-small indigo">
-				<!-- Footer Links -->
-				<div class="container text-center text-md-left">
-
-					<!-- Grid row -->
-					<div class="row text-center">
-						<!-- Grid column -->
-						<div class="col-md-1 mx-auto">
-							<!-- Links -->
-							<h5 class="font-weight-bold text-uppercase mt-2 mb-3">FAQ</h5>
-						</div>
-						<div class="col-md-2 mx-auto">
-							<!-- Links -->
-							<h5 class="font-weight-bold text-uppercase mt-2 mb-3">개인정보처리방침</h5>
-						</div>
-						<div class="col-md-5 mx-auto"></div>
-						<div class="col-md-1 mx-auto">
-							<!-- Links -->
-							<a href="https://https://www.facebook.com"> <img
-								src="${pageContext.request.contextPath}/resources/images/facebook.png"
-								width="30px">
-						</div>
-						<div class="col-md-1 mx-auto">
-							<!-- Links -->
-							<a href="https://www.kakaocorp.com/service/KakaoTalk"> <img
-								src="${pageContext.request.contextPath}/resources/images/kakaotalk.png"
-								width="30px">
-						</div>
-						<div class="col-md-1 mx-auto">
-							<!-- Links -->
-							<a href="https://www.naver.com"> <img
-								src="${pageContext.request.contextPath}/resources/images/naver.png"
-								width="30px">
-						</div>
-						<div class="col-md-1 mx-auto">
-							<!-- Links -->
-							<a href="https://www.google.com"> <img
-								src="${pageContext.request.contextPath}/resources/images/google.png"
-								width="30px">
-						</div>
-						<!-- Grid column -->
-					</div>
-					<!-- Grid row -->
-				</div>
-			</footer>
-
 		</div>
+	</div>
+	<div class="form-group" align="center">
+		<div class="col-lg-offset-2 col-lg-10">
+			<h5 style="color: red;">※계정연동을 해야 서비스를 이용할 수 있습니다※</h5>
+		</div>
+	</div>
+	<br />
+	<br />
+	<br />
+	<!--// 본문 들어가는 부분 -->
 
-		<script
-			src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-		<script
-			src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
-		<script
-			src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-			integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-			crossorigin="anonymous"></script>
-		<script type="text/javascript">
+	<hr />
+	<!-- Footer -->
+	<footer class="page-footer font-small indigo">
+		<!-- Footer Links -->
+		<div class="container text-center text-md-left">
+
+			<!-- Grid row -->
+			<div class="row text-center">
+				<!-- Grid column -->
+				<div class="col-md-1 mx-auto">
+					<!-- Links -->
+					<h5 class="font-weight-bold text-uppercase mt-2 mb-3">FAQ</h5>
+				</div>
+				<div class="col-md-2 mx-auto">
+					<!-- Links -->
+					<h5 class="font-weight-bold text-uppercase mt-2 mb-3">개인정보처리방침</h5>
+				</div>
+				<div class="col-md-5 mx-auto"></div>
+				<div class="col-md-1 mx-auto">
+					<!-- Links -->
+					<a href="https://https://www.facebook.com"> <img
+						src="${pageContext.request.contextPath}/resources/images/facebook.png"
+						width="30px">
+				</div>
+				<div class="col-md-1 mx-auto">
+					<!-- Links -->
+					<a href="https://www.kakaocorp.com/service/KakaoTalk"> <img
+						src="${pageContext.request.contextPath}/resources/images/kakaotalk.png"
+						width="30px">
+				</div>
+				<div class="col-md-1 mx-auto">
+					<!-- Links -->
+					<a href="https://www.naver.com"> <img
+						src="${pageContext.request.contextPath}/resources/images/naver.png"
+						width="30px">
+				</div>
+				<div class="col-md-1 mx-auto">
+					<!-- Links -->
+					<a href="https://www.google.com"> <img
+						src="${pageContext.request.contextPath}/resources/images/google.png"
+						width="30px">
+				</div>
+				<!-- Grid column -->
+			</div>
+			<!-- Grid row -->
+		</div>
+	</footer>
+	</div>
+
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+		integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+		crossorigin="anonymous"></script>
+	<script type="text/javascript">
 		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
 			integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
 			crossorigin="anonymous"></script>
-		<script
-			src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-			integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-			crossorigin="anonymous"></script>
-		<script
-			src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-			integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-			crossorigin="anonymous"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+		integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+		crossorigin="anonymous"></script>
 </body>
 </html>

@@ -25,7 +25,7 @@ import com.ses.service.MemberService;
 
 @Controller
 @Repository
-public class MemberController{
+public class MemberController {
 	@Autowired
 	MemberService mService;
 
@@ -70,7 +70,7 @@ public class MemberController{
 
 		session.removeAttribute("user");
 		session.invalidate();
-		//mService.logout(response);
+		// mService.logout(response);
 
 		return "redirect:/main";
 	}
@@ -198,43 +198,81 @@ public class MemberController{
 		return "/Login";
 	}
 
-	// 회원가입
+	// 정보수정
 	@RequestMapping(value = "/doModify", method = RequestMethod.POST)
 	public String MModify(HttpServletResponse response, HttpServletRequest request, Model model) throws IOException {
 		// parameter로 string으로 걍 보내니까 오류난다 이 똬식 map으로 보내야된대 똬식
 		Map<String, Object> map = new HashMap<String, Object>();
 		String emails[] = request.getParameter("mEmail").split("@");
-		if(!request.getParameter("mPw").equals(session.getAttribute("mPw").toString())) {
+		if (!request.getParameter("mPw").equals(session.getAttribute("mPw").toString())) {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>alert('비밀번호가 일치하지 않습니다!!'); history.go(-1);</script>");
 			out.flush();
-		}
-		
-		map.put("mId", session.getAttribute("mId").toString());
-		map.put("mName", request.getParameter("mName"));
-		map.put("mEmail1", emails[0]);
-		map.put("mEmail2", emails[1]);
-		map.put("mTel1", request.getParameter("mTel1"));
-		map.put("mTel2", request.getParameter("mTel2"));
-		map.put("mTel3", request.getParameter("mTel3"));
-		map.put("mFBCHK", request.getParameter("fcYN"));
-		map.put("mKTCHK", request.getParameter("ktYN"));
-		map.put("mNCHK", request.getParameter("nYN"));
-		map.put("mGCHK", request.getParameter("gYN"));
-		map.put("mEmailCHK", request.getParameter("emailReceiveYn"));
-		map.put("mSmsCHK", request.getParameter("smsReceiveYn"));
-
-		boolean chkModify = mService.ModifyInfo(map);
-		if (chkModify) {
-			return "/ModifyOK";
 		} else {
-			response.setContentType("text/html; charset=UTF-8");
-			PrintWriter out = response.getWriter();
-			out.println("<script>alert('오류가 발생하였습니다!!'); history.go(-1);</script>");
-			out.flush();
+
+			map.put("mId", session.getAttribute("mId").toString());
+			map.put("mName", request.getParameter("mName"));
+			map.put("mEmail1", emails[0]);
+			map.put("mEmail2", emails[1]);
+			map.put("mTel1", request.getParameter("mTel1"));
+			map.put("mTel2", request.getParameter("mTel2"));
+			map.put("mTel3", request.getParameter("mTel3"));
+			map.put("mFBCHK", request.getParameter("fcYN"));
+			map.put("mKTCHK", request.getParameter("ktYN"));
+			map.put("mNCHK", request.getParameter("nYN"));
+			map.put("mGCHK", request.getParameter("gYN"));
+			map.put("mEmailCHK", request.getParameter("emailReceiveYn"));
+			map.put("mSmsCHK", request.getParameter("smsReceiveYn"));
+
+			boolean chkModify = mService.ModifyInfo(map);
+			if (chkModify) {
+				return "/ModifyOK";
+			} else {
+				response.setContentType("text/html; charset=UTF-8");
+				PrintWriter out = response.getWriter();
+				out.println("<script>alert('오류가 발생하였습니다!!'); history.go(-1);</script>");
+				out.flush();
+			}
 		}
 
 		return "/modify";
+	}
+
+	// 비밀번호 변경
+	@RequestMapping(value = "/doChgPW", method = RequestMethod.POST)
+	public String ChagePWD(HttpServletResponse response, HttpServletRequest request, Model model) throws IOException {
+		// parameter로 string으로 걍 보내니까 오류난다 이 똬식 map으로 보내야된대 똬식
+		Map<String, Object> map = new HashMap<String, Object>();
+
+		if (!request.getParameter("nowPW").equals(session.getAttribute("mPw").toString())) {
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('현 비밀번호가 일치하지 않습니다!!'); history.go(-1);</script>");
+			out.flush();
+		} else {
+
+			map.put("mId", session.getAttribute("mId").toString());
+			map.put("mPW", request.getParameter("newPW"));
+
+			boolean result = mService.ChagePWD(map);
+
+			if (result) {
+				session.removeAttribute("user");
+				session.invalidate();
+				return "redirect:/login";
+			} else {
+				response.setContentType("text/html; charset=UTF-8");
+				PrintWriter out = response.getWriter();
+				out.println("<script>alert('오류가 발생하였습니다!!'); history.go(-1);</script>");
+				out.flush();
+
+				session.removeAttribute("user");
+				session.invalidate();
+				return "redirect:/login";
+			}
+		}
+		
+		return "/ChgPW";
 	}
 }

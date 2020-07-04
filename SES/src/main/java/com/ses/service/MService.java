@@ -35,4 +35,7 @@ public interface MService {
 
 	// 회원정보 수정
 	public boolean ModifyInfo(Map<String, Object> map);
+
+	// 비밀번호 변경
+	public boolean ChagePWD(Map<String, Object> map);
 }

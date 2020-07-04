@@ -79,4 +79,10 @@ public class MemberService implements MService {
 	public boolean ModifyInfo(Map<String, Object> map) {
 		return mDAO.ModifyInfo(map);
 	}
+
+	// 비밀번호 변경
+	@Override
+	public boolean ChagePWD(Map<String, Object> map) {
+		return mDAO.ChagePWD(map);
+	}
 }
